@@ -65,4 +65,14 @@ xlnx_auto_0_xdb/
 xst/
 _ngo/
 _xmsgs/
+
+# cache and runs
 main/pan_tilt.cache/
+main/pan_tilt.runs/
+main/pan_tilt.sim/
+main/pan_tilt.ip_user_files/
+
+pan_tilt.cache/
+pan_tilt.runs/
+pan_tilt.sim/
+pan_tilt.ip_user_files/
