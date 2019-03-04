@@ -80,3 +80,4 @@ pan_tilt.ip_user_files/
 # log and journal files
 *.log
 *.jou
+*.str
