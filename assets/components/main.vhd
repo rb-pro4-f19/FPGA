@@ -18,12 +18,13 @@ entity main is
 	(
 		clk				: in	STD_LOGIC;
 		sw				: in	STD_LOGIC_VECTOR(15 downto 0);
-		led				: out	STD_LOGIC_VECTOR(15 downto 0);
 		btnU,
 		btnL,
 		btnC,
 		btnR,
 		btnD			: in	STD_LOGIC;
+
+		led				: out	STD_LOGIC_VECTOR(15 downto 0);
 		seg				: out	STD_LOGIC_VECTOR(6 downto 0);
 		dp				: out	STD_LOGIC;
 		an				: out	STD_LOGIC_VECTOR(3 downto 0)
@@ -87,11 +88,16 @@ begin
 -- PORT MAPPING
 ---------------------------------------------------------------------------------------------------
 
-U1:	module_name
-	port map
-	(
-		i_clk		=> clk,
-		o_sig		=> dp
-	);
+U1:			module_name
+			generic map
+			(
+				CLK_FREQ,
+			 	200
+			)
+			port map
+			(
+				i_clk		=> clk,
+				o_sig		=> dp
+			);
 
 end structure;
