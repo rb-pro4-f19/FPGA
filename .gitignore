@@ -76,3 +76,7 @@ pan_tilt.cache/
 pan_tilt.runs/
 pan_tilt.sim/
 pan_tilt.ip_user_files/
+
+# log and journal files
+*.log
+*.jou
