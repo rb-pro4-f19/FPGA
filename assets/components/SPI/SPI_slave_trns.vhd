@@ -24,75 +24,75 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 
 entity SPI_slave_trns is
-    generic(
-    data_l  :   integer := 16
-    );
     port(
-    sck     :   in  std_logic := '0';
-    ss      :   in  std_logic := '1';
-    data    :   in  std_logic_vector(data_l-1 downto 0) := x"0000";
-    miso    :   out std_logic := '0';
-    busy    :   out std_logic := '0'
+    sck                     :   in  std_logic;
+    ss                      :   in  std_logic;
+    data                    :   in  std_logic_vector(15 downto 0);
+    miso                    :   out std_logic;
+    busy                    :   out std_logic
     );
 end SPI_slave_trns;
 architecture Behavioral of SPI_slave_trns is
 
-    type enable_spi is (ENB, DIS, WAITING);
+    type enable_spi         is (ENB, DIS, WAITING);
 
-    signal state        :   enable_spi := ENB;
-    signal index        :   integer := (data_l-1);
+    signal state            :   enable_spi  := ENB;
+    signal b_busy           :   std_logic;
+    signal b_miso           :   std_logic;
+    signal b_data_transmit  :   std_logic_vector(15 downto 0);
+    signal shift_reg        :   std_logic_vector(15 downto 0);
+    signal index            :   integer;
 
     begin
-
+--------------------------------------------------------------------------------
+    busy <= b_busy;
+    miso <= b_miso;
+    b_data_transmit <= data;
+--------------------------------------------------------------------------------
     process(sck, ss)
-
-    variable b_index    : integer;
-    variable data_shift : std_logic_vector(data_l-1 downto 0);
-
     begin
-
+--------------------------------------------------------------------------------
         case( state ) is
+--------------------------------------------------------------------------------
+        when ENB =>
+        if (ss = '0') then
+            b_busy <= '1';
+            shift_reg <= b_data_transmit;
+            b_miso <= b_data_transmit(15);
+            index <= 14;
+            state <= DIS;
+        else
+            b_busy <= '0';
+            state <= ENB;
+        end if;
 
-            when ENB =>
-            if (ss = '0') then
-                data_shift := data;
-                miso <= data_shift(index);
-                index <= index - 1;
-                busy <= '1';
-                state <= DIS;
-            else
-                index <= data_l-1;
-                state <= ENB;
-            end if;
-
-            when DIS =>
-            if (ss = '0') then
-                if(falling_edge(sck)) then
-                    b_index := index;
-                    if (b_index >= 1) then
-                        miso <= data_shift(index);
-                        index <= index - 1;
-                        state <= DIS;
-                    elsif (b_index = 0) then
-                        miso <= data_shift(index);
-                        index <= data_l-1;
-                        state <= WAITING;
-                    else
-                        miso <= '0';
-                        state <= WAITING;
-                    end if;
+--------------------------------------------------------------------------------
+        when DIS =>
+        if (ss = '0') then
+            if(falling_edge(sck)) then
+                if (index >= 1) then
+                    b_miso <= shift_reg(index);
+                    index <= index - 1;
+                    state <= DIS;
+                elsif (index = 0) then
+                    b_miso <= shift_reg(index);
+                    state <= WAITING;
                 end if;
-            else
-                miso <= '0';
-                state <= WAITING;
             end if;
+        else
+            b_miso <= '0';
+            state <= WAITING;
+        end if;
 
-            when WAITING =>
+--------------------------------------------------------------------------------
+        when WAITING =>
             if(ss = '1') then
-                busy <= '0';
+                b_busy <= '0';
+                b_miso <= '0';
                 state <= ENB;
             end if;
 
+--------------------------------------------------------------------------------
         end case;
 
         end process;
