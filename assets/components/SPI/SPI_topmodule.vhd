@@ -92,7 +92,7 @@ signal b_miso               :    std_logic;
 
 --------------------------------------------------------------------------------
 begin
-    b_data_controller_i <= b_reci;
+    b_data_controller_i <= data_controller_i;
     b_busy <= b_busy_reci or b_busy_trns;
     spi_sleep <= b_spi_sleep;
     data_controller_o <= b_data_controller_o;

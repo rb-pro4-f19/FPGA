@@ -34,39 +34,34 @@ end CONTROLLER;
 
 architecture Behavioral of CONTROLLER is
 
-    type MODE   is (IDLE, REPLY, WAITING);
+type MODE   is (IDLE, REPLY, WAITING);
 
-    signal state                :   MODE   := IDLE;
+signal state                :   MODE   := IDLE;
 
-    signal b_data_controller_i  :   std_logic_vector(15 downto 0);
-    signal b_data_controller_o  :   std_logic_vector(15 downto 0) := x"0000";
-    signal data_controller_i    :   std_logic_vector(15 downto 0);
-    signal data_controller_o    :   std_logic_vector(15 downto 0);
-    signal w_control_answer     :   std_logic := '0';
-    signal b_spi_sleep          :   std_logic := '0';
-    signal b_miso               :   std_logic;
-    signal b_shift              :   std_logic_vector( 15 downto 0);
+signal data_controller_i    :   std_logic_vector(15 downto 0);
+signal data_controller_o    :   std_logic_vector(15 downto 0);
+signal w_control_answer     :   std_logic := '0';
+signal b_spi_sleep          :   std_logic := '0';
+signal b_miso               :   std_logic;
+signal b_shift              :   std_logic_vector( 15 downto 0);
 
-    component SPI_topmodule is
-    port(
-        clk                     :   in  std_logic;
-        sck                     :   in  std_logic;
-        ss                      :   in  std_logic;
-        mosi                    :   in  std_logic;
-        control_answer          :   in  std_logic;
-        data_controller_i       :   in  std_logic_vector(15 downto 0) := x"0000";
-        miso                    :   out std_logic;
-        data_controller_o       :   out std_logic_vector(15 downto 0) := x"0000";
-        spi_sleep               :   out std_logic := '0'
-        );
-    end component;
+component SPI_topmodule is
+port(
+    clk                     :   in  std_logic;
+    sck                     :   in  std_logic;
+    ss                      :   in  std_logic;
+    mosi                    :   in  std_logic;
+    control_answer          :   in  std_logic;
+    data_controller_i       :   in  std_logic_vector(15 downto 0) := x"0000";
+    miso                    :   out std_logic;
+    data_controller_o       :   out std_logic_vector(15 downto 0) := x"0000";
+    spi_sleep               :   out std_logic := '0'
+    );
+end component;
 --------------------------------------------------------------------------------
     begin
 --------------------------------------------------------------------------------
 
-
-    b_data_controller_i <= data_controller_i;
-    data_controller_o <= b_data_controller_o;
     miso <= b_miso;
 
     process(clk, b_spi_sleep)
@@ -75,7 +70,7 @@ architecture Behavioral of CONTROLLER is
                 when IDLE =>
                     if (b_spi_sleep = '1') then
                         w_control_answer <= '0';
-                        b_shift <= b_data_controller_i;
+                        b_shift <= data_controller_o;
                         state <= REPLY;
                     else
                         state <= IDLE;
@@ -83,34 +78,34 @@ architecture Behavioral of CONTROLLER is
 
                 when REPLY =>
                     if( b_shift(3 downto 0) = "0000" ) then
-                        b_data_controller_o <= x"0000";
+                        data_controller_i <= x"0000";
                         state <= WAITING;
                     elsif( b_shift(3 downto 0) = "0001" ) then
-                        b_data_controller_o <= x"00F0";
+                        data_controller_i <= x"00F0";
                         state <= WAITING;
                     elsif( b_shift(3 downto 0) = "0010" ) then
-                        b_data_controller_o <= x"0F00";
+                        data_controller_i <= x"0F00";
                         state <= WAITING;
                     elsif( b_shift(3 downto 0) = "0011" ) then
-                        b_data_controller_o<= x"0FF0";
+                        data_controller_i<= x"0FF0";
                         state <= WAITING;
                     elsif( b_shift(3 downto 0) = "0100" ) then
-                        b_data_controller_o <= x"F000";
+                        data_controller_i <= x"F000";
                         state <= WAITING;
                     elsif( b_shift(3 downto 0) = "0101" ) then
-                        b_data_controller_o <= x"F0F0";
+                        data_controller_i <= x"F0F0";
                         state <= WAITING;
                     elsif( b_shift(3 downto 0) = "0110" ) then
-                        b_data_controller_o <= x"FF00";
+                        data_controller_i <= x"FF00";
                         state <= WAITING;
                     elsif( b_shift(3 downto 0) = "0111" ) then
-                        b_data_controller_o <= x"FFF0";
+                        data_controller_i <= x"FFF0";
                         state <= WAITING;
                     elsif( b_shift(3 downto 0) = "1001" ) then
-                        b_data_controller_o <= x"AAA0";
+                        data_controller_i <= x"AAA0";
                         state <= WAITING;
                     else
-                        b_data_controller_o <= x"0FF0";
+                        data_controller_i <= x"0FF0";
                         state <= WAITING;
                     end if;
 
