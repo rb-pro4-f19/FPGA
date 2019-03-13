@@ -27,9 +27,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity UART_TX_topmodule is
     port(
         send              :   in  std_logic;
-        r_w               :   in  std_logic;  -- conc with data to make 8bit
         clk               :   in  std_logic;
-        data              :   in  std_logic_vector (6 downto 0);
+        data              :   in  std_logic_vector (7 downto 0);
         ready             :   out std_logic;
         RsTx              :   out std_logic
         );
@@ -61,7 +60,7 @@ architecture Behavioral of UART_TX_topmodule is
     signal state          :   state_type := TX_RDY;
     signal uart_data      :   std_logic_vector (7 downto 0);
     signal send_tx        :   std_logic := '0';
-    signal b_shift        :   std_logic_vector (6 downto 0);
+    signal b_shift        :   std_logic_vector (7 downto 0);
 
     signal counter_dela   :   integer range 0 to max_delay := 0;
 
@@ -70,7 +69,7 @@ architecture Behavioral of UART_TX_topmodule is
 
 begin
 
-    uart_data <= r_w & b_shift;
+    uart_data <= b_shift;
     ready <= b_ready;
 
 
