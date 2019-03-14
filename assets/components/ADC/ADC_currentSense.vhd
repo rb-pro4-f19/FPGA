@@ -29,35 +29,35 @@ component xadc_wiz_0 is
 port
    (
     daddr_in        : in  STD_LOGIC_VECTOR (6 downto 0);     -- Address bus for the dynamic reconfiguration port
-    
+
     den_in          : in  STD_LOGIC;                         -- Enable Signal for the dynamic reconfiguration port
-    
+
     di_in           : in  STD_LOGIC_VECTOR (15 downto 0);    -- Input data bus for the dynamic reconfiguration port
-    
+
     dwe_in          : in  STD_LOGIC;                         -- Write Enable for the dynamic reconfiguration port
-    
+
     do_out          : out  STD_LOGIC_VECTOR (15 downto 0);   -- Output data bus for dynamic reconfiguration port
-    
+
     drdy_out        : out  STD_LOGIC;                        -- Data ready signal for the dynamic reconfiguration port
-    
+
     dclk_in         : in  STD_LOGIC;                         -- Clock input for the dynamic reconfiguration port
-    
+
     vauxp6          : in  STD_LOGIC;                         -- Auxiliary Channel 6
     vauxn6          : in  STD_LOGIC;
-    
+
     vauxp14         : in  STD_LOGIC;                         -- Auxiliary Channel 14
     vauxn14         : in  STD_LOGIC;
-    
+
     busy_out        : out  STD_LOGIC;                        -- ADC Busy signal
-    
+
     channel_out     : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
-    
+
     eoc_out         : out  STD_LOGIC;                        -- End of Conversion Signal
-    
+
     eos_out         : out  STD_LOGIC;                        -- End of Sequence Signal
-    
+
     alarm_out       : out STD_LOGIC;                         -- OR'ed output of all the Alarms
-    
+
     vp_in           : in  STD_LOGIC;                         -- Dedicated Analog Input Pair
     vn_in           : in  STD_LOGIC
 );
@@ -167,12 +167,34 @@ port map(
         clk_out                     => clk_10MHz
         );
 
-UART: UART_TX_topmodule
-port map(
-        send                        => '1',
-        clk                         => clk,
-        data                        => w_data_xadc_2(11 downto 4),
-        RsTx                        => RsTx
-        );
-
 end Behavorial;
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity clk10MHz is
+    Port (
+        clk_in : in  STD_LOGIC;
+        clk_out: out STD_LOGIC
+    );
+end clk10MHz;
+
+architecture Behavioral of clk10MHz is
+
+    signal temporal: STD_LOGIC := '0';
+    signal counter : integer range 0 to 9 := 0;
+
+begin
+
+process (clk_in) begin
+        if rising_edge(clk_in) then
+            if (counter = 9) then
+                temporal <= NOT(temporal);
+                counter <= 0;
+            else
+                counter <= counter + 1;
+            end if;
+        end if;
+    end process;
+    clk_out <= temporal;
+end Behavioral;

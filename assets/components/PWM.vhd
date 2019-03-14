@@ -20,23 +20,23 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use IEEE.NUMERIC_STD.ALL;
 --------------------------------------------------------------------------------
 -- MAIN ENTITY
 --------------------------------------------------------------------------------
 entity PWM is
-generic(
-		clk_divider	   	 		 : INTEGER	:= 6;		--Divides the clock for PWM_counter
-		PWM_maxval					 : INTEGER  := 255
-);
+	generic(
+			clk_divider	   	 		 	 : INTEGER	:= 6;		--Divides the clock for PWM_counter
 
-port(
-		clk	 				  	   	 : in  STD_LOGIC;
-		JA    			 	     	 : out STD_LOGIC_VECTOR(7 downto 0);
-		data   	    	 			 : in  STD_LOGIC_VECTOR(7 downto 0)
-);
+			PWM_maxval					 : INTEGER  := 255
+	);
+	port(
+			clk	 				  	   	 : in  STD_LOGIC;
+
+			JA    			 	     	 : out STD_LOGIC_VECTOR(7 downto 0);
+			
+			data   	    	 			 : in  STD_LOGIC_VECTOR(7 downto 0)
+	);
 end PWM;
 -------------------------ARCH STARTS HEREE--------------------------------------
 architecture Behavioral of PWM is
