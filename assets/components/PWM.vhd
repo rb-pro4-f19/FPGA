@@ -91,7 +91,7 @@ architecture Behavioral of PWM is
 
 		----------------------------------------------------------------------------
 
-		JA(1) <= '0' when ( state_counter = UP and PWM_counter = pwm_value )
-		else '1' when ( state_counter = DOWN and PWM_counter = pwm_value );
+		JA(1) <= '0' when ( state_counter = UP and PWM_counter > pwm_value )
+	else '1' when ( state_counter = DOWN and PWM_counter < pwm_value );
 
 end Behavioral;
