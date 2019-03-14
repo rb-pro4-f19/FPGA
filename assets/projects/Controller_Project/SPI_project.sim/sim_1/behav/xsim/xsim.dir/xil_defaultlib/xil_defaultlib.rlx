@@ -1,0 +1,13 @@
+0.6
+2018.3
+Dec  6 2018
+23:39:36
+/home/daniel/SPI_project/SPI_project.srcs/sim_1/new/CHECKSUM_Tb.vhd,1552171950,vhdl,,,,checksum_tb,,,,,,,,
+/home/daniel/SPI_project/SPI_project.srcs/sim_1/new/Controller_TB.vhd,1552168822,vhdl,,,,controller_tb,,,,,,,,
+/home/daniel/SPI_project/SPI_project.srcs/sim_1/new/TB_tranciever.vhd,1552238569,vhdl,,,,tb_tranciever,,,,,,,,
+/home/daniel/SPI_project/SPI_project.srcs/sources_1/new/Controller.vhd,1552603736,vhdl2008,,,,controller,,,,,,,,
+/home/daniel/SPI_project/SPI_project.srcs/sources_1/new/PWM_Motor.vhd,1552601768,vhdl,,,,motor_statefreq;pwm,,,,,,,,
+/home/daniel/SPI_project/SPI_project.srcs/sources_1/new/SPI_slave_reci.vhd,1552599733,vhdl2008,,,,spi_slave_reci,,,,,,,,
+/home/daniel/SPI_project/SPI_project.srcs/sources_1/new/SPI_slave_trns.vhd,1552508291,vhdl2008,,,,spi_slave_trns,,,,,,,,
+/home/daniel/SPI_project/SPI_project.srcs/sources_1/new/SPI_topmodule.vhd,1552605466,vhdl2008,,,,spi_topmodule,,,,,,,,
+/home/daniel/SPI_project/SPI_project.srcs/sources_1/new/controller_modules.vhd,1552605093,vhdl,/home/daniel/SPI_project/SPI_project.srcs/sources_1/new/Controller.vhd,,,controller_modules,,,,,,,,
