@@ -1,1 +1,0 @@
--wto "1e320b09970042919670bc3cf7daa1b5" --incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "secureip" --snapshot "Controller_TB_func_synth" "xil_defaultlib.Controller_TB" -log "elaborate.log" 

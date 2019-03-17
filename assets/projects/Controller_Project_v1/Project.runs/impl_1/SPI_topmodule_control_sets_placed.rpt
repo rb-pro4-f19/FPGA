@@ -1,0 +1,97 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Sun Mar 17 23:39:55 2019
+| Host         : daniel-XPS-15-9570 running 64-bit Ubuntu 18.04.2 LTS
+| Command      : report_control_sets -verbose -file SPI_topmodule_control_sets_placed.rpt
+| Design       : SPI_topmodule
+| Device       : xc7a35t
+------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    29 |
+| Unused register locations in slices containing registers |   153 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      1 |           18 |
+|      2 |            2 |
+|      4 |            3 |
+|      5 |            1 |
+|    16+ |            5 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              21 |            4 |
+| No           | No                    | Yes                    |               6 |            4 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              76 |           28 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              16 |            3 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+-------------------------------+-------------------------------+------------------+----------------+
+|  Clock Signal  |         Enable Signal         |        Set/Reset Signal       | Slice Load Count | Bel Load Count |
++----------------+-------------------------------+-------------------------------+------------------+----------------+
+|  sck_IBUF_BUFG | URECI/p_1_in[1]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[11]              |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[9]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[8]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[10]              |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[7]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[6]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[5]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[4]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[3]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[2]               |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[12]              |                               |                1 |              1 |
+| ~ss_IBUF_BUFG  |                               | UTRNS/state_spi_i_1_n_0       |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[13]              |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[14]              |                               |                1 |              1 |
+|  sck_IBUF_BUFG | URECI/p_1_in[15]              |                               |                1 |              1 |
+| ~sck_IBUF_BUFG |                               | UTRNS/miso_i_2_n_0            |                1 |              1 |
+|  clk_IBUF_BUFG | spi_signa_i_1_n_0             |                               |                1 |              1 |
+|  sck_IBUF_BUFG |                               | URECI/state_reci[1]_i_2_n_0   |                1 |              2 |
+| ~sck_IBUF_BUFG |                               | UTRNS/state_trns[1]_i_2_n_0   |                1 |              2 |
+| ~sck_IBUF_BUFG | UTRNS/index0                  |                               |                1 |              4 |
+|  sck_IBUF_BUFG | URECI/index0                  |                               |                1 |              4 |
+|  clk_IBUF_BUFG | w_cs_data[3]_i_1_n_0          |                               |                2 |              4 |
+|  clk_IBUF_BUFG |                               |                               |                1 |              5 |
+| ~ss_IBUF_BUFG  |                               |                               |                3 |             16 |
+|  clk_IBUF_BUFG | w_trns_data[15]_i_1_n_0       |                               |                3 |             16 |
+|  clk_IBUF_BUFG | w_shift[15]_i_1_n_0           |                               |                2 |             16 |
+|  sck_IBUF_BUFG | URECI/data[15]_i_1_n_0        |                               |                3 |             16 |
+|  clk_IBUF_BUFG | data_controller_o[15]_i_2_n_0 | data_controller_o[15]_i_1_n_0 |                3 |             16 |
++----------------+-------------------------------+-------------------------------+------------------+----------------+
+
+

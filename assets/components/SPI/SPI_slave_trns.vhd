@@ -25,17 +25,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity SPI_slave_trns is
     port(
-
         sck                  :   in  std_logic;
-
         ss                   :   in  std_logic;
-
         data                 :   in  std_logic_vector(15 downto 0);
-
         miso                 :   out std_logic                      := '0';
-
         busy                 :   out std_logic                      := '0'
-
     );
 end SPI_slave_trns;
 
@@ -43,23 +37,16 @@ architecture Behavioral of SPI_slave_trns is
 
     type enable_spi         is (ENB, DIS, WAITING);
     signal state            :   enable_spi  := ENB;
-    -- wire for w_data -- no default since it is an input
     signal w_data           :   std_logic_vector(15 downto 0);
-    -- w_busy wire
     signal w_busy           :   std_logic                           := '0';
-    -- master in slave out
     signal w_miso           :   std_logic                           := '0';
-    -- shift register
     signal w_shift          :   std_logic_vector(15 downto 0)       := (others => '0');
-    -- index
     signal i_index          :   integer range 0 to 15               := 14;
 
     begin
 
     busy <= w_busy;
-
     miso <= w_miso;
-
     w_data <= data;
 
     process( ss, sck ) begin

@@ -1,6 +1,0 @@
-0.6
-2018.3
-Dec  6 2018
-23:39:36
-/home/daniel/SPI_project/SPI_project.sim/sim_1/synth/func/xsim/Controller_TB_func_synth.vhd,1552508189,vhdl,,,,controller;spi_checksum;spi_slave_reci;spi_slave_trns;spi_topmodule,,,,,,,,
-/home/daniel/SPI_project/SPI_project.srcs/sim_1/new/Controller_TB.vhd,1552168822,vhdl,,,,controller_tb,,,,,,,,
