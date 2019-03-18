@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1552903882">
-  <File Type="PA-TCL" Name="CONTROLLER.tcl"/>
+  <File Type="ROUTE-DRC-RPX" Name="CONTROLLER_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="CONTROLLER_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="CONTROLLER_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="CONTROLLER_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="CONTROLLER_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="CONTROLLER_route_status.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="CONTROLLER_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="CONTROLLER_postroute_physopt_bb.dcp"/>
+  <File Type="RDI-RDI" Name="CONTROLLER.vdi"/>
+  <File Type="BITSTR-LTX" Name="CONTROLLER.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="CONTROLLER.sysdef"/>
+  <File Type="BG-BGN" Name="CONTROLLER.bgn"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-BUS-SKEW" Name="CONTROLLER_bus_skew_routed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="CONTROLLER_postplace_pwropt.dcp"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="CONTROLLER_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="CONTROLLER_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="CONTROLLER_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="CONTROLLER_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="CONTROLLER_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="CONTROLLER_placed.dcp"/>
+  <File Type="PWROPT-DCP" Name="CONTROLLER_pwropt.dcp"/>
+  <File Type="OPT-HWDEF" Name="CONTROLLER.hwdef"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="CONTROLLER_bus_skew_routed.pb"/>
+  <File Type="PA-TCL" Name="CONTROLLER.tcl"/>
+  <File Type="BITSTR-MSK" Name="CONTROLLER.msk"/>
+  <File Type="ROUTE-TIMING-PB" Name="CONTROLLER_timing_summary_routed.pb"/>
+  <File Type="PHYSOPT-DCP" Name="CONTROLLER_physopt.dcp"/>
+  <File Type="BITSTR-RBT" Name="CONTROLLER.rbt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="CONTROLLER_timing_summary_routed.rpx"/>
   <File Type="REPORTS-TCL" Name="CONTROLLER_reports.tcl"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="CONTROLLER_bus_skew_routed.rpx"/>
   <File Type="OPT-DCP" Name="CONTROLLER_opt.dcp"/>
   <File Type="OPT-DRC" Name="CONTROLLER_drc_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="CONTROLLER.hwdef"/>
-  <File Type="PWROPT-DCP" Name="CONTROLLER_pwropt.dcp"/>
-  <File Type="PLACE-DCP" Name="CONTROLLER_placed.dcp"/>
-  <File Type="PLACE-IO" Name="CONTROLLER_io_placed.rpt"/>
-  <File Type="PLACE-UTIL" Name="CONTROLLER_utilization_placed.rpt"/>
-  <File Type="PLACE-UTIL-PB" Name="CONTROLLER_utilization_placed.pb"/>
-  <File Type="PLACE-CTRL" Name="CONTROLLER_control_sets_placed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="CONTROLLER_incremental_reuse_pre_placed.rpt"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="CONTROLLER_postplace_pwropt.dcp"/>
-  <File Type="PHYSOPT-DCP" Name="CONTROLLER_physopt.dcp"/>
   <File Type="ROUTE-ERROR-DCP" Name="CONTROLLER_routed_error.dcp"/>
+  <File Type="BG-DRC" Name="CONTROLLER.drc"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="CONTROLLER_methodology_drc_routed.rpx"/>
   <File Type="ROUTE-DCP" Name="CONTROLLER_routed.dcp"/>
   <File Type="ROUTE-BLACKBOX-DCP" Name="CONTROLLER_routed_bb.dcp"/>
   <File Type="ROUTE-DRC" Name="CONTROLLER_drc_routed.rpt"/>
@@ -26,30 +46,10 @@
   <File Type="ROUTE-METHODOLOGY-DRC" Name="CONTROLLER_methodology_drc_routed.rpt"/>
   <File Type="BG-BIN" Name="CONTROLLER.bin"/>
   <File Type="ROUTE-TIMINGSUMMARY" Name="CONTROLLER_timing_summary_routed.rpt"/>
-  <File Type="BITSTR-MSK" Name="CONTROLLER.msk"/>
-  <File Type="ROUTE-TIMING-PB" Name="CONTROLLER_timing_summary_routed.pb"/>
-  <File Type="BITSTR-RBT" Name="CONTROLLER.rbt"/>
-  <File Type="ROUTE-TIMING-RPX" Name="CONTROLLER_timing_summary_routed.rpx"/>
   <File Type="BITSTR-NKY" Name="CONTROLLER.nky"/>
   <File Type="BITSTR-BMM" Name="CONTROLLER_bd.bmm"/>
   <File Type="ROUTE-CLK" Name="CONTROLLER_clock_utilization_routed.rpt"/>
-  <File Type="BG-DRC" Name="CONTROLLER.drc"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="CONTROLLER_methodology_drc_routed.rpx"/>
   <File Type="BITSTR-MMI" Name="CONTROLLER.mmi"/>
-  <File Type="ROUTE-BUS-SKEW" Name="CONTROLLER_bus_skew_routed.rpt"/>
-  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="BG-BGN" Name="CONTROLLER.bgn"/>
-  <File Type="BITSTR-SYSDEF" Name="CONTROLLER.sysdef"/>
-  <File Type="BITSTR-LTX" Name="CONTROLLER.ltx"/>
-  <File Type="RDI-RDI" Name="CONTROLLER.vdi"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="CONTROLLER_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="CONTROLLER_postroute_physopt.dcp"/>
-  <File Type="ROUTE-STATUS" Name="CONTROLLER_route_status.rpt"/>
-  <File Type="ROUTE-PWR-RPX" Name="CONTROLLER_power_routed.rpx"/>
-  <File Type="ROUTE-PWR-SUM" Name="CONTROLLER_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="CONTROLLER_power_routed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="CONTROLLER_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-DRC-RPX" Name="CONTROLLER_drc_routed.rpx"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/package_spi.vhd">
@@ -110,7 +110,7 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/../Downloads/Basys-3-Master_v2.xdc">
+    <File Path="$PPRDIR/../../../../../../Downloads/Basys-3-Master_v2.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

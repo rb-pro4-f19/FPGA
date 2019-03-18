@@ -23,6 +23,16 @@ package package_controller is
         chip_enable         : out std_logic := '1'
         );
     end component;
+    
+    component PMOD_enc is
+        port(
+        signal clk          : in std_logic;
+        signal a            : in std_logic;
+        signal b            : in std_logic;
+        signal reset        : in std_logic;
+        signal data         : out std_logic_vector(11 downto 0)
+        );
+    end component;
 
 end package package_controller;
 
