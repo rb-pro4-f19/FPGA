@@ -1,1 +1,0 @@
--wto "5a72cf2c77a7465fa9562ea63d8082f9" --incr --debug "typical" --relax --mt "8" -L "SPI" -L "xil_defaultlib" -L "secureip" --snapshot "SPI_topmodule_behav" "xil_defaultlib.SPI_topmodule" -log "elaborate.log" 

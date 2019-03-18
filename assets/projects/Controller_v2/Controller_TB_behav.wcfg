@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="Controller_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="Controller_TB" />
+            <top_module name="package_controller" />
+            <top_module name="package_spi" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="19999993800fs"></ZoomStartTime>
+      <ZoomEndTime time="20000001241fs"></ZoomEndTime>
+      <Cursor1Time time="19999995000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="66"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wvobject type="logic" fp_name="/Controller_TB/s_clk">
+      <obj_property name="ElementShortName">s_clk</obj_property>
+      <obj_property name="ObjectShortName">s_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/b_sck">
+      <obj_property name="ElementShortName">b_sck</obj_property>
+      <obj_property name="ObjectShortName">b_sck</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/b_ss">
+      <obj_property name="ElementShortName">b_ss</obj_property>
+      <obj_property name="ObjectShortName">b_ss</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/b_mosi">
+      <obj_property name="ElementShortName">b_mosi</obj_property>
+      <obj_property name="ObjectShortName">b_mosi</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/b_miso">
+      <obj_property name="ElementShortName">b_miso</obj_property>
+      <obj_property name="ObjectShortName">b_miso</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/b_CE_pwm">
+      <obj_property name="ElementShortName">b_CE_pwm</obj_property>
+      <obj_property name="ObjectShortName">b_CE_pwm</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/b_pwm1">
+      <obj_property name="ElementShortName">b_pwm1[1:0]</obj_property>
+      <obj_property name="ObjectShortName">b_pwm1[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/b_pwm2">
+      <obj_property name="ElementShortName">b_pwm2[1:0]</obj_property>
+      <obj_property name="ObjectShortName">b_pwm2[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/state">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_data_too_spitop">
+      <obj_property name="ElementShortName">w_data_too_spitop[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_data_too_spitop[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_data_from_spitop">
+      <obj_property name="ElementShortName">w_data_from_spitop[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_data_from_spitop[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_control_answer">
+      <obj_property name="ElementShortName">w_control_answer</obj_property>
+      <obj_property name="ObjectShortName">w_control_answer</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_signa_spitop">
+      <obj_property name="ElementShortName">w_signa_spitop</obj_property>
+      <obj_property name="ObjectShortName">w_signa_spitop</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_shift">
+      <obj_property name="ElementShortName">w_shift[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_shift[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_ready_pwm1">
+      <obj_property name="ElementShortName">w_ready_pwm1</obj_property>
+      <obj_property name="ObjectShortName">w_ready_pwm1</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_set_pwm1">
+      <obj_property name="ElementShortName">w_set_pwm1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_set_pwm1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_ready_pwm2">
+      <obj_property name="ElementShortName">w_ready_pwm2</obj_property>
+      <obj_property name="ObjectShortName">w_ready_pwm2</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_set_pwm2">
+      <obj_property name="ElementShortName">w_set_pwm2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_set_pwm2[7:0]</obj_property>
+   </wvobject>
+</wave_config>
