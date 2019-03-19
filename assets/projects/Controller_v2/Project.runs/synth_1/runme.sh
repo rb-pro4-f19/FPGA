@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/daniel/Project/Project.runs/synth_1'
+HD_PWD='/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log CONTROLLER.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source CONTROLLER.tcl
+EAStep vivado -log Controller_TEST.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Controller_TEST.tcl

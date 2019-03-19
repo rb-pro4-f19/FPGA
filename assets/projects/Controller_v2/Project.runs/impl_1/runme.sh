@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/daniel/Project/Project.runs/impl_1'
+HD_PWD='/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -38,6 +38,6 @@ EAStep()
 
 # pre-commands:
 /bin/touch .init_design.begin.rst
-EAStep vivado -log CONTROLLER.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source CONTROLLER.tcl -notrace
+EAStep vivado -log Controller_TEST.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Controller_TEST.tcl -notrace
 
 

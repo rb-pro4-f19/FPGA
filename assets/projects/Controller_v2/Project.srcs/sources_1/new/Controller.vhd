@@ -42,16 +42,16 @@ end CONTROLLER;
 
 architecture Behavioral of CONTROLLER is
 
-    type MODE                       is (IDLE, READ, REPLY, WAITING);
+    type MODE                       is (IDLE, PARSE, REPLY, WAITING);
 
     signal state                    :   MODE   := IDLE;
 
-    signal w_data_too_spitop        :   std_logic_vector(15 downto 0);
+    signal w_data_TX                :   std_logic_vector(15 downto 0);
 
-    signal w_data_from_spitop       :   std_logic_vector(15 downto 0)     := (others => '0');
+    signal w_data_RX                :   std_logic_vector(15 downto 0)     := (others => '0');
 
-    signal w_control_answer         :   std_logic                         := '0';
-    signal w_signa_spitop           :   std_logic                         := '0';
+    signal w_ctrl_reply             :   std_logic                         := '0';
+    signal w_spi_ready              :   std_logic                         := '0';
 
     -- this is for motor1
     signal w_ready_pwm1             :   std_logic                         := '0';
@@ -63,10 +63,10 @@ architecture Behavioral of CONTROLLER is
 
     begin
 
-    process(clk) 
-    
+    process(clk)
+
     variable shift                  :   std_logic_vector( 15 downto 0)    := (others => '0');
-    
+
     begin
 
         if rising_edge(clk) then
@@ -74,20 +74,20 @@ architecture Behavioral of CONTROLLER is
             case( state ) is
 
                 when IDLE =>
-                
-                    w_control_answer <= '0';
-                    
-                    if(w_signa_spitop = '1') then
-                        shift := w_data_from_spitop;
-                        state <= READ;
+
+                    w_ctrl_reply <= '0';
+
+                    if(w_spi_ready = '1') then
+                        shift := w_data_RX;
+                        state <= PARSE;
                     else
                         state <= IDLE;
                     end if;
 
-                when READ =>
+                when PARSE =>
 
                     case( shift(15 downto 12) ) is
-                    
+
                         when PWM_1 =>
                             w_ready_pwm1 <= '1';
                             w_set_pwm1   <= shift( 11 downto 4);
@@ -105,33 +105,35 @@ architecture Behavioral of CONTROLLER is
                 when REPLY =>
 
                     case( shift(15 downto 12) ) is
-                    
+
                         when CTRL =>
-                            -- controller -- 
-                            w_data_too_spitop <= shift;
-                        
+                            -- controller --
+                            w_data_TX <= shift;
+
                         when PWM_1 =>
                             -- motor1 --
                             w_ready_pwm1 <= '0';
-                            w_data_too_spitop <= x"0000";
+                            w_data_TX <= x"A0A0";
 
                         when PWM_2 =>
                             -- motor2 --
                              w_ready_pwm2 <= '0';
-                             w_data_too_spitop <= x"0000";
+                             w_data_TX <= x"B0B0";
 
                         when others =>
-                            w_data_too_spitop <= x"0000";
+                            w_data_TX <= x"F0F0";
 
                     end case;
 
-                    w_control_answer <= '1';
+                    w_ctrl_reply <= '1';
 
                     state <= WAITING;
 
                 when WAITING =>
 
                     state <= IDLE;
+
+                when others => state <= IDLE;
 
             end case;
 
@@ -146,10 +148,10 @@ architecture Behavioral of CONTROLLER is
              ss => ss,
              mosi => mosi,
              miso => miso,
-             data_controller_i => w_data_too_spitop,
-             data_controller_o => w_data_from_spitop,
-             control_answer => w_control_answer,
-             spi_signa => w_signa_spitop
+             data_controller_i => w_data_TX,
+             data_controller_o => w_data_RX,
+             ctrl_reply => w_ctrl_reply,
+             spi_ready => w_spi_ready
              );
 --------------------------------------------------------------------------------
     PWM_1: PWM

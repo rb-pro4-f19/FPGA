@@ -40,54 +40,45 @@ architecture Behavioral of SPI_slave_trns is
     type   transmit_spi     is (START, CHANGESIGNAL, WAITING, DONE);
     signal state_spi        :   enable_spi                          := DIS;
     signal state_trns       :   transmit_spi                        := START;
-    signal index            :   natural range 0 to 14               := 14;
-
-    signal shift            :   std_logic_vector(15 downto 0)       := (others => '0');
-    signal shiftsck         :   std_logic_vector(2 downto 0)        := "000";
-    signal shiftss          :   std_logic_vector(2 downto 0)        := "111";
 
     begin
 
 
     busy <= '1' when state_spi = ENB else '0' when state_spi = DIS;
 
-    process( clk ) begin
-        if clk'event and clk = '1' then
-            shiftss <= shiftss(1 downto 0) & ss;
-            shiftsck <= shiftsck(1 downto 0) & sck;
-        end if;
-    end process;
+    process( clk )
 
-    -- upper FSM --
-    process( clk ) begin
-        if clk'event and clk = '1' then
-            if shiftss = "000" then
+        variable shift      :   std_logic_vector(15 downto 0)       := (others => '0');
+        variable shiftsck   :   std_logic_vector(3 downto 0)        := "0000";
+        variable shiftss    :   std_logic_vector(3 downto 0)        := "1111";
+        variable index      :   natural range 0 to 14               := 14;
+
+    begin
+        if rising_edge(clk) then
+
+            shiftss := shiftss(2 downto 0) & ss;
+            shiftsck := shiftsck(2 downto 0) & sck;
+
+            if shiftss = "0000" then
                 state_spi <= ENB;
-            elsif shiftss = "111" then
+            elsif shiftss = "1111" then
                 state_spi <= DIS;
             end if;
-        end if;
-    end process;
 
-    -- lower FSM --
-    process( clk )
-        variable shift : std_logic_vector(15 downto 0) := (others => '0');
-    begin
-        if clk'event and clk = '1' then
             if state_spi = ENB then
                 case( state_trns ) is
 
                     when START =>
                         shift := data;
                         miso <= shift(15);
-                        index <= 14;
+                        index := 14;
                         state_trns <= WAITING;
 
                     when CHANGESIGNAL =>
-                        if shiftsck = "000" then -- falling edge
+                        if shiftsck = "0000" then -- falling edge
                             if ( index >= 1 ) then
                                 miso <= shift(index);
-                                index <= index - 1;
+                                index := index - 1;
                                 state_trns <= WAITING;
                             elsif ( index = 0 ) then
                                 miso <= shift(index);
@@ -98,7 +89,7 @@ architecture Behavioral of SPI_slave_trns is
                         end if;
 
                     when WAITING =>
-                        if shiftsck = "111" then -- rising edge
+                        if shiftsck = "1111" then -- rising edge
                             state_trns <= CHANGESIGNAL;
                         else
                             state_trns <= WAITING;
@@ -107,10 +98,15 @@ architecture Behavioral of SPI_slave_trns is
                     when DONE =>
                         state_trns <= DONE;
 
+                    when others => state_trns <= START;
+
                 end case;
+
             elsif state_spi = DIS then
+
                     miso <= '0';
                     state_trns <= START; -- basically waits for next go
+
             end if;
         end if;
     end process;

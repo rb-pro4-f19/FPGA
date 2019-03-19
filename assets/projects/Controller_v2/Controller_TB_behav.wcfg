@@ -12,15 +12,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="19999993800fs"></ZoomStartTime>
-      <ZoomEndTime time="20000001241fs"></ZoomEndTime>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="9993fs"></ZoomEndTime>
       <Cursor1Time time="19999995000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="66"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="18" />
+   <WVObjectSize size="31" />
    <wvobject type="logic" fp_name="/Controller_TB/s_clk">
       <obj_property name="ElementShortName">s_clk</obj_property>
       <obj_property name="ObjectShortName">s_clk</obj_property>
@@ -75,10 +75,6 @@
       <obj_property name="ElementShortName">w_signa_spitop</obj_property>
       <obj_property name="ObjectShortName">w_signa_spitop</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_shift">
-      <obj_property name="ElementShortName">w_shift[15:0]</obj_property>
-      <obj_property name="ObjectShortName">w_shift[15:0]</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_ready_pwm1">
       <obj_property name="ElementShortName">w_ready_pwm1</obj_property>
       <obj_property name="ObjectShortName">w_ready_pwm1</obj_property>
@@ -94,5 +90,61 @@
    <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_set_pwm2">
       <obj_property name="ElementShortName">w_set_pwm2[7:0]</obj_property>
       <obj_property name="ObjectShortName">w_set_pwm2[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/URECI/data">
+      <obj_property name="ElementShortName">data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/SPI/URECI/busy">
+      <obj_property name="ElementShortName">busy</obj_property>
+      <obj_property name="ObjectShortName">busy</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/URECI/state_spi">
+      <obj_property name="ElementShortName">state_spi</obj_property>
+      <obj_property name="ObjectShortName">state_spi</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/URECI/state_reci">
+      <obj_property name="ElementShortName">state_reci</obj_property>
+      <obj_property name="ObjectShortName">state_reci</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/URECI/index">
+      <obj_property name="ElementShortName">index</obj_property>
+      <obj_property name="ObjectShortName">index</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/URECI/shiftsck">
+      <obj_property name="ElementShortName">shiftsck[2:0]</obj_property>
+      <obj_property name="ObjectShortName">shiftsck[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/URECI/shiftss">
+      <obj_property name="ElementShortName">shiftss[2:0]</obj_property>
+      <obj_property name="ObjectShortName">shiftss[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/busy">
+      <obj_property name="ElementShortName">busy</obj_property>
+      <obj_property name="ObjectShortName">busy</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/state_spi">
+      <obj_property name="ElementShortName">state_spi</obj_property>
+      <obj_property name="ObjectShortName">state_spi</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/state_trns">
+      <obj_property name="ElementShortName">state_trns</obj_property>
+      <obj_property name="ObjectShortName">state_trns</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/index">
+      <obj_property name="ElementShortName">index</obj_property>
+      <obj_property name="ObjectShortName">index</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/shift">
+      <obj_property name="ElementShortName">shift[15:0]</obj_property>
+      <obj_property name="ObjectShortName">shift[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/shiftsck">
+      <obj_property name="ElementShortName">shiftsck[2:0]</obj_property>
+      <obj_property name="ObjectShortName">shiftsck[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/shiftss">
+      <obj_property name="ElementShortName">shiftss[2:0]</obj_property>
+      <obj_property name="ObjectShortName">shiftss[2:0]</obj_property>
    </wvobject>
 </wave_config>

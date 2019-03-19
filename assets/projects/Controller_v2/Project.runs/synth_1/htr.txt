@@ -6,4 +6,4 @@
 # Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log CONTROLLER.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source CONTROLLER.tcl
+vivado -log Controller_TEST.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Controller_TEST.tcl

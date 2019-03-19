@@ -26,15 +26,15 @@ use SPI.package_spi.all;
 
 entity SPI_topmodule is
 port(
-    clk                       :   in  std_logic;
-    sck                       :   in  std_logic;
-    ss                        :   in  std_logic;
-    mosi                      :   in  std_logic;
-    miso                      :   out std_logic                         := '0';
-    control_answer            :   in  std_logic;
-    spi_signa                 :   out std_logic                         := '0';
-    data_controller_i         :   in  std_logic_vector(15 downto 0);
-    data_controller_o         :   out std_logic_vector(15 downto 0)     := (others => '0')
+    clk                         :   in  std_logic;
+    sck                         :   in  std_logic;
+    ss                          :   in  std_logic;
+    mosi                        :   in  std_logic;
+    miso                        :   out std_logic                        := '0';
+    ctrl_reply                  :   in  std_logic;
+    spi_ready                   :   out std_logic                        := '0';
+    data_controller_i           :   in  std_logic_vector(15 downto 0);
+    data_controller_o           :   out std_logic_vector(15 downto 0)    := (others => '0')
     );
 end SPI_topmodule;
     -- / / --
@@ -52,13 +52,7 @@ signal w_busy,
 
 
 signal w_trns_data,
-       w_reci_data,
-       w_shift                  : std_logic_vector(15 downto 0)         := (others => '0');
-
-
-signal w_cs_index               : natural range 0 to 3                  := 0;
-
-signal w_cs_data                : std_logic_vector(3 downto 0)          := (others => '0');
+       w_reci_data              : std_logic_vector(15 downto 0)         := (others => '0');
 
 
 begin
@@ -66,14 +60,22 @@ begin
 w_busy <= w_busy_reci or w_busy_trns;
 
 process(clk)
+
+    variable cs_index          : natural range 0 to 3                  := 0;
+    variable cs_data           : std_logic_vector(3 downto 0)          := (others => '0');
+    variable shift             : std_logic_vector(15 downto 0)         := (others => '0');
+
 begin
+
     if rising_edge(clk) then
+
         case( state ) is
+
             when IDLE =>
 
-                w_cs_index <= 0;
-                spi_signa <= '0';
-                w_shift <= w_reci_data;
+                spi_ready <= '0';
+                cs_index := 0;
+                shift := w_reci_data;
 
                 if w_busy = '0' then
                     state <= RECI;
@@ -83,59 +85,72 @@ begin
 
             when RECI =>
 
-                w_cs_index <= w_cs_index + 1;
+                case( cs_index ) is
 
-                case( w_cs_index ) is
-                    when 0 => w_cs_data <= f_CS( data_cs => w_shift(15 downto 12), current_cs => (others => '0') );
-                    when 1 => w_cs_data <= f_CS( data_cs => w_shift(11 downto 8), current_cs => w_cs_data );
-                    when 2 => w_cs_data <= f_CS( data_cs => w_shift(7 downto 4), current_cs => w_cs_data );
+                    when 0 =>
+                        cs_data := f_CS( data_cs => shift(15 downto 12), current_cs => (others => '0') );
+
+                    when 1 =>
+                        cs_data := f_CS( data_cs => shift(11 downto 8), current_cs => cs_data );
+
+                    when 2 =>
+                        cs_data := f_CS( data_cs => shift(7 downto 4), current_cs => cs_data );
+
                     when 3 =>
-                        if w_cs_data = w_shift(3 downto 0) then
-                            data_controller_o <= w_shift;
+                        if cs_data = shift(3 downto 0) then
+                            data_controller_o <= shift;
                         else
                             data_controller_o <= (others => '0');
                         end if;
+
                 end case;
 
-                if w_cs_index = 3 then
-                    spi_signa <= '1';
+                if cs_index = 3 then
+                    spi_ready <= '1';
                     state <= WAIT_CTRL;
-                elsif w_busy = '1' then
-                    state <= IDLE;
                 else
                     state <= RECI;
                 end if;
 
+                cs_index := cs_index + 1;
+
             when WAIT_CTRL =>
 
-                w_cs_index <= 0;
-                spi_signa <= '0';
+                cs_index := 0;
+                spi_ready <= '0';
 
-                if control_answer = '1' then
-                    w_shift <= data_controller_i;
+                if ctrl_reply = '1' then
+                    shift := data_controller_i;
                     state <= TRNS;
-                elsif w_busy = '1' then
-                    state <= IDLE;
                 else
                     state <= WAIT_CTRL;
                 end if;
 
             when TRNS =>
 
-                w_cs_index <= w_cs_index + 1;
+                case( cs_index ) is
 
-                case( w_cs_index ) is
-                    when 0 => w_cs_data <= f_CS( data_cs => w_shift(15 downto 12), current_cs => (others => '0') );
-                    when 1 => w_cs_data <= f_CS( data_cs => w_shift(11 downto 8), current_cs => w_cs_data );
-                    when 2 => w_cs_data <= f_CS( data_cs => w_shift(7 downto 4), current_cs => w_cs_data );
-                    when 3 => w_trns_data(15 downto 0) <= w_shift(15 downto 4) & w_cs_data;
+                    when 0 =>
+                        cs_data := f_CS( data_cs => shift(15 downto 12), current_cs => (others => '0') );
+
+                    when 1 =>
+                        cs_data := f_CS( data_cs => shift(11 downto 8), current_cs => cs_data );
+
+                    when 2 =>
+                        cs_data := f_CS( data_cs => shift(7 downto 4), current_cs => cs_data );
+
+                    when 3 =>
+                        w_trns_data(15 downto 0) <= shift(15 downto 4) & cs_data;
+
                 end case;
 
-                if w_cs_index = 3 then
+                if cs_index = 3 then
                     state <= WAITING;
                 else
                     state <= TRNS;
                 end if;
+
+                cs_index := cs_index + 1;
 
             when WAITING =>
 
@@ -144,7 +159,9 @@ begin
                 else
                     state <= WAITING;
                 end if;
-                
+
+            when others => state <= IDLE;
+
         end case;
     end if;
 end process;

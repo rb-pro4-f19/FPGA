@@ -73,7 +73,9 @@ architecture Behavioral of PWM is
     ja(0) <= act_pwm when (i_pwm_counter < i_shift and motor_state = FORW) or (i_pwm_counter = pwm_max_val-1 and motor_state = FORW and i_shift = pwm_max_val-1) else deact_pwm;
     ja(1) <= act_pwm when (i_pwm_counter < i_shift and motor_state = BACKW) or (i_pwm_counter = pwm_max_val-1 and motor_state = BACKW and i_shift = pwm_max_val-1) else deact_pwm;
     chip_enable     <= '1';
+    
     -- upper FSM --
+    
     process(ready) begin
         if rising_edge(ready) then
             i_shift <= to_integer(unsigned(pwm_set));
@@ -84,7 +86,9 @@ architecture Behavioral of PWM is
             end if;
         end if;
     end process;
+    
     -- lower FSM --
+    
     process(w_pwm_clk)
     variable v_i_pwm_counter : integer range 0 to pwm_max_val-1;
     begin

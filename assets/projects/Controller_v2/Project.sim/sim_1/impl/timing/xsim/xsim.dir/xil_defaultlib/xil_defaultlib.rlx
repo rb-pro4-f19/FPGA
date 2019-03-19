@@ -1,0 +1,6 @@
+0.6
+2018.3
+Dec  6 2018
+23:39:36
+/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.sim/sim_1/impl/timing/xsim/Controller_TB_time_impl.v,1553012525,verilog,,,,CONTROLLER;PWM;PWM_0;SPI_slave_reci;SPI_slave_trns;SPI_topmodule;glbl;motor_stateFreq;motor_stateFreq_1,,,,,,,,
+/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sim_1/new/Controller_TB.vhd,1552911260,vhdl,,,,controller_tb,,,,,,,,
