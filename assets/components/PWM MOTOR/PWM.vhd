@@ -34,7 +34,8 @@ entity PWM is
     pwm_set             : in std_logic_vector(6 downto 0);
     direction           : in std_logic;
     ja                  : out std_logic_vector(1 downto 0);
-    chip_enable         : out std_logic := '1'
+    chip_enable         : out std_logic := '1';
+    emergency_stop      : in std_logic := '0'
     );
 end PWM;
 
@@ -69,8 +70,8 @@ architecture Behavioral of PWM is
 
     begin
 
-    ja(0) <= act_pwm when (i_pwm_counter < i_shift and motor_state = FORW) or (i_pwm_counter = pwm_max_val-1 and motor_state = FORW and i_shift = pwm_max_val-1) else deact_pwm;
-    ja(1) <= act_pwm when (i_pwm_counter < i_shift and motor_state = BACKW) or (i_pwm_counter = pwm_max_val-1 and motor_state = BACKW and i_shift = pwm_max_val-1) else deact_pwm;
+    ja(0) <= act_pwm when (i_pwm_counter < i_shift and motor_state = FORW and not emergency_stop) or (i_pwm_counter = pwm_max_val-1 and motor_state = FORW and i_shift = pwm_max_val-1 and not emergency_stop) else deact_pwm;
+    ja(1) <= act_pwm when (i_pwm_counter < i_shift and motor_state = BACKW and not emergency_stop) or (i_pwm_counter = pwm_max_val-1 and motor_state = BACKW and i_shift = pwm_max_val-1 and not emergency_stop) else deact_pwm;
     chip_enable     <= '1';
 
     process(ready) begin
