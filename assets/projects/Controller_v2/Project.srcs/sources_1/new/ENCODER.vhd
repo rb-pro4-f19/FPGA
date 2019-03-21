@@ -24,173 +24,196 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 
-entity PMOD_enc is
+entity ENCODER is
     port(
+
     signal clk          : in std_logic;
-    signal a            : in std_logic;
-    signal b            : in std_logic;
+    signal enc_a        : in std_logic;
+    signal enc_b        : in std_logic;
     signal reset        : in std_logic;
     signal data         : out std_logic_vector(11 downto 0)
+
     );
-end PMOD_enc;
+end ENCODER;
 
-architecture Behavioral of PMOD_enc is
+architecture Behavioral of ENCODER is
 
-type MODES              is (S1,S2,S3,S4);
+    type MODES              is (S1,S2,S3,S4);
+    signal state            : MODES := S1;
+    signal prevstate        : MODES := S1;
 
-type DIRECTION          is (RIGHT, LEFT, STILL);
+    type DIRECTION          is (RIGHT, LEFT, STILL);
+    signal direc            : DIRECTION := STILL;
 
-signal state            : MODES := S1;
+    signal spins            : std_logic_vector(11 downto 0) := x"800";
 
-signal prevstate        : MODES := S1;
+    begin
 
-signal direc            : DIRECTION := STILL;
+    process(clk)
 
-signal spins            : std_logic_vector(11 downto 0) := x"800";
+        variable shift_a    : std_logic_vector(5 downto 0) := (others => '0');
 
-begin
+        variable shift_b    : std_logic_vector(5 downto 0) := (others => '0');
 
-process(clk)
+    begin
 
-    variable shift_a    : std_logic_vector(5 downto 0) := (others => '0');
-    
-    variable shift_b    : std_logic_vector(5 downto 0) := (others => '0');
+        if(rising_edge(clk)) then
 
-begin
+            shift_a := shift_a(4 downto 0) & enc_a;
 
-    if(rising_edge(clk)) then
+            shift_b := shift_b(4 downto 0) & enc_b;
 
-        shift_a := shift_a(4 downto 0) & a;
+            if(reset = '1') then
 
-        shift_b := shift_b(4 downto 0) & b;
+                if (spins >= x"800") then
 
-        if(reset = '1') then
-            
-            if (spins >= x"800") then
-                
-                data <= '0' & spins(10 downto 0);
-                
-            else
-            
-                data <= '1' & spins(10 downto 0);
-            
-            end if;
+                    data <= '0' & spins(10 downto 0);
 
-            spins <= x"800";
+                else
 
-            if shift_a = "000000" and shift_b = "000000" then
+                    data <= '1' & spins(10 downto 0);
 
-                state <= S1;
-                prevstate <= S1;
+                end if;
 
-            elsif shift_a = "111111" and shift_b = "000000" then
+                spins <= x"800";
 
-                state <= S2;
-                prevstate <= S2;
+                if shift_a = "000000" and shift_b = "000000" then
 
-            elsif shift_a = "111111" and shift_b = "111111" then
+                    state <= S1;
+                    prevstate <= S1;
 
-                state <= S3;
-                prevstate <= S3;
+                elsif shift_a = "111111" and shift_b = "000000" then
 
-            elsif shift_a = "000000" and shift_b = "111111" then
+                    state <= S2;
+                    prevstate <= S2;
 
-                state <= S4;
-                prevstate <= S4;
+                elsif shift_a = "111111" and shift_b = "111111" then
 
-            end if;
+                    state <= S3;
+                    prevstate <= S3;
 
-            direc <= STILL;
+                elsif shift_a = "000000" and shift_b = "111111" then
 
-        else
+                    state <= S4;
+                    prevstate <= S4;
 
-            if state /= prevstate then
-    
-                case( direc ) is
-    
-                    -- Here, you first need to cast your input vectors to signed or unsigned
-                    -- (according to your needs). Then, you will be allowed to add them.
-                    -- The result will be a signed or unsigned vector, so you won't be able
-                    -- to assign it directly to your output vector. You first need to cast
-                    -- the result to std_logic_vector.
-    
-                    when RIGHT =>
-                    spins <= std_logic_vector(unsigned(spins) + 1);
-    
-                    when LEFT =>
-                    spins <= std_logic_vector(unsigned(spins) - 1);
-    
-                    when others =>
-                    -- dont do nothing boi
-    
-                end case;
-    
+                end if;
+
                 direc <= STILL;
-    
-            end if;
-    
-            prevstate <= state;
-    
-            case( state ) is
-    
-                when S1 =>
-                    -- a = 0 b = 0
-                    if shift_a = "000000" and shift_b = "000000" then
-                        direc <= STILL;
-                        state <= S1;
-                    elsif shift_a = "111111" and shift_b = "000000" then
-                        direc <= RIGHT;
-                        state <= S2;
-                    elsif shift_a = "000000" and shift_b = "111111" then
-                        direc <= LEFT;
-                        state <= S4;
-                    end if;
-    
-                when S2 =>
-                    -- a = 1 b = 0
-                    if shift_a = "111111" and shift_b = "000000" then
-                        direc <= STILL;
-                        state <= S2;
-                    elsif shift_a = "111111" and shift_b = "111111" then
-                        direc <= RIGHT;
-                        state <= S3;
-                    elsif shift_a = "000000" and shift_b = "000000" then
-                        direc <= LEFT;
-                        state <= S1;
-                    end if;
-    
-                when S3 =>
-                    -- a = 0 b = 1
-                    if shift_a = "111111" and shift_b = "111111" then
-                        direc <= STILL;
-                        state <= S3;
-                    elsif shift_a = "000000" and shift_b = "111111" then
-                        direc <= RIGHT;
-                        state <= S4;
-                    elsif shift_a = "111111" and shift_b = "000000" then
-                        direc <= LEFT;
-                        state <= S2;
-                    end if;
-    
-                when S4 =>
-                    -- a = 1 b = 1
-                    if shift_a = "000000" and shift_b = "111111" then
-                        direc <= STILL;
-                        state <= S4;
-                    elsif shift_a = "000000" and shift_b = "000000" then
-                        direc <= RIGHT;
-                        state <= S1;
-                    elsif shift_a = "111111" and shift_b = "111111" then
-                        direc <= LEFT;
-                        state <= S3;
-                    end if;
-    
-            end case;
-    
-        end if;
-        
-     end if;
 
-end process;
+            else
+
+                if state /= prevstate then
+
+                    case( direc ) is
+
+                        -- Here, you first need to cast your input vectors to signed or unsigned
+                        -- (according to your needs). Then, you will be allowed to add them.
+                        -- The result will be a signed or unsigned vector, so you won't be able
+                        -- to assign it directly to your output vector. You first need to cast
+                        -- the result to std_logic_vector.
+
+                        when RIGHT =>
+                        spins <= std_logic_vector(unsigned(spins) + 1);
+
+                        when LEFT =>
+                        spins <= std_logic_vector(unsigned(spins) - 1);
+
+                        when others =>
+                        -- dont do nothing boi
+
+                    end case;
+
+                    direc <= STILL;
+
+                end if;
+
+                prevstate <= state;
+
+                case( state ) is
+
+                    when S1 =>
+                        -- a = 0 b = 0
+                        if shift_a = "000000" and shift_b = "000000" then
+
+                            direc <= STILL;
+                            state <= S1;
+
+                        elsif shift_a = "111111" and shift_b = "000000" then
+
+                            direc <= RIGHT;
+                            state <= S2;
+
+                        elsif shift_a = "000000" and shift_b = "111111" then
+
+                            direc <= LEFT;
+                            state <= S4;
+
+                        end if;
+
+                    when S2 =>
+                        -- a = 1 b = 0
+                        if shift_a = "111111" and shift_b = "000000" then
+
+                            direc <= STILL;
+                            state <= S2;
+
+                        elsif shift_a = "111111" and shift_b = "111111" then
+
+                            direc <= RIGHT;
+                            state <= S3;
+
+                        elsif shift_a = "000000" and shift_b = "000000" then
+
+                            direc <= LEFT;
+                            state <= S1;
+
+                        end if;
+
+                    when S3 =>
+                        -- a = 0 b = 1
+                        if shift_a = "111111" and shift_b = "111111" then
+
+                            direc <= STILL;
+                            state <= S3;
+
+                        elsif shift_a = "000000" and shift_b = "111111" then
+
+                            direc <= RIGHT;
+                            state <= S4;
+
+                        elsif shift_a = "111111" and shift_b = "000000" then
+
+                            direc <= LEFT;
+                            state <= S2;
+
+                        end if;
+
+                    when S4 =>
+                        -- a = 1 b = 1
+                        if shift_a = "000000" and shift_b = "111111" then
+
+                            direc <= STILL;
+                            state <= S4;
+
+                        elsif shift_a = "000000" and shift_b = "000000" then
+
+                            direc <= RIGHT;
+                            state <= S1;
+
+                        elsif shift_a = "111111" and shift_b = "111111" then
+
+                            direc <= LEFT;
+                            state <= S3;
+
+                        end if;
+
+                end case;
+
+            end if;
+
+         end if;
+
+    end process;
 
 end Behavioral;

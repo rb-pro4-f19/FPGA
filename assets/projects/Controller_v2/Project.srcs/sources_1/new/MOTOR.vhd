@@ -73,7 +73,7 @@ architecture Behavioral of MOTOR is
 
     signal i_counter     : integer range 0 to pwm_max_val-1 := 0;
     signal i_shift       : integer range 0 to pwm_max_val-1 := 0;
-    
+
     signal w_CE          : std_logic := '0';
     signal w_motor_clk   : std_logic := '0';
 
@@ -86,7 +86,7 @@ architecture Behavioral of MOTOR is
      (i_counter = pwm_max_val-1 and motor_state = BACKW and i_shift = pwm_max_val-1) else deactivate;
 
     -- upper FSM --
-    
+
     chip_enable <= w_CE;
 
     process(ready) begin
@@ -94,7 +94,7 @@ architecture Behavioral of MOTOR is
         if rising_edge(ready) then
 
             if stop_btn = '1' then
-            
+
                 w_CE <= '0';
                 i_shift <= 0;
 

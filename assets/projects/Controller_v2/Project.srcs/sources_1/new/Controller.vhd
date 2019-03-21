@@ -29,6 +29,7 @@ use SPI.package_controller.all;
 
 entity CONTROLLER is
     port(
+
         clk                         :   in  std_logic;
         sck                         :   in  std_logic;
         ss                          :   in  std_logic;
@@ -37,13 +38,16 @@ entity CONTROLLER is
         CE_motor_1                  :   out std_logic;
         CE_motor_2                  :   out std_logic;
         motor_o_1                   :   out std_logic_vector(1 downto 0);
-        motor_o_2                   :   out std_logic_vector(1 downto 0)
-    );
+        motor_o_2                   :   out std_logic_vector(1 downto 0);
+        w_enc_1                     :   in  std_logic_vector(1 downto 0);
+        w_enc_2                     :   in  std_logic_vector(1 downto 0)
+
+        );
 end CONTROLLER;
 
 architecture Behavioral of CONTROLLER is
 
-    type MODE                       is (IDLE, PARSE, REPLY, WAITING);
+    type MODE                       is (IDLE, PARSE, WAITING, REPLY);
     signal state                    :   MODE                              := IDLE;
 
     signal w_data_TX                :   std_logic_vector(15 downto 0);
@@ -60,13 +64,17 @@ architecture Behavioral of CONTROLLER is
     signal w_set_pwm2               :   std_logic_vector(7 downto 0)      := (others => '0');
     signal w_stop_motor2            :   std_logic                         := '0';
 
+    signal w_ready_enc1             :   std_logic                         := '0';
+    signal w_data_enc1              :   std_logic_vector(11 downto 0)     := (others => '0');
+
+    signal w_ready_enc2             :   std_logic                         := '0';
+    signal w_data_enc2              :   std_logic_vector(11 downto 0)     := (others => '0');
+
     begin
 
     process(clk)
 
     variable shift                  :   std_logic_vector( 15 downto 0)    := (others => '0');
-
-    variable last_state             :   MODE                              := IDLE;
 
     begin
 
@@ -80,7 +88,6 @@ architecture Behavioral of CONTROLLER is
 
                     if ( w_spi_ready = '1' ) then
 
-                        last_state := IDLE;
                         shift := w_data_RX;
                         state <= PARSE;
 
@@ -94,21 +101,86 @@ architecture Behavioral of CONTROLLER is
 --------------------------------------------------------------------------------
                     case ( shift(15 downto 12) ) is
 
+                        when CTRL =>
+
+                            case( shift( 11 downto 4) ) is
+
+                                when TURNOFF =>
+
+                                    w_ready_motor1 <= '1';
+                                    w_stop_motor1 <= '1';
+
+                                    w_ready_motor2 <= '1';
+                                    w_stop_motor2 <= '1';
+
+                                when others =>
+
+                            end case;
+
                         when PWM_1 =>
 
                             w_ready_motor1 <= '1';
-                            w_set_pwm1   <= shift( 11 downto 4);
+                            w_set_pwm1     <= shift( 11 downto 4);
 
                         when PWM_2 =>
 
-                             w_ready_motor2 <= '1';
-                             w_set_pwm2   <= shift( 11 downto 4);
+                            w_ready_motor2 <= '1';
+                            w_set_pwm2     <= shift( 11 downto 4);
+
+                        when ENC_1 =>
+
+                            w_ready_enc1   <= '1';
+
+                        when ENC_2 =>
+
+                            w_ready_enc2   <= '1';
 
                         when others =>
 
                     end case;
 
-                    last_state := PARSE;
+                    state <= WAITING;
+--------------------------------------------------------------------------------
+                when WAITING =>
+--------------------------------------------------------------------------------
+                    case ( shift(15 downto 12) ) is
+
+                        when CTRL =>
+
+                            case( shift( 11 downto 4) ) is
+
+                                when TURNOFF =>
+
+                                    w_ready_motor1 <= '0';
+                                    w_stop_motor1 <= '0';
+
+                                    w_ready_motor2 <= '0';
+                                    w_stop_motor2 <= '0';
+
+                                when others =>
+
+                            end case;
+
+                        when PWM_1 =>
+
+                            w_ready_motor1 <= '0';
+
+                        when PWM_2 =>
+
+                            w_ready_motor2 <= '0';
+
+                        when ENC_1 =>
+
+                            w_ready_enc1   <= '0';
+
+                        when ENC_2 =>
+
+                            w_ready_enc2   <= '0';
+
+                        when others =>
+
+                    end case;
+
                     state <= WAITING;
 --------------------------------------------------------------------------------
                 when REPLY =>
@@ -117,46 +189,37 @@ architecture Behavioral of CONTROLLER is
 
                         when CTRL =>
 
-                            w_data_TX <= shift;
+                            w_data_TX      <= shift;
 
                         when PWM_1 =>
 
                             w_ready_motor1 <= '0';
-                            w_data_TX <= x"0000";
+                            w_data_TX      <= (others => '0');
 
                         when PWM_2 =>
 
-                             w_ready_motor2 <= '0';
-                             w_data_TX <= x"0000";
+                            w_ready_motor2 <= '0';
+                            w_data_TX      <= (others => '0');
+
+                        when ENC_1 =>
+
+                            w_data_TX      <= w_data_enc1;
+
+                        when ENC_2 =>
+
+                            w_data_TX      <= w_data_enc2;
 
                         when others =>
 
-                            w_data_TX <= x"F0F0";
+                            w_data_TX      <= x"F0F0";
 
                     end case;
 
                     w_ctrl_reply <= '1';
-                    last_state := REPLY;
                     state <= WAITING;
 --------------------------------------------------------------------------------
-                when WAITING =>
---------------------------------------------------------------------------------
-                    case( last_state ) is
-
-                        when PARSE =>
-
-                            last_state := WAITING;
-                            state <= REPLY;
-
-                        when others =>
-                        
-                            last_state := WAITING;
-                            state <= IDLE;
-
-                    end case;
---------------------------------------------------------------------------------
                 when others =>
-
+--------------------------------------------------------------------------------
                     state <= IDLE;
 
             end case;
@@ -200,6 +263,22 @@ architecture Behavioral of CONTROLLER is
             chip_enable => CE_motor_2
             );
 --------------------------------------------------------------------------------
-
+    ENCODER_1: ENCODER
+    port map(
+            clk         => clk,
+            enc_a       => w_enc_1(0),
+            enc_b       => w_enc_1(1),
+            reset       => w_ready_enc1,
+            data        => w_data_enc1
+            );
+--------------------------------------------------------------------------------
+    ENCODER_2: ENCODER
+    port map(
+            clk         => clk,
+            enc_a       => w_enc_2(0),
+            enc_b       => w_enc_2(1),
+            reset       => w_ready_enc2,
+            data        => w_data_enc2
+            );
 
 end Behavioral;

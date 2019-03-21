@@ -25,12 +25,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity SPI_slave_trns is
     port(
+    
         clk                  :   in  std_logic;
         sck                  :   in  std_logic;
         ss                   :   in  std_logic;
         data                 :   in  std_logic_vector(15 downto 0);
         miso                 :   out std_logic                      := '0';
         busy                 :   out std_logic                      := '0'
+
     );
 end SPI_slave_trns;
 

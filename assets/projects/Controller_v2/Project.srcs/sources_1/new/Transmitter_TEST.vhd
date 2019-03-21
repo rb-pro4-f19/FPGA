@@ -45,7 +45,9 @@ component CONTROLLER is
         CE_motor_1                  :   out std_logic;
         CE_motor_2                  :   out std_logic;
         motor_o_1                   :   out std_logic_vector(1 downto 0);
-        motor_o_2                   :   out std_logic_vector(1 downto 0)
+        motor_o_2                   :   out std_logic_vector(1 downto 0);
+        w_enc_1                     :   in  std_logic_vector(1 downto 0);
+        w_enc_2                     :   in  std_logic_vector(1 downto 0)
     );
 end component;
 
