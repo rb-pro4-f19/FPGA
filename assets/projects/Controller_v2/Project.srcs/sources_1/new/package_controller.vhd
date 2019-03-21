@@ -8,29 +8,30 @@ package package_controller is
     constant CTRL           :   std_logic_vector(3 downto 0) := "0000";
     constant PWM_1          :   std_logic_vector(3 downto 0) := "0001";
     constant PWM_2          :   std_logic_vector(3 downto 0) := "0010";
+    constant ENC_1          :   std_logic_vector(3 downto 0) := "0011";
+    constant ENC_2          :   std_logic_vector(3 downto 0) := "0100";
+    constant HALL_1         :   std_logic_vector(3 downto 0) := "0101";
+    constant HALL_2         :   std_logic_vector(3 downto 0) := "0110";
+    constant CUR_1          :   std_logic_vector(3 downto 0) := "0111";
+    constant CUR_2          :   std_logic_vector(3 downto 0) := "1000";
 
-    component PWM is
+    component MOTOR is
         generic(
-        pwm_max_val         : integer := 128;
-        pwm_freq            : integer := 10000
+
+            pwm_max_val         : integer := 128;
+            pwm_freq            : integer := 10000
+
         );
         port(
-        ready               : in std_logic;
-        clk                 : in std_logic;
-        pwm_set             : in std_logic_vector(6 downto 0);
-        direction           : in std_logic;
-        ja                  : out std_logic_vector(1 downto 0);
-        chip_enable         : out std_logic := '1'
-        );
-    end component;
-    
-    component PMOD_enc is
-        port(
-        signal clk          : in std_logic;
-        signal a            : in std_logic;
-        signal b            : in std_logic;
-        signal reset        : in std_logic;
-        signal data         : out std_logic_vector(11 downto 0)
+
+            stop_btn            : in std_logic;
+            ready               : in std_logic;
+            clk                 : in std_logic;
+            pwm_set             : in std_logic_vector(6 downto 0);
+            direction           : in std_logic;
+            motor_o             : out std_logic_vector(1 downto 0);
+            chip_enable         : out std_logic := '0'
+
         );
     end component;
 

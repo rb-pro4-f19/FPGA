@@ -42,9 +42,10 @@ component CONTROLLER is
         ss                          :   in  std_logic;
         mosi                        :   in  std_logic;
         miso                        :   out std_logic                      := '0';
-        CE_pwm                      :   out std_logic;
-        pwm1                        :   out std_logic_vector(1 downto 0);
-        pwm2                        :   out std_logic_vector(1 downto 0)
+        CE_motor_1                  :   out std_logic;
+        CE_motor_2                  :   out std_logic;
+        motor_o_1                   :   out std_logic_vector(1 downto 0);
+        motor_o_2                   :   out std_logic_vector(1 downto 0)
     );
 end component;
 
@@ -52,7 +53,7 @@ begin
 
 
    DUT: CONTROLLER
-   port map(clk => clk, sck => sck, ss => ss, miso => miso, mosi => mosi, pwm1 => led(15 downto 14), pwm2 => led(1 downto 0), CE_pwm => led(6));
+   port map(clk => clk, sck => sck, ss => ss, miso => miso, mosi => mosi, motor_o_1 => led(15 downto 14), motor_o_2  => led(1 downto 0), CE_motor_1 => open, CE_motor_2 => open);
 
 
 end Behavioral;
