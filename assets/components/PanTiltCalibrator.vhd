@@ -4,15 +4,15 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 
-entity calibrator is
+entity hallSensor is
     Port ( clk : in  STD_LOGIC;
            cal_in: in STD_LOGIC;
            cal_out: out STD_LOGIC_VECTOR(1 downto 0);
            cal_read: in STD_LOGIC
 			  );
-end calibrator;
+end hallSensor;
 
-architecture Behavioral of calibrator is
+architecture Behavioral of hallSensor is
 
 signal sclk: std_logic_vector (6 downto 0);                           	--Vector til clock divider
 signal sampled_in : std_logic_vector (7 downto 0);					  	--Vector til samples
