@@ -7,7 +7,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity hallSensor is
     Port ( clk : in  STD_LOGIC;
            cal_in: in STD_LOGIC;
-           cal_out: out STD_LOGIC_VECTOR(1 downto 0);
+           cal_out: out STD_LOGIC;
            cal_read: in STD_LOGIC
 			  );
 end hallSensor;
@@ -39,20 +39,19 @@ begin
                         current_state := sampled_in(0);
                     end if;
  
-					end if;
+				end if;
 					
 					sclk <="0000000";
 					
-				else
-					sclk <= sclk +1;
-				end if;
+			else
+				sclk <= sclk +1;
+			end if;
 				
-				if cal_read = '1' then                 					--Hvis værdien skal læses outputtes værdier til cal_out;
+			if cal_read = '1' then                 					--Hvis værdien skal læses outputtes værdier til cal_out;
                     cal_out <= current_state;
                 
-                end if;
-                
             end if;
+                
         
 	end process;
 	
