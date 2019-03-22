@@ -67,20 +67,11 @@ _ngo/
 _xmsgs/
 
 # cache and runs
-main/pan_tilt.cache/
-main/pan_tilt.runs/
-main/pan_tilt.sim/
-main/pan_tilt.ip_user_files/
-
-pan_tilt.cache/
-pan_tilt.runs/
-pan_tilt.sim/
-pan_tilt.ip_user_files/
-
-**/assets/*.cache/
-**/assets/*.runs/
-**/assets/*.sim/
-**/assets/*.ip_user_files/
+**/*.cache/
+**/*.runs/
+**/*.sim/
+**/*.ip_user_files/
+**/*.hw/
 
 # log and journal files
 *.log
