@@ -77,10 +77,10 @@ pan_tilt.runs/
 pan_tilt.sim/
 pan_tilt.ip_user_files/
 
-assets/*.cache/
-assets/*.runs/
-assets/*.sim/
-assets/*.ip_user_files/
+**/assets/*.cache/
+**/assets/*.runs/
+**/assets/*.sim/
+**/assets/*.ip_user_files/
 
 # log and journal files
 *.log
