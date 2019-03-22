@@ -79,7 +79,7 @@ begin
 process(clk)
     variable ABab: STD_LOGIC_VECTOR(3 downto 0) := "0000";
     variable int_ABab: integer range 0 to 15;
-    variable encVal: unsigned (11 downto 0);
+    variable encVal: signed (11 downto 0);
     variable wasRead: STD_LOGIC;
     
 begin
