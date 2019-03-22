@@ -1,8 +1,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 
 entity Debounce is
@@ -16,14 +15,14 @@ end Debounce;
 
 architecture Behavioral of Debounce is
 
-signal sclk: std_logic_vector (6 downto 0);
+signal sclk: integer;
 signal sampledA, sampledB : std_logic_vector (4 downto 0) := "10101";
 begin
 
 	process(clk)
 		begin 
 			if rising_edge(clk) then
-				if sclk = "1100100" then --Sættes til 1mhz (100 mhz / 100)
+				if sclk = 100 then --Sættes til 1mhz (100 mhz / 100)
 				
                     SampledA(4 downto 1) <= SampledA(3 downto 0);   --Shiftregister indholder 4 værdier
                     SampledA(0) <= Ain;
@@ -42,7 +41,7 @@ begin
                     elsif (SampledB = (SampledB'range => '1')) then --Hvis alle værdier er 1 sættes 1
                         Bout <= Bin;
 					end if;
-					sclk <="0000000";                               --Clock divider count resetes
+					sclk <= 0;                               --Clock divider count resetes
 				else
 					sclk <= sclk +1;                                --Clock divider count incrementeres
 				end if;
@@ -51,16 +50,10 @@ begin
 	
 end Behavioral;
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity Encoder is
 		Port (
@@ -85,7 +78,7 @@ process(clk)
 begin
     if rising_edge(clk) then
         ABab := A&B&ABab(3)&ABab(2);
-        int_ABab := conv_integer(ABab);
+        int_ABab := to_integer(unsigned(ABab));
         case int_ABab is
             when 0|5|10|15 =>               --Der tjekkes for kombinationer hvor der ikke er sket en ændring "0000" "1010" "0101" "1111"
                         encVal := encVal;
@@ -117,8 +110,7 @@ begin
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 
 
