@@ -125,7 +125,8 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity PmodENC is
     Port (
 			 clk: in STD_LOGIC;
-             JA : in STD_LOGIC_VECTOR (7 downto 4);
+             Ain: in STD_LOGIC;
+			 Bin: in STD_LOGIC;
              encoder_read: in STD_LOGIC;
              encoder_out:  out STD_LOGIC_VECTOR(11 downto 0)
 
@@ -161,7 +162,7 @@ component Encoder is
 
 begin
     
-	C0: Debounce port map ( clk=>clk, Ain=>JA(4), Bin=>JA(5), Aout=>A , Bout=>B);
+	C0: Debounce port map ( clk=>clk, Ain=>Ain, Bin=>Bin, Aout=>A , Bout=>B);
 	C2: Encoder port map ( clk=>clk, A=>A, B=>B ,reset=>encoder_read, encoderValue=>encoder_out);
 	
 end Behavioral;
