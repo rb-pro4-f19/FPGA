@@ -39,6 +39,7 @@ entity MOTOR is
         direction           : in std_logic;
         motor_o             : out std_logic_vector(1 downto 0);
         chip_enable         : out std_logic := '0'
+
     );
 end MOTOR;
 
@@ -74,7 +75,7 @@ architecture Behavioral of MOTOR is
     signal i_counter     : integer range 0 to pwm_max_val-1 := 0;
     signal i_shift       : integer range 0 to pwm_max_val-1 := 0;
 
-    signal w_CE          : std_logic := '0';
+    signal w_CE          : std_logic := '1';
     signal w_motor_clk   : std_logic := '0';
 
     begin
@@ -182,9 +183,9 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity MOTOR_FREQ is
-    generic (
+    generic(
 
-        clk_freq    : integer := 10000
+        clk_freq    : integer := 100000
 
     );
     port (

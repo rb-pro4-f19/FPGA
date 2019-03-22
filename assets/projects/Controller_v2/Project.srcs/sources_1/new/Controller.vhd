@@ -40,7 +40,8 @@ entity CONTROLLER is
         motor_o_1                   :   out std_logic_vector(1 downto 0);
         motor_o_2                   :   out std_logic_vector(1 downto 0);
         w_enc_1                     :   in  std_logic_vector(1 downto 0);
-        w_enc_2                     :   in  std_logic_vector(1 downto 0)
+        w_enc_2                     :   in  std_logic_vector(1 downto 0);
+        blink_light                 :   out std_logic_vector(11 downto 0)
 
         );
 end CONTROLLER;
@@ -72,6 +73,8 @@ architecture Behavioral of CONTROLLER is
 
     begin
 
+    blink_light <= w_data_enc1;
+
     process(clk)
 
     variable shift                  :   std_logic_vector( 15 downto 0)    := (others => '0');
@@ -99,6 +102,7 @@ architecture Behavioral of CONTROLLER is
 --------------------------------------------------------------------------------
                 when PARSE =>
 --------------------------------------------------------------------------------
+
                     case ( shift(15 downto 12) ) is
 
                         when CTRL =>
@@ -181,7 +185,7 @@ architecture Behavioral of CONTROLLER is
 
                     end case;
 
-                    state <= WAITING;
+                    state <= REPLY;
 --------------------------------------------------------------------------------
                 when REPLY =>
 --------------------------------------------------------------------------------
@@ -193,21 +197,19 @@ architecture Behavioral of CONTROLLER is
 
                         when PWM_1 =>
 
-                            w_ready_motor1 <= '0';
                             w_data_TX      <= (others => '0');
 
                         when PWM_2 =>
 
-                            w_ready_motor2 <= '0';
                             w_data_TX      <= (others => '0');
 
                         when ENC_1 =>
 
-                            w_data_TX      <= w_data_enc1;
+                            w_data_TX(15 downto 4) <= w_data_enc1;
 
                         when ENC_2 =>
 
-                            w_data_TX      <= w_data_enc2;
+                            w_data_TX(15 downto 4) <= w_data_enc2;
 
                         when others =>
 
@@ -216,7 +218,7 @@ architecture Behavioral of CONTROLLER is
                     end case;
 
                     w_ctrl_reply <= '1';
-                    state <= WAITING;
+                    state <= IDLE;
 --------------------------------------------------------------------------------
                 when others =>
 --------------------------------------------------------------------------------

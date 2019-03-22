@@ -40,11 +40,11 @@ package package_controller is
     component ENCODER is
         port(
 
-        signal clk              : in std_logic;
-        signal enc_a            : in std_logic;
-        signal enc_b            : in std_logic;
-        signal reset            : in std_logic;
-        signal data             : out std_logic_vector(11 downto 0)
+            clk                  : in std_logic;
+            enc_a                : in std_logic;
+            enc_b                : in std_logic;
+            reset                : in std_logic;
+            data                 : out std_logic_vector(11 downto 0)
 
         );
     end component;
