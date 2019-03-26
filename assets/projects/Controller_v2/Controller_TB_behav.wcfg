@@ -3,148 +3,120 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="Controller_TB_behav.wdb" id="1">
+      <db_ref path="MotorTB_behav.wdb" id="1">
          <top_modules>
-            <top_module name="Controller_TB" />
-            <top_module name="package_controller" />
-            <top_module name="package_spi" />
+            <top_module name="MotorTB" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="9993fs"></ZoomEndTime>
+      <ZoomEndTime time="13421fs"></ZoomEndTime>
       <Cursor1Time time="19999995000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="66"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="31" />
-   <wvobject type="logic" fp_name="/Controller_TB/s_clk">
-      <obj_property name="ElementShortName">s_clk</obj_property>
-      <obj_property name="ObjectShortName">s_clk</obj_property>
+   <WVObjectSize size="25" />
+   <wvobject type="logic" fp_name="/MotorTB/stop_btn">
+      <obj_property name="ElementShortName">stop_btn</obj_property>
+      <obj_property name="ObjectShortName">stop_btn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/b_sck">
-      <obj_property name="ElementShortName">b_sck</obj_property>
-      <obj_property name="ObjectShortName">b_sck</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/ready">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/b_ss">
-      <obj_property name="ElementShortName">b_ss</obj_property>
-      <obj_property name="ObjectShortName">b_ss</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/b_mosi">
-      <obj_property name="ElementShortName">b_mosi</obj_property>
-      <obj_property name="ObjectShortName">b_mosi</obj_property>
+   <wvobject type="array" fp_name="/MotorTB/pwm_set">
+      <obj_property name="ElementShortName">pwm_set[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_set[6:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/b_miso">
-      <obj_property name="ElementShortName">b_miso</obj_property>
-      <obj_property name="ObjectShortName">b_miso</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/direction">
+      <obj_property name="ElementShortName">direction</obj_property>
+      <obj_property name="ObjectShortName">direction</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/b_CE_pwm">
-      <obj_property name="ElementShortName">b_CE_pwm</obj_property>
-      <obj_property name="ObjectShortName">b_CE_pwm</obj_property>
+   <wvobject type="array" fp_name="/MotorTB/ja">
+      <obj_property name="ElementShortName">ja[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ja[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/b_pwm1">
-      <obj_property name="ElementShortName">b_pwm1[1:0]</obj_property>
-      <obj_property name="ObjectShortName">b_pwm1[1:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/chip_enable">
+      <obj_property name="ElementShortName">chip_enable</obj_property>
+      <obj_property name="ObjectShortName">chip_enable</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/b_pwm2">
-      <obj_property name="ElementShortName">b_pwm2[1:0]</obj_property>
-      <obj_property name="ObjectShortName">b_pwm2[1:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/stop_btn">
+      <obj_property name="ElementShortName">stop_btn</obj_property>
+      <obj_property name="ObjectShortName">stop_btn</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/state">
-      <obj_property name="ElementShortName">state</obj_property>
-      <obj_property name="ObjectShortName">state</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/ready">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_data_too_spitop">
-      <obj_property name="ElementShortName">w_data_too_spitop[15:0]</obj_property>
-      <obj_property name="ObjectShortName">w_data_too_spitop[15:0]</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_data_from_spitop">
-      <obj_property name="ElementShortName">w_data_from_spitop[15:0]</obj_property>
-      <obj_property name="ObjectShortName">w_data_from_spitop[15:0]</obj_property>
+   <wvobject type="array" fp_name="/MotorTB/DUT/pwm_set">
+      <obj_property name="ElementShortName">pwm_set[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_set[6:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_control_answer">
-      <obj_property name="ElementShortName">w_control_answer</obj_property>
-      <obj_property name="ObjectShortName">w_control_answer</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/direction">
+      <obj_property name="ElementShortName">direction</obj_property>
+      <obj_property name="ObjectShortName">direction</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_signa_spitop">
-      <obj_property name="ElementShortName">w_signa_spitop</obj_property>
-      <obj_property name="ObjectShortName">w_signa_spitop</obj_property>
+   <wvobject type="array" fp_name="/MotorTB/DUT/ja">
+      <obj_property name="ElementShortName">ja[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ja[1:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_ready_pwm1">
-      <obj_property name="ElementShortName">w_ready_pwm1</obj_property>
-      <obj_property name="ObjectShortName">w_ready_pwm1</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/chip_enable">
+      <obj_property name="ElementShortName">chip_enable</obj_property>
+      <obj_property name="ObjectShortName">chip_enable</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_set_pwm1">
-      <obj_property name="ElementShortName">w_set_pwm1[7:0]</obj_property>
-      <obj_property name="ObjectShortName">w_set_pwm1[7:0]</obj_property>
+   <wvobject type="other" fp_name="/MotorTB/DUT/motor_state">
+      <obj_property name="ElementShortName">motor_state</obj_property>
+      <obj_property name="ObjectShortName">motor_state</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/w_ready_pwm2">
-      <obj_property name="ElementShortName">w_ready_pwm2</obj_property>
-      <obj_property name="ObjectShortName">w_ready_pwm2</obj_property>
+   <wvobject type="other" fp_name="/MotorTB/DUT/dir_state">
+      <obj_property name="ElementShortName">dir_state</obj_property>
+      <obj_property name="ObjectShortName">dir_state</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/w_set_pwm2">
-      <obj_property name="ElementShortName">w_set_pwm2[7:0]</obj_property>
-      <obj_property name="ObjectShortName">w_set_pwm2[7:0]</obj_property>
+   <wvobject type="other" fp_name="/MotorTB/DUT/i_counter">
+      <obj_property name="ElementShortName">i_counter</obj_property>
+      <obj_property name="ObjectShortName">i_counter</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/URECI/data">
-      <obj_property name="ElementShortName">data[15:0]</obj_property>
-      <obj_property name="ObjectShortName">data[15:0]</obj_property>
+   <wvobject type="other" fp_name="/MotorTB/DUT/i_shift">
+      <obj_property name="ElementShortName">i_shift</obj_property>
+      <obj_property name="ObjectShortName">i_shift</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/SPI/URECI/busy">
-      <obj_property name="ElementShortName">busy</obj_property>
-      <obj_property name="ObjectShortName">busy</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/w_motor_clk">
+      <obj_property name="ElementShortName">w_motor_clk</obj_property>
+      <obj_property name="ObjectShortName">w_motor_clk</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/URECI/state_spi">
-      <obj_property name="ElementShortName">state_spi</obj_property>
-      <obj_property name="ObjectShortName">state_spi</obj_property>
+   <wvobject type="other" fp_name="/MotorTB/DUT/pwm_max_val">
+      <obj_property name="ElementShortName">pwm_max_val</obj_property>
+      <obj_property name="ObjectShortName">pwm_max_val</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/URECI/state_reci">
-      <obj_property name="ElementShortName">state_reci</obj_property>
-      <obj_property name="ObjectShortName">state_reci</obj_property>
+   <wvobject type="other" fp_name="/MotorTB/DUT/pwm_freq">
+      <obj_property name="ElementShortName">pwm_freq</obj_property>
+      <obj_property name="ObjectShortName">pwm_freq</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/URECI/index">
-      <obj_property name="ElementShortName">index</obj_property>
-      <obj_property name="ObjectShortName">index</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/activate">
+      <obj_property name="ElementShortName">activate</obj_property>
+      <obj_property name="ObjectShortName">activate</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/URECI/shiftsck">
-      <obj_property name="ElementShortName">shiftsck[2:0]</obj_property>
-      <obj_property name="ObjectShortName">shiftsck[2:0]</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/deactivate">
+      <obj_property name="ElementShortName">deactivate</obj_property>
+      <obj_property name="ObjectShortName">deactivate</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/URECI/shiftss">
-      <obj_property name="ElementShortName">shiftss[2:0]</obj_property>
-      <obj_property name="ObjectShortName">shiftss[2:0]</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/forward">
+      <obj_property name="ElementShortName">forward</obj_property>
+      <obj_property name="ObjectShortName">forward</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/busy">
-      <obj_property name="ElementShortName">busy</obj_property>
-      <obj_property name="ObjectShortName">busy</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/state_spi">
-      <obj_property name="ElementShortName">state_spi</obj_property>
-      <obj_property name="ObjectShortName">state_spi</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/state_trns">
-      <obj_property name="ElementShortName">state_trns</obj_property>
-      <obj_property name="ObjectShortName">state_trns</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/index">
-      <obj_property name="ElementShortName">index</obj_property>
-      <obj_property name="ObjectShortName">index</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/shift">
-      <obj_property name="ElementShortName">shift[15:0]</obj_property>
-      <obj_property name="ObjectShortName">shift[15:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/shiftsck">
-      <obj_property name="ElementShortName">shiftsck[2:0]</obj_property>
-      <obj_property name="ObjectShortName">shiftsck[2:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/Controller_TB/TB_TOP/SPI/UTRNS/shiftss">
-      <obj_property name="ElementShortName">shiftss[2:0]</obj_property>
-      <obj_property name="ObjectShortName">shiftss[2:0]</obj_property>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/backward">
+      <obj_property name="ElementShortName">backward</obj_property>
+      <obj_property name="ObjectShortName">backward</obj_property>
    </wvobject>
 </wave_config>

@@ -17,7 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -26,24 +25,25 @@ set_param synth.vivado.isSynthRun true
 set_property webtalk.parent_dir /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.cache/wt [current_project]
 set_property parent.project_path /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
-set_property target_language Verilog [current_project]
+set_property target_language VHDL [current_project]
 set_property ip_output_repo /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_vhdl -library SPI {
   /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/package_spi.vhd
   /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/package_controller.vhd
 }
-read_vhdl -library xil_defaultlib {
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/PWM.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/TOP_test.vhd
-}
 read_vhdl -vhdl2008 -library xil_defaultlib {
   /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd
   /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd
   /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd
+  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd
   /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Transmitter_TEST.vhd
+}
+read_vhdl -library xil_defaultlib {
+  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd
+  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd
+  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/UART_TX.vhd
+  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/UART_topmodule.vhd
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
