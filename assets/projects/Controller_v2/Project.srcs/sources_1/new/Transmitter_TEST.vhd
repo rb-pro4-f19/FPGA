@@ -55,6 +55,8 @@ component CONTROLLER is
         motor_o_2                   :   out std_logic_vector(1 downto 0);
         w_enc_1                     :   in  std_logic_vector(1 downto 0);
         w_enc_2                     :   in  std_logic_vector(1 downto 0);
+        hall_i_1                    :   in  std_logic;
+        hall_i_2                    :   in  std_logic;
         led                         :   out std_logic_vector(15 downto 0)
 
     );
@@ -74,9 +76,11 @@ begin
             motor_o_1 => open, --led(13 downto 12),
             motor_o_2  => open, --led(15 downto 14),
             CE_motor_1 => open,
-            CE_motor_2 => open,
-            w_enc_1 => encB_1 & encA_1,
-            w_enc_2 => encB_2 & encA_2,
+            CE_motor_2 => open,        
+            w_enc_1  => encB_1 & encA_1,
+            w_enc_2  => encB_2 & encA_2,
+            hall_i_1 => '0',
+            hall_i_2 => '0',
             led => led(15 downto 0)
 
    );

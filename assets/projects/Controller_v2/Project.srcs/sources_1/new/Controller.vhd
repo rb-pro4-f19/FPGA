@@ -41,6 +41,10 @@ entity CONTROLLER is
         motor_o_2                   :   out std_logic_vector(1 downto 0);
         w_enc_1                     :   in  std_logic_vector(1 downto 0);
         w_enc_2                     :   in  std_logic_vector(1 downto 0);
+        rotEnc_i_1                  :   in  std_logic_vector(1 downto 0);
+        rotEnc_i_2                  :   in  std_logic_vector(1 downto 0);
+        hall_i_1                    :   in  std_logic;
+        hall_i_2                    :   in  std_logic;
         led                         :   out std_logic_vector(15 downto 0)
 
         );
@@ -70,6 +74,18 @@ architecture Behavioral of CONTROLLER is
 
     signal w_ready_enc2             :   std_logic                         := '0';
     signal w_data_enc2              :   std_logic_vector(11 downto 0)     := (others => '0');
+    
+    signal w_ready_rotEnc1          :   std_logic                         := '0';
+    signal w_data_rotEnc1           :   std_logic_vector(11 downto 0)     := (others => '0');
+
+    signal w_ready_rotEnc2          :   std_logic                         := '0';
+    signal w_data_rotEnc2           :   std_logic_vector(11 downto 0)     := (others => '0');
+    
+    signal w_ready_hall1            :   std_logic                         := '0';
+    signal w_data_hall1             :   std_logic                         := '0';
+    
+    signal w_ready_hall2            :   std_logic                         := '0';
+    signal w_data_hall2             :   std_logic                         := '0';
 
     begin
 
@@ -135,11 +151,29 @@ architecture Behavioral of CONTROLLER is
 
                             w_ready_enc1   <= '1';
                             w_data_TX(15 downto 4) <= w_data_enc1;
+                            
+                            --w_ready_rotEnc1 <= '1';
+                            --w_data_TX(15 downto 4) <= w_data_rotEnc1;
 
                         when ENC_2 =>
 
                             w_ready_enc2   <= '1';
                             w_data_TX(15 downto 4) <= w_data_enc2;
+                            
+                            --w_ready_rotEnc2 <= '1';
+                            --w_data_TX(15 downto 4) <= w_data_rotEnc2;
+                         
+                        when HALL_1 =>
+
+                            w_ready_hall1   <= '1';
+                            w_data_TX(4) <= w_data_hall1;
+                            w_data_TX(15 downto 12) <= HALL_1;
+
+                        when HALL_2 =>
+
+                            w_ready_hall2   <= '1';
+                            w_data_TX(4) <= w_data_hall2;
+                            w_data_TX(15 downto 12) <= HALL_2;
 
                         when others =>
 
@@ -178,10 +212,20 @@ architecture Behavioral of CONTROLLER is
                         when ENC_1 =>
 
                             w_ready_enc1   <= '0';
+                            --w_ready_rotEnc1 <= '0';
 
                         when ENC_2 =>
 
                             w_ready_enc2   <= '0';
+                            --w_ready_rotEnc2 <= '0';
+                            
+                        when HALL_1 =>
+
+                            w_ready_hall1   <= '0';
+
+                        when HALL_2 =>
+
+                            w_ready_hall2   <= '0';
 
                         when others =>
 
@@ -211,6 +255,13 @@ architecture Behavioral of CONTROLLER is
 
                         when ENC_2 =>
 
+                            -- done
+                        when HALL_1 =>
+                        
+                            -- done
+
+                        when HALL_2 =>
+                        
                             -- done
 
                         when others =>
@@ -284,6 +335,40 @@ architecture Behavioral of CONTROLLER is
             enc_b       => w_enc_2(1),
             reset       => w_ready_enc2,
             data        => w_data_enc2
+            );
+ --------------------------------------------------------------------------------
+    RotENC_1: RotENC
+    port map(
+             clk            => clk,
+             Ain            => w_enc_1(0),
+			 Bin            => w_enc_1(1),
+             encoder_read   => w_ready_rotEnc1,
+             encoder_out    => w_data_rotEnc1
+            );
+--------------------------------------------------------------------------------
+    RotENC_2: RotENC
+    port map(
+             clk            => clk,
+             Ain            => w_enc_2(0),
+			 Bin            => w_enc_2(1),
+             encoder_read   => w_ready_rotEnc2,
+             encoder_out    => w_data_rotEnc2
+            );
+--------------------------------------------------------------------------------
+    hallSensor_1: hallSensor
+    port map(
+            clk         => clk,
+            hall_in     => hall_i_1,
+            hall_read   => w_ready_hall1,
+            hall_out    => w_data_hall1
+            );
+--------------------------------------------------------------------------------
+    hallSensor_2: hallSensor
+    port map(
+            clk         => clk,
+            hall_in     => hall_i_2,
+            hall_read   => w_ready_hall2,
+            hall_out    => w_data_hall2
             );
 
 end Behavioral;

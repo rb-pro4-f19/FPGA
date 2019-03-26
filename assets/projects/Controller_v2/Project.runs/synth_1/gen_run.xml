@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1553604556">
   <File Type="VDS-TIMING-PB" Name="Controller_TEST_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="Controller_TEST_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="Controller_TEST.dcp"/>
   <File Type="RDS-UTIL-PB" Name="Controller_TEST_utilization_synth.pb"/>
   <File Type="RDS-UTIL" Name="Controller_TEST_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="Controller_TEST_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="Controller_TEST.vds"/>
-  <File Type="REPORTS-TCL" Name="Controller_TEST_reports.tcl"/>
+=======
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1553608214">
   <File Type="PA-TCL" Name="Controller_TEST.tcl"/>
+>>>>>>> master
+  <File Type="RDS-PROPCONSTRS" Name="Controller_TEST_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="Controller_TEST_reports.tcl"/>
+  <File Type="RDS-RDS" Name="Controller_TEST.vds"/>
+  <File Type="RDS-UTIL" Name="Controller_TEST_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="Controller_TEST_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="Controller_TEST.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Controller_TEST_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="Controller_TEST_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/package_spi.vhd">
@@ -74,6 +83,18 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/UART_topmodule.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../components/HallSensor.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../components/RotaryEncoder.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>

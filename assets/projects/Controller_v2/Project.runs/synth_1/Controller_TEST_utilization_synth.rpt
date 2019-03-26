@@ -1,8 +1,14 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
 | Date         : Tue Mar 26 13:49:37 2019
 | Host         : daniel-XPS-15-9570 running 64-bit Ubuntu 18.04.2 LTS
+=======
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Tue Mar 26 14:50:53 2019
+| Host         : DESKTOP-4VFIJJJ running 64-bit major release  (build 9200)
+>>>>>>> master
 | Command      : report_utilization -file Controller_TEST_utilization_synth.rpt -pb Controller_TEST_utilization_synth.pb
 | Design       : Controller_TEST
 | Device       : 7a35tcpg236-1
@@ -33,8 +39,8 @@ Table of Contents
 | Slice LUTs*             |  183 |     0 |     20800 |  0.88 |
 |   LUT as Logic          |  183 |     0 |     20800 |  0.88 |
 |   LUT as Memory         |    0 |     0 |      9600 |  0.00 |
-| Slice Registers         |  243 |     0 |     41600 |  0.58 |
-|   Register as Flip Flop |  243 |     0 |     41600 |  0.58 |
+| Slice Registers         |  307 |     0 |     41600 |  0.74 |
+|   Register as Flip Flop |  307 |     0 |     41600 |  0.74 |
 |   Register as Latch     |    0 |     0 |     41600 |  0.00 |
 | F7 Muxes                |    2 |     0 |     16300 |  0.01 |
 | F8 Muxes                |    0 |     0 |      8150 |  0.00 |
@@ -57,7 +63,7 @@ Table of Contents
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 4     |          Yes |         Set |            - |
-| 239   |          Yes |       Reset |            - |
+| 303   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -149,6 +155,7 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
+<<<<<<< HEAD
 | FDRE     |  239 |        Flop & Latch |
 | LUT5     |   65 |                 LUT |
 | LUT6     |   60 |                 LUT |
@@ -156,10 +163,19 @@ Table of Contents
 | LUT3     |   35 |                 LUT |
 | OBUF     |   17 |                  IO |
 | LUT4     |   17 |                 LUT |
+=======
+| FDRE     |  303 |        Flop & Latch |
+| LUT6     |   61 |                 LUT |
+| LUT5     |   60 |                 LUT |
+| LUT4     |   29 |                 LUT |
+| CARRY4   |   28 |          CarryLogic |
+| LUT1     |   23 |                 LUT |
+| OBUFT    |   16 |                  IO |
+| LUT3     |   15 |                 LUT |
+| LUT2     |   12 |                 LUT |
+>>>>>>> master
 | IBUF     |    8 |                  IO |
-| CARRY4   |    6 |          CarryLogic |
 | FDSE     |    4 |        Flop & Latch |
-| LUT1     |    3 |                 LUT |
 | MUXF7    |    2 |               MuxFx |
 | BUFG     |    1 |               Clock |
 +----------+------+---------------------+
