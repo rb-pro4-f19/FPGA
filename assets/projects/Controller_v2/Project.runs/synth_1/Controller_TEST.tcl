@@ -17,33 +17,37 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.cache/wt [current_project]
-set_property parent.project_path /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.cache/wt [current_project]
+set_property parent.project_path C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.cache/ip [current_project]
+set_property ip_output_repo c:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_vhdl -library SPI {
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/package_spi.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/package_controller.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/package_spi.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/package_controller.vhd
 }
 read_vhdl -vhdl2008 -library xil_defaultlib {
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Transmitter_TEST.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Transmitter_TEST.vhd
 }
 read_vhdl -library xil_defaultlib {
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/UART_TX.vhd
-  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/UART_topmodule.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/UART_TX.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/UART_topmodule.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/components/HallSensor.vhd
+  C:/Users/test/Documents/GitHub/FPGA/assets/components/RotaryEncoder.vhd
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -53,8 +57,8 @@ read_vhdl -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/daniel/Downloads/Basys-3-Master_v2.xdc
-set_property used_in_implementation false [get_files /home/daniel/Downloads/Basys-3-Master_v2.xdc]
+read_xdc C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/constrs_1/new/BASYS_3.xdc
+set_property used_in_implementation false [get_files C:/Users/test/Documents/GitHub/FPGA/assets/projects/Controller_v2/Project.srcs/constrs_1/new/BASYS_3.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

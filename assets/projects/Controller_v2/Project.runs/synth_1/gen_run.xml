@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1553525945">
-  <File Type="VDS-TIMING-PB" Name="Controller_TEST_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="Controller_TEST_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="Controller_TEST.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="Controller_TEST_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="Controller_TEST_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="Controller_TEST_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="Controller_TEST.vds"/>
-  <File Type="REPORTS-TCL" Name="Controller_TEST_reports.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1553608214">
   <File Type="PA-TCL" Name="Controller_TEST.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="Controller_TEST_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="Controller_TEST_reports.tcl"/>
+  <File Type="RDS-RDS" Name="Controller_TEST.vds"/>
+  <File Type="RDS-UTIL" Name="Controller_TEST_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="Controller_TEST_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="Controller_TEST.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Controller_TEST_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="Controller_TEST_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/package_spi.vhd">
@@ -79,6 +79,18 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../components/HallSensor.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../components/RotaryEncoder.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="Controller_TEST"/>
@@ -86,7 +98,7 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/../../../../../../Downloads/Basys-3-Master_v2.xdc">
+    <File Path="$PSRCDIR/constrs_1/new/BASYS_3.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

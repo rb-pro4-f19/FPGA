@@ -55,7 +55,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity Encoder is
+entity Enc is
 		Port (
 					clk: in STD_LOGIC;
                     A,B : in STD_LOGIC;
@@ -63,9 +63,9 @@ entity Encoder is
 					encoderValue: out STD_LOGIC_VECTOR ( 11 downto 0)
 
 			  );
-end Encoder;
+end Enc;
 
-architecture Behavioral of Encoder is
+architecture Behavioral of Enc is
 
 begin
 
@@ -114,7 +114,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 
 
-entity PmodENC is
+entity RotENC is
     Port (
 			 clk: in STD_LOGIC;
              Ain: in STD_LOGIC;
@@ -123,11 +123,11 @@ entity PmodENC is
              encoder_out:  out STD_LOGIC_VECTOR(11 downto 0)
 
 			  );
-end PmodENC;
+end RotENC;
 
 
 
-architecture Behavioral of PmodENC is
+architecture Behavioral of RotENC is
 component Debounce is
 	port(
 			clk : in  STD_LOGIC;
@@ -139,7 +139,7 @@ component Debounce is
 	end component;
     
     
-component Encoder is
+component Enc is
 	Port (
             clk: in STD_LOGIC;
             A,B : in STD_LOGIC;
@@ -155,6 +155,6 @@ component Encoder is
 begin
     
 	C0: Debounce port map ( clk=>clk, Ain=>Ain, Bin=>Bin, Aout=>A , Bout=>B);
-	C2: Encoder port map ( clk=>clk, A=>A, B=>B ,reset=>encoder_read, encoderValue=>encoder_out);
+	C2: Enc port map ( clk=>clk, A=>A, B=>B ,reset=>encoder_read, encoderValue=>encoder_out);
 	
 end Behavioral;

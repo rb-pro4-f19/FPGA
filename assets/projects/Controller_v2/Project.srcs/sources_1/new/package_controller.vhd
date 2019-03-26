@@ -14,7 +14,6 @@ package package_controller is
     constant HALL_2              : std_logic_vector(3 downto 0) := "0110";
     constant CUR_1               : std_logic_vector(3 downto 0) := "0111";
     constant CUR_2               : std_logic_vector(3 downto 0) := "1000";
-
     constant TURNOFF             : std_logic_vector(7 downto 0) := x"0B";
 
     component MOTOR is
@@ -50,6 +49,24 @@ package package_controller is
     end component;
 
 
+    component hallSensor is 
+        port(
+            clk : in  STD_LOGIC;
+            hall_in: in STD_LOGIC;
+            hall_out: out STD_LOGIC;
+            hall_read: in STD_LOGIC
+        );
+    end component;
+    
+    component RotENC is 
+        port(
+             clk: in STD_LOGIC;
+             Ain: in STD_LOGIC;
+			 Bin: in STD_LOGIC;
+             encoder_read: in STD_LOGIC;
+             encoder_out:  out STD_LOGIC_VECTOR(11 downto 0)
+        );
+    end component;
 
 end package package_controller;
 
