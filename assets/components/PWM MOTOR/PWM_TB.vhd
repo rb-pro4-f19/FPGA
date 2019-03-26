@@ -47,7 +47,8 @@ component PWM is
         pwm_set             : in std_logic_vector(6 downto 0);
         direction           : in std_logic;
         ja                  : out std_logic_vector(1 downto 0);
-        chip_enable         : out std_logic := '1'
+        chip_enable         : out std_logic := '1';
+        emergency_stop      : in std_logic := '0'
     );
 end component;
 
@@ -57,6 +58,7 @@ end component;
     signal w_direction           : std_logic;
     signal w_ja                  : std_logic_vector(1 downto 0);
     signal w_chip_enable         : std_logic := '1';
+    signal w_e_stop              : std_logic := '0';
 
 begin
 
@@ -73,13 +75,15 @@ begin
    constant clk_period : time := 5ns;
    begin
    
-   w_pwm_set <= "0000000";
+   w_pwm_set <= "1000000";
    w_direction <= '1';
    w_ready <= '0';
    wait for clk_period;
    w_ready <= '1';
    wait for clk_period;
    w_ready <= '0';
+   wait for 2000ns;
+   w_e_stop <= '1';
    wait;
    end process;
    
@@ -88,7 +92,7 @@ begin
 DUT : PWM 
     
     generic map(pwm_freq => 100000000)
-    port map( ready => w_ready, clk => w_clk, pwm_set => w_pwm_set, direction => w_direction, ja => w_ja, chip_enable => w_chip_enable );
+    port map( ready => w_ready, clk => w_clk, pwm_set => w_pwm_set, direction => w_direction, ja => w_ja, chip_enable => w_chip_enable, emergency_stop => w_e_stop );
 
 
 end Behavioral;
