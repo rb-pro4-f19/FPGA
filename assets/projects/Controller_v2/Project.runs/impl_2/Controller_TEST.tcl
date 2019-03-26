@@ -73,7 +73,7 @@ set rc [catch {
   set_property ip_output_repo /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   add_files -quiet /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.runs/synth_1/Controller_TEST.dcp
-  read_xdc /home/daniel/Downloads/Basys-3-Master_v2.xdc
+  read_xdc /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/constrs_1/new/BASYS_3.xdc
   link_design -top Controller_TEST -part xc7a35tcpg236-1
   close_msg_db -file init_design.pb
 } RESULT]

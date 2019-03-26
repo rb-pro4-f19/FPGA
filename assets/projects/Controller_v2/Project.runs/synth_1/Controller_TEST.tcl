@@ -53,8 +53,8 @@ read_vhdl -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/daniel/Downloads/Basys-3-Master_v2.xdc
-set_property used_in_implementation false [get_files /home/daniel/Downloads/Basys-3-Master_v2.xdc]
+read_xdc /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/constrs_1/new/BASYS_3.xdc
+set_property used_in_implementation false [get_files /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/constrs_1/new/BASYS_3.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

@@ -206,11 +206,11 @@ architecture Behavioral of CONTROLLER is
                             w_data_TX      <= x"A0A0";
 
                         when ENC_1 =>
-                        
+
                             -- done
 
                         when ENC_2 =>
-                        
+
                             -- done
 
                         when others =>
@@ -243,7 +243,7 @@ architecture Behavioral of CONTROLLER is
              data_controller_o => w_data_RX,
              ctrl_reply => w_ctrl_reply,
              spi_ready  => w_spi_ready,
-             led        => open
+             led        => led
              );
 --------------------------------------------------------------------------------
     MOTOR_1: MOTOR

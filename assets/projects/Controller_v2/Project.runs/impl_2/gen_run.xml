@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_2" LaunchPart="xc7a35tcpg236-1" LaunchTime="1553525945">
+<GenRun Id="impl_2" LaunchPart="xc7a35tcpg236-1" LaunchTime="1553604556">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="Controller_TEST.drc"/>
   <File Type="BG-BGN" Name="Controller_TEST.bgn"/>
@@ -146,7 +146,7 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/../../../../../../Downloads/Basys-3-Master_v2.xdc">
+    <File Path="$PSRCDIR/constrs_1/new/BASYS_3.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
