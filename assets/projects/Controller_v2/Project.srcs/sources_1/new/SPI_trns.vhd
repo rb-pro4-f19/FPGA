@@ -25,7 +25,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity SPI_slave_trns is
     port(
-    
+
         clk                  :   in  std_logic;
         sck                  :   in  std_logic;
         ss                   :   in  std_logic;
@@ -44,7 +44,6 @@ architecture Behavioral of SPI_slave_trns is
     signal state_trns       :   transmit_spi                        := START;
 
     begin
-
 
     busy <= '1' when state_spi = ENB else '0' when state_spi = DIS;
 
@@ -68,6 +67,7 @@ architecture Behavioral of SPI_slave_trns is
             end if;
 
             if state_spi = ENB then
+
                 case( state_trns ) is
 
                     when START =>

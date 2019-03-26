@@ -17,8 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -44,6 +42,8 @@ read_vhdl -vhdl2008 -library xil_defaultlib {
 read_vhdl -library xil_defaultlib {
   /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd
   /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd
+  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/UART_TX.vhd
+  /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/UART_topmodule.vhd
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

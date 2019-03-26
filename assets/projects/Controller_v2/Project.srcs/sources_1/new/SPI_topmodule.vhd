@@ -26,6 +26,7 @@ use SPI.package_spi.all;
 
 entity SPI_topmodule is
     port(
+
         clk                         :   in  std_logic;
         sck                         :   in  std_logic;
         ss                          :   in  std_logic;
@@ -34,7 +35,9 @@ entity SPI_topmodule is
         ctrl_reply                  :   in  std_logic;
         spi_ready                   :   out std_logic                        := '0';
         data_controller_i           :   in  std_logic_vector(15 downto 0);
-        data_controller_o           :   out std_logic_vector(15 downto 0)    := (others => '0')
+        data_controller_o           :   out std_logic_vector(15 downto 0)    := (others => '0');
+        led                         :   out std_logic_vector(15 downto 0)    := (others => '0')
+
         );
 end SPI_topmodule;
     -- / / --
@@ -97,6 +100,7 @@ architecture Behavioral of SPI_topmodule is
                             cs_data := f_CS( data_cs => shift(7 downto 4), current_cs => cs_data );
 
                         when 3 =>
+
                             if cs_data = shift(3 downto 0) then
                                 data_controller_o <= shift;
                             else
@@ -109,6 +113,7 @@ architecture Behavioral of SPI_topmodule is
                         spi_ready <= '1';
                         state <= WAIT_CTRL;
                     else
+
                         state <= RECI;
                     end if;
 
@@ -141,6 +146,7 @@ architecture Behavioral of SPI_topmodule is
 
                         when 3 =>
                             w_trns_data(15 downto 0) <= shift(15 downto 4) & cs_data;
+                            led(15 downto 0) <= shift(15 downto 4) & cs_data;
 
                     end case;
 

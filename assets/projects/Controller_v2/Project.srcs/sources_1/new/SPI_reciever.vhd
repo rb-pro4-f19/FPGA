@@ -30,7 +30,7 @@ entity SPI_slave_reci is
         mosi                :   in  std_logic;
         data                :   out std_logic_vector(15 downto 0)   := (others => '0');
         busy                :   out std_logic                       := '0'
-        
+
     );
 end SPI_slave_reci;
 

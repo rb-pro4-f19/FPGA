@@ -41,7 +41,7 @@ entity CONTROLLER is
         motor_o_2                   :   out std_logic_vector(1 downto 0);
         w_enc_1                     :   in  std_logic_vector(1 downto 0);
         w_enc_2                     :   in  std_logic_vector(1 downto 0);
-        blink_light                 :   out std_logic_vector(11 downto 0)
+        led                         :   out std_logic_vector(15 downto 0)
 
         );
 end CONTROLLER;
@@ -73,7 +73,7 @@ architecture Behavioral of CONTROLLER is
 
     begin
 
-    blink_light <= w_data_enc1;
+    -- led <= w_data_enc1;
 
     process(clk)
 
@@ -134,10 +134,12 @@ architecture Behavioral of CONTROLLER is
                         when ENC_1 =>
 
                             w_ready_enc1   <= '1';
+                            w_data_TX(15 downto 4) <= w_data_enc1;
 
                         when ENC_2 =>
 
                             w_ready_enc2   <= '1';
+                            w_data_TX(15 downto 4) <= w_data_enc2;
 
                         when others =>
 
@@ -197,19 +199,19 @@ architecture Behavioral of CONTROLLER is
 
                         when PWM_1 =>
 
-                            w_data_TX      <= (others => '0');
+                            w_data_TX      <= x"B0B0";
 
                         when PWM_2 =>
 
-                            w_data_TX      <= (others => '0');
+                            w_data_TX      <= x"A0A0";
 
                         when ENC_1 =>
-
-                            w_data_TX(15 downto 4) <= w_data_enc1;
+                        
+                            -- done
 
                         when ENC_2 =>
-
-                            w_data_TX(15 downto 4) <= w_data_enc2;
+                        
+                            -- done
 
                         when others =>
 
@@ -240,7 +242,8 @@ architecture Behavioral of CONTROLLER is
              data_controller_i => w_data_TX,
              data_controller_o => w_data_RX,
              ctrl_reply => w_ctrl_reply,
-             spi_ready  => w_spi_ready
+             spi_ready  => w_spi_ready,
+             led        => open
              );
 --------------------------------------------------------------------------------
     MOTOR_1: MOTOR

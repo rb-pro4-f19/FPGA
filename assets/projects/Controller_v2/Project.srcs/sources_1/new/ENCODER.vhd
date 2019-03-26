@@ -45,15 +45,15 @@ architecture Behavioral of ENCODER is
     type DIRECTION          is (RIGHT, LEFT, STILL);
     signal direc            : DIRECTION := STILL;
 
-    signal spins            : std_logic_vector(11 downto 0) := x"800";
-
     begin
 
     process(clk)
 
-        variable shift_a    : std_logic_vector(5 downto 0) := (others => '0');
+    variable shift_a    : std_logic_vector(5 downto 0) := (others => '0');
 
-        variable shift_b    : std_logic_vector(5 downto 0) := (others => '0');
+    variable shift_b    : std_logic_vector(5 downto 0) := (others => '0');
+
+    variable spins      : std_logic_vector(11 downto 0) := x"800";
 
     begin
 
@@ -64,156 +64,87 @@ architecture Behavioral of ENCODER is
             shift_b := shift_b(4 downto 0) & enc_b;
 
             if(reset = '1') then
+                    spins := x"800";
+            end if;
 
-                if (spins >= x"800") then
+            if state /= prevstate then
 
-                    data <= '0' & spins(10 downto 0);
+                case( direc ) is
+                    when RIGHT =>
+                    spins := std_logic_vector(unsigned(spins) + 1);
 
-                else
+                    when LEFT =>
+                    spins := std_logic_vector(unsigned(spins) - 1);
 
-                    data <= '1' & spins(10 downto 0);
-
-                end if;
-
-                spins <= x"800";
-
-                if shift_a = "000000" and shift_b = "000000" then
-
-                    state <= S1;
-                    prevstate <= S1;
-
-                elsif shift_a = "111111" and shift_b = "000000" then
-
-                    state <= S2;
-                    prevstate <= S2;
-
-                elsif shift_a = "111111" and shift_b = "111111" then
-
-                    state <= S3;
-                    prevstate <= S3;
-
-                elsif shift_a = "000000" and shift_b = "111111" then
-
-                    state <= S4;
-                    prevstate <= S4;
-
-                end if;
+                    when others =>
+                end case;
 
                 direc <= STILL;
 
-            else
-
-                if state /= prevstate then
-
-                    case( direc ) is
-
-                        -- Here, you first need to cast your input vectors to signed or unsigned
-                        -- (according to your needs). Then, you will be allowed to add them.
-                        -- The result will be a signed or unsigned vector, so you won't be able
-                        -- to assign it directly to your output vector. You first need to cast
-                        -- the result to std_logic_vector.
-
-                        when RIGHT =>
-                        spins <= std_logic_vector(unsigned(spins) + 1);
-
-                        when LEFT =>
-                        spins <= std_logic_vector(unsigned(spins) - 1);
-
-                        when others =>
-                        -- dont do nothing boi
-
-                    end case;
-
-                    direc <= STILL;
-
-                end if;
-
-                prevstate <= state;
-
-                case( state ) is
-
-                    when S1 =>
-                        -- a = 0 b = 0
-                        if shift_a = "000000" and shift_b = "000000" then
-
-                            direc <= STILL;
-                            state <= S1;
-
-                        elsif shift_a = "111111" and shift_b = "000000" then
-
-                            direc <= RIGHT;
-                            state <= S2;
-
-                        elsif shift_a = "000000" and shift_b = "111111" then
-
-                            direc <= LEFT;
-                            state <= S4;
-
-                        end if;
-
-                    when S2 =>
-                        -- a = 1 b = 0
-                        if shift_a = "111111" and shift_b = "000000" then
-
-                            direc <= STILL;
-                            state <= S2;
-
-                        elsif shift_a = "111111" and shift_b = "111111" then
-
-                            direc <= RIGHT;
-                            state <= S3;
-
-                        elsif shift_a = "000000" and shift_b = "000000" then
-
-                            direc <= LEFT;
-                            state <= S1;
-
-                        end if;
-
-                    when S3 =>
-                        -- a = 0 b = 1
-                        if shift_a = "111111" and shift_b = "111111" then
-
-                            direc <= STILL;
-                            state <= S3;
-
-                        elsif shift_a = "000000" and shift_b = "111111" then
-
-                            direc <= RIGHT;
-                            state <= S4;
-
-                        elsif shift_a = "111111" and shift_b = "000000" then
-
-                            direc <= LEFT;
-                            state <= S2;
-
-                        end if;
-
-                    when S4 =>
-                        -- a = 1 b = 1
-                        if shift_a = "000000" and shift_b = "111111" then
-
-                            direc <= STILL;
-                            state <= S4;
-
-                        elsif shift_a = "000000" and shift_b = "000000" then
-
-                            direc <= RIGHT;
-                            state <= S1;
-
-                        elsif shift_a = "111111" and shift_b = "111111" then
-
-                            direc <= LEFT;
-                            state <= S3;
-
-                        end if;
-
-                end case;
-
             end if;
 
-         end if;
+            if (data >= x"800") then
+                    data <= '0' & spins(10 downto 0);
+                else
+                    data <= '1' & spins(10 downto 0);
+            end if;
 
+            prevstate <= state;
+
+            case( state ) is
+
+                when S1 =>
+                    -- a = 0 b = 0
+                    if shift_a = "000000" and shift_b = "000000" then
+                        direc <= STILL;
+                        state <= S1;
+                    elsif shift_a = "111111" and shift_b = "000000" then
+                        direc <= RIGHT;
+                        state <= S2;
+                    elsif shift_a = "000000" and shift_b = "111111" then
+                        direc <= LEFT;
+                        state <= S4;
+                    end if;
+
+                when S2 =>
+                    -- a = 1 b = 0
+                    if shift_a = "111111" and shift_b = "000000" then
+                        direc <= STILL;
+                        state <= S2;
+                    elsif shift_a = "111111" and shift_b = "111111" then
+                        direc <= RIGHT;
+                        state <= S3;
+                    elsif shift_a = "000000" and shift_b = "000000" then
+                        direc <= LEFT;
+                        state <= S1;
+                    end if;
+
+                when S3 =>
+                    -- a = 0 b = 1
+                    if shift_a = "111111" and shift_b = "111111" then
+                        direc <= STILL;
+                        state <= S3;
+                    elsif shift_a = "000000" and shift_b = "111111" then
+                        direc <= RIGHT;
+                        state <= S4;
+                    elsif shift_a = "111111" and shift_b = "000000" then
+                        direc <= LEFT;
+                        state <= S2;
+                    end if;
+
+                when S4 =>
+                    -- a = 1 b = 1
+                    if shift_a = "000000" and shift_b = "111111" then
+                        direc <= STILL;
+                        state <= S4;
+                    elsif shift_a = "000000" and shift_b = "000000" then
+                        direc <= RIGHT;
+                        state <= S1;
+                    elsif shift_a = "111111" and shift_b = "111111" then
+                        direc <= LEFT;
+                        state <= S3;
+                    end if;
+            end case;
+        end if;
     end process;
-
 end Behavioral;

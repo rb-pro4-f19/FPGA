@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Fri Mar 22 20:46:39 2019
+| Date             : Mon Mar 25 16:00:01 2019
 | Host             : daniel-XPS-15-9570 running 64-bit Ubuntu 18.04.2 LTS
 | Command          : report_power -file Controller_TEST_power_routed.rpt -pb Controller_TEST_power_summary_routed.pb -rpx Controller_TEST_power_routed.rpx
 | Design           : Controller_TEST
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.085        |
+| Total On-Chip Power (W)  | 0.075        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.014        |
+| Dynamic (W)              | 0.003        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.6         |
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      478 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      175 |     20800 |            0.84 |
-|   Register     |    <0.001 |      256 |     41600 |            0.62 |
-|   CARRY4       |    <0.001 |        6 |      8150 |            0.07 |
+| Clocks         |     0.002 |        3 |       --- |             --- |
+| Slice Logic    |    <0.001 |      488 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      183 |     20800 |            0.88 |
+|   Register     |    <0.001 |      243 |     41600 |            0.58 |
 |   F7/F8 Muxes  |    <0.001 |        2 |     32600 |           <0.01 |
+|   CARRY4       |    <0.001 |        6 |      8150 |            0.07 |
 |   Others       |     0.000 |       14 |       --- |             --- |
-| Signals        |    <0.001 |      369 |       --- |             --- |
-| I/O            |     0.011 |       25 |       106 |           23.58 |
+| Signals        |    <0.001 |      390 |       --- |             --- |
+| I/O            |    <0.001 |       25 |       106 |           23.58 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.085 |          |           |                 |
+| Total          |     0.075 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,9 +72,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.012 |       0.002 |      0.010 |
+| Vccint    |       1.000 |     0.013 |       0.003 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
-| Vcco33    |       3.300 |     0.004 |       0.003 |      0.001 |
+| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -141,8 +141,9 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| Controller_TEST |     0.014 |
-|   DUT           |     0.002 |
+| Controller_TEST |     0.003 |
+|   DUT           |     0.003 |
+|     SPI         |     0.001 |
 +-----------------+-----------+
 
 

@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Fri Mar 22 20:45:38 2019
-# Process ID: 6316
+# Start of session at: Mon Mar 25 15:59:06 2019
+# Process ID: 16255
 # Current directory: /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.runs/synth_1
 # Command line: vivado -log Controller_TEST.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Controller_TEST.tcl
 # Log file: /home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.runs/synth_1/Controller_TEST.vds
@@ -15,32 +15,32 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 6330 
+INFO: Helper process launched with PID 16268 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1390.273 ; gain = 0.000 ; free physical = 6873 ; free virtual = 11441
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1389.266 ; gain = 0.000 ; free physical = 7384 ; free virtual = 12774
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'Controller_TEST' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Transmitter_TEST.vhd:42]
 INFO: [Synth 8-3491] module 'CONTROLLER' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:30' bound to instance 'DUT' of component 'CONTROLLER' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Transmitter_TEST.vhd:66]
 INFO: [Synth 8-638] synthesizing module 'CONTROLLER' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:49]
 INFO: [Synth 8-226] default block is never used [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:86]
-INFO: [Synth 8-3491] module 'SPI_topmodule' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:27' bound to instance 'SPI' of component 'SPI_topmodule' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:233]
-INFO: [Synth 8-638] synthesizing module 'SPI_topmodule' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:41]
-INFO: [Synth 8-3491] module 'SPI_slave_reci' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd:24' bound to instance 'URECI' of component 'SPI_slave_reci' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:169]
+INFO: [Synth 8-3491] module 'SPI_topmodule' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:27' bound to instance 'SPI' of component 'SPI_topmodule' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:235]
+INFO: [Synth 8-638] synthesizing module 'SPI_topmodule' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:44]
+INFO: [Synth 8-3491] module 'SPI_slave_reci' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd:24' bound to instance 'URECI' of component 'SPI_slave_reci' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:175]
 INFO: [Synth 8-638] synthesizing module 'SPI_slave_reci' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd:37]
 INFO: [Synth 8-226] default block is never used [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd:70]
 WARNING: [Synth 8-3936] Found unconnected internal register 'shiftsck_reg' and it is trimmed from '4' to '3' bits. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd:61]
 WARNING: [Synth 8-3936] Found unconnected internal register 'shiftss_reg' and it is trimmed from '4' to '3' bits. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd:60]
 INFO: [Synth 8-256] done synthesizing module 'SPI_slave_reci' (1#1) [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_reciever.vhd:37]
-INFO: [Synth 8-3491] module 'SPI_slave_trns' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:26' bound to instance 'UTRNS' of component 'SPI_slave_trns' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:172]
+INFO: [Synth 8-3491] module 'SPI_slave_trns' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:26' bound to instance 'UTRNS' of component 'SPI_slave_trns' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:178]
 INFO: [Synth 8-638] synthesizing module 'SPI_slave_trns' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:39]
 INFO: [Synth 8-226] default block is never used [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:71]
-WARNING: [Synth 8-3936] Found unconnected internal register 'shiftsck_reg' and it is trimmed from '4' to '3' bits. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:62]
-WARNING: [Synth 8-3936] Found unconnected internal register 'shiftss_reg' and it is trimmed from '4' to '3' bits. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:61]
+WARNING: [Synth 8-3936] Found unconnected internal register 'shiftsck_reg' and it is trimmed from '4' to '3' bits. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:61]
+WARNING: [Synth 8-3936] Found unconnected internal register 'shiftss_reg' and it is trimmed from '4' to '3' bits. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:60]
 INFO: [Synth 8-256] done synthesizing module 'SPI_slave_trns' (2#1) [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_trns.vhd:39]
-INFO: [Synth 8-256] done synthesizing module 'SPI_topmodule' (3#1) [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:41]
+INFO: [Synth 8-256] done synthesizing module 'SPI_topmodule' (3#1) [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:44]
 	Parameter pwm_max_val bound to: 128 - type: integer 
 	Parameter pwm_freq bound to: 10000 - type: integer 
-INFO: [Synth 8-3491] module 'MOTOR' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd:26' bound to instance 'MOTOR_1' of component 'MOTOR' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:246]
+INFO: [Synth 8-3491] module 'MOTOR' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd:26' bound to instance 'MOTOR_1' of component 'MOTOR' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:249]
 INFO: [Synth 8-638] synthesizing module 'MOTOR' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd:46]
 	Parameter pwm_max_val bound to: 128 - type: integer 
 	Parameter pwm_freq bound to: 10000 - type: integer 
@@ -53,21 +53,34 @@ INFO: [Synth 8-256] done synthesizing module 'MOTOR_FREQ' (4#1) [/home/daniel/De
 INFO: [Synth 8-256] done synthesizing module 'MOTOR' (5#1) [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd:46]
 	Parameter pwm_max_val bound to: 128 - type: integer 
 	Parameter pwm_freq bound to: 10000 - type: integer 
-INFO: [Synth 8-3491] module 'MOTOR' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd:26' bound to instance 'MOTOR_2' of component 'MOTOR' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:257]
-INFO: [Synth 8-3491] module 'ENCODER' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:27' bound to instance 'ENCODER_1' of component 'ENCODER' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:268]
+INFO: [Synth 8-3491] module 'MOTOR' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd:26' bound to instance 'MOTOR_2' of component 'MOTOR' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:260]
+INFO: [Synth 8-3491] module 'ENCODER' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:27' bound to instance 'ENCODER_1' of component 'ENCODER' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:271]
 INFO: [Synth 8-638] synthesizing module 'ENCODER' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:39]
 WARNING: [Synth 8-3936] Found unconnected internal register 'shift_a_reg' and it is trimmed from '6' to '5' bits. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:62]
 WARNING: [Synth 8-3936] Found unconnected internal register 'shift_b_reg' and it is trimmed from '6' to '5' bits. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:64]
 INFO: [Synth 8-256] done synthesizing module 'ENCODER' (6#1) [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:39]
-INFO: [Synth 8-3491] module 'ENCODER' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:27' bound to instance 'ENCODER_2' of component 'ENCODER' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:277]
+INFO: [Synth 8-3491] module 'ENCODER' declared at '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:27' bound to instance 'ENCODER_2' of component 'ENCODER' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:280]
+WARNING: [Synth 8-3848] Net led in module/entity CONTROLLER does not have driver. [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:44]
 INFO: [Synth 8-256] done synthesizing module 'CONTROLLER' (7#1) [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:49]
 INFO: [Synth 8-256] done synthesizing module 'Controller_TEST' (8#1) [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Transmitter_TEST.vhd:42]
-WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[15]
-WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[14]
-WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[13]
-WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[12]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[15]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[14]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[13]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[12]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[11]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[10]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[9]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[8]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[7]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[6]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[5]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[4]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[3]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[2]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[1]
+WARNING: [Synth 8-3331] design CONTROLLER has unconnected port led[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1407.488 ; gain = 17.215 ; free physical = 6882 ; free virtual = 11450
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1407.488 ; gain = 18.223 ; free physical = 7379 ; free virtual = 12784
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -80,10 +93,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1407.488 ; gain = 17.215 ; free physical = 6882 ; free virtual = 11450
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1407.488 ; gain = 18.223 ; free physical = 7372 ; free virtual = 12777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1407.488 ; gain = 17.215 ; free physical = 6882 ; free virtual = 11450
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1407.488 ; gain = 18.223 ; free physical = 7372 ; free virtual = 12777
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -94,30 +107,30 @@ Parsing XDC File [/home/daniel/Downloads/Basys-3-Master_v2.xdc]
 Finished Parsing XDC File [/home/daniel/Downloads/Basys-3-Master_v2.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/daniel/Downloads/Basys-3-Master_v2.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Controller_TEST_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/Controller_TEST_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.910 ; gain = 0.000 ; free physical = 6632 ; free virtual = 11200
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.918 ; gain = 0.000 ; free physical = 7252 ; free virtual = 12706
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.910 ; gain = 0.000 ; free physical = 6632 ; free virtual = 11200
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.918 ; gain = 0.000 ; free physical = 7252 ; free virtual = 12707
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.910 ; gain = 0.000 ; free physical = 6632 ; free virtual = 11200
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.910 ; gain = 0.000 ; free physical = 6632 ; free virtual = 11200
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.918 ; gain = 0.000 ; free physical = 7252 ; free virtual = 12707
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.918 ; gain = 0.000 ; free physical = 7252 ; free virtual = 12707
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6710 ; free virtual = 11278
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 7739 ; free virtual = 13073
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6710 ; free virtual = 11278
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 7739 ; free virtual = 13073
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6712 ; free virtual = 11280
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 7741 ; free virtual = 13075
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reci_reg' in module 'SPI_slave_reci'
 INFO: [Synth 8-5544] ROM "state_spi" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
@@ -132,7 +145,8 @@ INFO: [Synth 8-5544] ROM "miso" won't be mapped to Block RAM because address siz
 INFO: [Synth 8-5544] ROM "shift" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "state_trns" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "state_trns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:88]
+INFO: [Synth 8-4471] merging register 'led_reg[15:0]' into 'w_trns_data_reg[15:0]' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:149]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/SPI_topmodule.vhd:91]
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'SPI_topmodule'
 INFO: [Synth 8-5544] ROM "spi_ready" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "cs_index" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
@@ -144,14 +158,19 @@ INFO: [Synth 8-5546] ROM "temporal" won't be mapped to RAM because it is too spa
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/MOTOR.vhd:133]
 INFO: [Synth 8-5546] ROM "dir_state" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "dir_state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:108]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/ENCODER.vhd:72]
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'ENCODER'
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-4471] merging register 'w_stop_motor2_reg' into 'w_stop_motor1_reg' [/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.srcs/sources_1/new/Controller.vhd:118]
 INFO: [Synth 8-5546] ROM "w_ready_motor1" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "w_set_pwm1" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "w_set_pwm2" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "w_ready_enc1" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "w_ready_enc2" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "w_data_TX" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "w_data_TX" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "w_ready_enc2" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -180,8 +199,17 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_trns_reg' using enco
                  waiting |                            10000 |                              100
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'SPI_topmodule'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                      s1 |                               00 |                               00
+                      s4 |                               01 |                               11
+                      s3 |                               10 |                               10
+                      s2 |                               11 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'ENCODER'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6702 ; free virtual = 11271
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 7977 ; free virtual = 13292
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -195,39 +223,37 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     14 Bit       Adders := 2     
+	   2 Input     12 Bit       Adders := 2     
 	   2 Input      7 Bit       Adders := 2     
 	   2 Input      4 Bit       Adders := 3     
 	   2 Input      2 Bit       Adders := 1     
 +---Registers : 
 	               16 Bit    Registers := 8     
 	               14 Bit    Registers := 2     
-	               12 Bit    Registers := 2     
+	               12 Bit    Registers := 4     
 	                8 Bit    Registers := 2     
 	                7 Bit    Registers := 4     
 	                5 Bit    Registers := 4     
 	                4 Bit    Registers := 3     
 	                3 Bit    Registers := 4     
-	                2 Bit    Registers := 8     
+	                2 Bit    Registers := 6     
 	                1 Bit    Registers := 18    
 +---Muxes : 
 	   2 Input     16 Bit        Muxes := 5     
-	   4 Input     16 Bit        Muxes := 1     
+	   4 Input     16 Bit        Muxes := 2     
 	   5 Input     16 Bit        Muxes := 1     
 	   9 Input     16 Bit        Muxes := 1     
 	   6 Input     16 Bit        Muxes := 1     
 	   2 Input     14 Bit        Muxes := 2     
-	   3 Input     12 Bit        Muxes := 2     
-	   2 Input     12 Bit        Muxes := 2     
+	   2 Input     12 Bit        Muxes := 24    
+	   6 Input     12 Bit        Muxes := 2     
 	   5 Input      5 Bit        Muxes := 1     
 	   2 Input      5 Bit        Muxes := 5     
 	   4 Input      4 Bit        Muxes := 4     
-	   4 Input      2 Bit        Muxes := 9     
-	   2 Input      2 Bit        Muxes := 28    
+	   4 Input      2 Bit        Muxes := 17    
+	   2 Input      2 Bit        Muxes := 24    
 	   5 Input      2 Bit        Muxes := 1     
-	   3 Input      2 Bit        Muxes := 2     
-	   6 Input      2 Bit        Muxes := 2     
-	   7 Input      2 Bit        Muxes := 2     
-	   2 Input      1 Bit        Muxes := 80    
+	   2 Input      1 Bit        Muxes := 66    
 	   4 Input      1 Bit        Muxes := 22    
 	   5 Input      1 Bit        Muxes := 6     
 	   3 Input      1 Bit        Muxes := 2     
@@ -289,8 +315,8 @@ Detailed RTL Component Info :
 	   2 Input      5 Bit        Muxes := 5     
 	   4 Input      4 Bit        Muxes := 2     
 	   5 Input      2 Bit        Muxes := 1     
-	   4 Input      1 Bit        Muxes := 2     
 	   2 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 2     
 	   5 Input      1 Bit        Muxes := 6     
 Module MOTOR_FREQ 
 Detailed RTL Component Info : 
@@ -314,19 +340,17 @@ Detailed RTL Component Info :
 	   3 Input      1 Bit        Muxes := 1     
 Module ENCODER 
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     12 Bit       Adders := 1     
 +---Registers : 
-	               12 Bit    Registers := 1     
+	               12 Bit    Registers := 2     
 	                5 Bit    Registers := 2     
-	                2 Bit    Registers := 3     
+	                2 Bit    Registers := 2     
 +---Muxes : 
-	   3 Input     12 Bit        Muxes := 1     
-	   2 Input     12 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 11    
-	   3 Input      2 Bit        Muxes := 1     
-	   6 Input      2 Bit        Muxes := 1     
-	   4 Input      2 Bit        Muxes := 3     
-	   7 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 27    
+	   2 Input     12 Bit        Muxes := 11    
+	   4 Input      2 Bit        Muxes := 7     
+	   2 Input      2 Bit        Muxes := 9     
+	   2 Input      1 Bit        Muxes := 20    
 	   4 Input      1 Bit        Muxes := 2     
 Module CONTROLLER 
 Detailed RTL Component Info : 
@@ -337,8 +361,11 @@ Detailed RTL Component Info :
 	                1 Bit    Registers := 6     
 +---Muxes : 
 	   9 Input     16 Bit        Muxes := 1     
-	   6 Input     16 Bit        Muxes := 1     
+	   4 Input     16 Bit        Muxes := 1     
 	   2 Input     16 Bit        Muxes := 1     
+	   6 Input     16 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 2     
+	   6 Input     12 Bit        Muxes := 2     
 	   4 Input      2 Bit        Muxes := 1     
 	   4 Input      1 Bit        Muxes := 8     
 	   2 Input      1 Bit        Muxes := 6     
@@ -360,6 +387,7 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5544] ROM "DUT/SPI/spi_ready" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "DUT/MOTOR_1/UT/temporal" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "DUT/MOTOR_1/dir_state" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "DUT/MOTOR_2/UT/temporal" won't be mapped to RAM because it is too sparse
@@ -369,6 +397,18 @@ WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[15]
 WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[14]
 WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[13]
 WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[12]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[11]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[10]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[9]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[8]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[7]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[6]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[5]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[4]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[3]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[2]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[1]
+WARNING: [Synth 8-3331] design Controller_TEST has unconnected port led[0]
 INFO: [Synth 8-3886] merging instance 'DUT/SPI/URECI/shiftss_reg[0]' (FD) to 'DUT/SPI/UTRNS/shiftss_reg[0]'
 INFO: [Synth 8-3886] merging instance 'DUT/SPI/URECI/shiftsck_reg[0]' (FD) to 'DUT/SPI/UTRNS/shiftsck_reg[0]'
 INFO: [Synth 8-3886] merging instance 'DUT/SPI/UTRNS/shiftss_reg[1]' (FD) to 'DUT/SPI/URECI/shiftss_reg[1]'
@@ -376,7 +416,7 @@ INFO: [Synth 8-3886] merging instance 'DUT/SPI/UTRNS/shiftss_reg[2]' (FD) to 'DU
 INFO: [Synth 8-3886] merging instance 'DUT/SPI/UTRNS/shiftsck_reg[1]' (FD) to 'DUT/SPI/URECI/shiftsck_reg[1]'
 INFO: [Synth 8-3886] merging instance 'DUT/SPI/URECI/shiftsck_reg[2]' (FD) to 'DUT/SPI/UTRNS/shiftsck_reg[2]'
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6689 ; free virtual = 11259
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 7970 ; free virtual = 13281
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -388,13 +428,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6563 ; free virtual = 11134
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8481 ; free virtual = 13723
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6558 ; free virtual = 11129
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8478 ; free virtual = 13720
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -406,7 +446,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6557 ; free virtual = 11127
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8475 ; free virtual = 13717
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -430,7 +470,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6526 ; free virtual = 11097
+Finished IO Insertion : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8466 ; free virtual = 13715
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -443,7 +483,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6525 ; free virtual = 11096
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8466 ; free virtual = 13715
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -455,25 +495,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6529 ; free virtual = 11100
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8462 ; free virtual = 13712
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6529 ; free virtual = 11100
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8462 ; free virtual = 13711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6529 ; free virtual = 11100
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8461 ; free virtual = 13711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6529 ; free virtual = 11100
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8461 ; free virtual = 13711
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -492,53 +532,53 @@ Report Cell Usage:
 |1     |BUFG   |     1|
 |2     |CARRY4 |     6|
 |3     |LUT1   |     3|
-|4     |LUT2   |    38|
-|5     |LUT3   |    17|
-|6     |LUT4   |    27|
-|7     |LUT5   |    57|
-|8     |LUT6   |    58|
+|4     |LUT2   |    43|
+|5     |LUT3   |    35|
+|6     |LUT4   |    17|
+|7     |LUT5   |    65|
+|8     |LUT6   |    60|
 |9     |MUXF7  |     2|
-|10    |FDRE   |   235|
-|11    |FDSE   |    10|
+|10    |FDRE   |   239|
+|11    |FDSE   |     4|
 |12    |IBUF   |     8|
-|13    |OBUF   |    13|
-|14    |OBUFT  |     4|
+|13    |OBUF   |     1|
+|14    |OBUFT  |    16|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+--------------+---------------+------+
 |      |Instance      |Module         |Cells |
 +------+--------------+---------------+------+
-|1     |top           |               |   479|
-|2     |  DUT         |CONTROLLER     |   453|
-|3     |    ENCODER_1 |ENCODER        |    91|
-|4     |    ENCODER_2 |ENCODER_0      |    95|
+|1     |top           |               |   500|
+|2     |  DUT         |CONTROLLER     |   474|
+|3     |    ENCODER_1 |ENCODER        |   103|
+|4     |    ENCODER_2 |ENCODER_0      |   107|
 |5     |    SPI       |SPI_topmodule  |   218|
 |6     |      URECI   |SPI_slave_reci |    86|
 |7     |      UTRNS   |SPI_slave_trns |    49|
 +------+--------------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6529 ; free virtual = 11100
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8460 ; free virtual = 13710
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 4 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1764.910 ; gain = 17.215 ; free physical = 6583 ; free virtual = 11154
-Synthesis Optimization Complete : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1764.910 ; gain = 374.637 ; free physical = 6583 ; free virtual = 11154
+Synthesis finished with 0 errors, 0 critical warnings and 16 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1764.918 ; gain = 18.223 ; free physical = 8503 ; free virtual = 13753
+Synthesis Optimization Complete : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.918 ; gain = 375.652 ; free physical = 8503 ; free virtual = 13753
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.910 ; gain = 0.000 ; free physical = 6528 ; free virtual = 11099
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.918 ; gain = 0.000 ; free physical = 8473 ; free virtual = 13717
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-88 Infos, 14 Warnings, 0 Critical Warnings and 0 Errors encountered.
+96 Infos, 39 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1764.910 ; gain = 374.922 ; free physical = 6583 ; free virtual = 11154
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.910 ; gain = 0.000 ; free physical = 6583 ; free virtual = 11154
+synth_design: Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1764.918 ; gain = 375.930 ; free physical = 8529 ; free virtual = 13773
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1764.918 ; gain = 0.000 ; free physical = 8529 ; free virtual = 13773
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/daniel/Desktop/FPGAx/FPGA/assets/projects/Controller_v2/Project.runs/synth_1/Controller_TEST.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Controller_TEST_utilization_synth.rpt -pb Controller_TEST_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Mar 22 20:45:57 2019...
+INFO: [Common 17-206] Exiting Vivado at Mon Mar 25 15:59:27 2019...
