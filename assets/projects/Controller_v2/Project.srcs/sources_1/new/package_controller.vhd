@@ -6,25 +6,24 @@ use IEEE.numeric_std.ALL;
 package package_controller is
 
     constant CTRL                : std_logic_vector(3 downto 0) := "0000";
-    constant PWM_1               : std_logic_vector(3 downto 0) := "0001";
-    constant PWM_2               : std_logic_vector(3 downto 0) := "0010";
-    constant ENC_1               : std_logic_vector(3 downto 0) := "0011";
-    constant ENC_2               : std_logic_vector(3 downto 0) := "0100";
-    constant HALL_1              : std_logic_vector(3 downto 0) := "0101";
-    constant HALL_2              : std_logic_vector(3 downto 0) := "0110";
-    constant CUR_1               : std_logic_vector(3 downto 0) := "0111";
-    constant CUR_2               : std_logic_vector(3 downto 0) := "1000";
+    constant MOT_0               : std_logic_vector(3 downto 0) := "0001";
+    constant MOT_1               : std_logic_vector(3 downto 0) := "0010";
+    constant ENC_0               : std_logic_vector(3 downto 0) := "0011";
+    constant ENC_1               : std_logic_vector(3 downto 0) := "0100";
+    constant HALL_0              : std_logic_vector(3 downto 0) := "0101";
+    constant HALL_1              : std_logic_vector(3 downto 0) := "0110";
+    constant CUR_0               : std_logic_vector(3 downto 0) := "0111";
+    constant CUR_1               : std_logic_vector(3 downto 0) := "1000";
+    constant FREQ                : std_logic_vector(3 downto 0) := "1001";
+    constant RETX                : std_logic_vector(3 downto 0) := "1111";
     constant TURNOFF             : std_logic_vector(7 downto 0) := x"0B";
 
     component MOTOR is
         generic(
-
-             pwm_max_val         : integer := 128;
-             pwm_freq            : integer := 10000
-
-        );
+             pwm_max_val         : integer := 128
+            );
         port(
-
+             pwm_freq            : in std_logic_vector(6 downto 0) := "0001010";
              stop_btn            : in std_logic;
              ready               : in std_logic;
              clk                 : in std_logic;
@@ -32,7 +31,6 @@ package package_controller is
              direction           : in std_logic;
              motor_o             : out std_logic_vector(1 downto 0);
              chip_enable         : out std_logic := '0'
-
             );
     end component;
 
@@ -49,22 +47,22 @@ package package_controller is
     end component;
 
 
-    component hallSensor is 
+    component hallSensor is
         port(
-            clk : in  STD_LOGIC;
-            hall_in: in STD_LOGIC;
-            hall_out: out STD_LOGIC;
-            hall_read: in STD_LOGIC
+            clk                 : in  STD_LOGIC;
+            hall_in             : in STD_LOGIC;
+            hall_out            : out STD_LOGIC;
+            hall_read           : in STD_LOGIC
         );
     end component;
-    
-    component RotENC is 
+
+    component RotENC is
         port(
-             clk: in STD_LOGIC;
-             Ain: in STD_LOGIC;
-			 Bin: in STD_LOGIC;
-             encoder_read: in STD_LOGIC;
-             encoder_out:  out STD_LOGIC_VECTOR(11 downto 0)
+             clk                : in STD_LOGIC;
+             Ain                : in STD_LOGIC;
+			 Bin                : in STD_LOGIC;
+             encoder_read       : in STD_LOGIC;
+             encoder_out        : out STD_LOGIC_VECTOR(11 downto 0)
         );
     end component;
 

@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 library SPI;
 use SPI.package_spi.ALL;
@@ -35,18 +36,15 @@ entity CONTROLLER is
         ss                          :   in  std_logic;
         mosi                        :   in  std_logic;
         miso                        :   out std_logic                      := '0';
+        CE_motor_0                  :   out std_logic;
         CE_motor_1                  :   out std_logic;
-        CE_motor_2                  :   out std_logic;
-        motor_o_1                   :   out std_logic_vector(1 downto 0);
-        motor_o_2                   :   out std_logic_vector(1 downto 0);
+        MOT_0_out                   :   out std_logic_vector(1 downto 0);
+        MOT_1_out                   :   out std_logic_vector(1 downto 0);
+        w_enc_0                     :   in  std_logic_vector(1 downto 0);
         w_enc_1                     :   in  std_logic_vector(1 downto 0);
-        w_enc_2                     :   in  std_logic_vector(1 downto 0);
-        rotEnc_i_1                  :   in  std_logic_vector(1 downto 0);
-        rotEnc_i_2                  :   in  std_logic_vector(1 downto 0);
-        hall_i_1                    :   in  std_logic;
-        hall_i_2                    :   in  std_logic;
-        led                         :   out std_logic_vector(15 downto 0)
-
+        hall_i_0                    :   in  std_logic;
+        hall_i_1                    :   in  std_logic
+        
         );
 end CONTROLLER;
 
@@ -61,39 +59,35 @@ architecture Behavioral of CONTROLLER is
     signal w_ctrl_reply             :   std_logic                         := '0';
     signal w_spi_ready              :   std_logic                         := '0';
 
-    signal w_ready_motor1           :   std_logic                         := '0';
-    signal w_set_pwm1               :   std_logic_vector(7 downto 0)      := (others => '0');
-    signal w_stop_motor1            :   std_logic                         := '0';
+    signal w_pwm_freq_MOT_0         :   std_logic_vector(6 downto 0)      := "0001010";
+    signal w_rdy_MOT_0              :   std_logic                         := '0';
+    signal w_set_pwm0               :   std_logic_vector(7 downto 0)      := (others => '0');
+    signal w_stop_MOT_0             :   std_logic                         := '0';
 
-    signal w_ready_motor2           :   std_logic                         := '0';
-    signal w_set_pwm2               :   std_logic_vector(7 downto 0)      := (others => '0');
-    signal w_stop_motor2            :   std_logic                         := '0';
+    signal w_pwm_freq_MOT_1         :   std_logic_vector(6 downto 0)      := "0001010";
+    signal w_rdy_MOT_1              :   std_logic                         := '0';
+    signal w_set_pwm1               :   std_logic_vector(7 downto 0)      := (others => '0');
+    signal w_stop_MOT_1             :   std_logic                         := '0';
+
+    signal w_ready_enc0             :   std_logic                         := '0';
+    signal w_data_enc0              :   std_logic_vector(11 downto 0)     := (others => '0');
 
     signal w_ready_enc1             :   std_logic                         := '0';
     signal w_data_enc1              :   std_logic_vector(11 downto 0)     := (others => '0');
 
-    signal w_ready_enc2             :   std_logic                         := '0';
-    signal w_data_enc2              :   std_logic_vector(11 downto 0)     := (others => '0');
-    
-    signal w_ready_rotEnc1          :   std_logic                         := '0';
-    signal w_data_rotEnc1           :   std_logic_vector(11 downto 0)     := (others => '0');
+    signal w_ready_hall0            :   std_logic                         := '0';
+    signal w_data_hall0             :   std_logic                         := '0';
 
-    signal w_ready_rotEnc2          :   std_logic                         := '0';
-    signal w_data_rotEnc2           :   std_logic_vector(11 downto 0)     := (others => '0');
-    
     signal w_ready_hall1            :   std_logic                         := '0';
     signal w_data_hall1             :   std_logic                         := '0';
-    
-    signal w_ready_hall2            :   std_logic                         := '0';
-    signal w_data_hall2             :   std_logic                         := '0';
 
     begin
-
-    -- led <= w_data_enc1;
 
     process(clk)
 
     variable shift                  :   std_logic_vector( 15 downto 0)    := (others => '0');
+
+    variable prev_data              :   std_logic_vector( 11 downto 0)    := (others => '0');
 
     begin
 
@@ -127,55 +121,75 @@ architecture Behavioral of CONTROLLER is
 
                                 when TURNOFF =>
 
-                                    w_ready_motor1 <= '1';
-                                    w_stop_motor1 <= '1';
+                                    w_rdy_MOT_0 <= '1';
+                                    w_stop_MOT_0 <= '1';
 
-                                    w_ready_motor2 <= '1';
-                                    w_stop_motor2 <= '1';
+                                    w_rdy_MOT_1 <= '1';
+                                    w_stop_MOT_1 <= '1';
 
                                 when others =>
 
                             end case;
 
-                        when PWM_1 =>
+                        when MOT_0 =>
 
-                            w_ready_motor1 <= '1';
-                            w_set_pwm1     <= shift( 11 downto 4);
+                            w_rdy_MOT_0 <= '1';
+                            w_set_pwm0  <= shift( 11 downto 4);
 
-                        when PWM_2 =>
+                        when MOT_1 =>
 
-                            w_ready_motor2 <= '1';
-                            w_set_pwm2     <= shift( 11 downto 4);
+                            w_rdy_MOT_1 <= '1';
+                            w_set_pwm1  <= shift( 11 downto 4);
+
+                        when ENC_0 =>
+
+                            w_data_TX(15 downto 4) <= w_data_enc0;
+                            prev_data := w_data_enc0;
+                            w_ready_enc0 <= '1';
+
+                            --w_ready_rotEnc0 <= '1';
+                            --w_data_TX(15 downto 4) <= w_data_rotEnc0;
 
                         when ENC_1 =>
 
-                            w_ready_enc1   <= '1';
                             w_data_TX(15 downto 4) <= w_data_enc1;
-                            
+                            prev_data := w_data_enc1;
+                            w_ready_enc1   <= '1';
+
                             --w_ready_rotEnc1 <= '1';
                             --w_data_TX(15 downto 4) <= w_data_rotEnc1;
 
-                        when ENC_2 =>
+                        when HALL_0 =>
 
-                            w_ready_enc2   <= '1';
-                            w_data_TX(15 downto 4) <= w_data_enc2;
-                            
-                            --w_ready_rotEnc2 <= '1';
-                            --w_data_TX(15 downto 4) <= w_data_rotEnc2;
-                         
+                            w_ready_hall0   <= '1';
+                            w_data_TX(4) <= w_data_hall0;
+                            w_data_TX(15 downto 12) <= HALL_0;
+
                         when HALL_1 =>
 
                             w_ready_hall1   <= '1';
                             w_data_TX(4) <= w_data_hall1;
                             w_data_TX(15 downto 12) <= HALL_1;
 
-                        when HALL_2 =>
+                        when FREQ =>
 
-                            w_ready_hall2   <= '1';
-                            w_data_TX(4) <= w_data_hall2;
-                            w_data_TX(15 downto 12) <= HALL_2;
+                            if shift(11) = '0' then
+
+                                w_pwm_freq_MOT_0 <= shift(10 downto 4);
+
+                            else
+
+                                w_pwm_freq_MOT_1 <= shift(10 downto 4);
+
+                            end if;
+
+                        when RETX =>
+
+                            -- done
 
                         when others =>
+
+                            --
 
                     end case;
 
@@ -191,43 +205,49 @@ architecture Behavioral of CONTROLLER is
 
                                 when TURNOFF =>
 
-                                    w_ready_motor1 <= '0';
-                                    w_stop_motor1 <= '0';
+                                    w_rdy_MOT_0 <= '0';
+                                    w_stop_MOT_0 <= '0';
 
-                                    w_ready_motor2 <= '0';
-                                    w_stop_motor2 <= '0';
+                                    w_rdy_MOT_1 <= '0';
+                                    w_stop_MOT_1 <= '0';
 
                                 when others =>
 
                             end case;
 
-                        when PWM_1 =>
+                        when MOT_0 =>
 
-                            w_ready_motor1 <= '0';
+                            w_rdy_MOT_0 <= '0';
 
-                        when PWM_2 =>
+                        when MOT_1 =>
 
-                            w_ready_motor2 <= '0';
+                            w_rdy_MOT_1 <= '0';
+
+                        when ENC_0 =>
+
+                            w_ready_enc0   <= '0';
+                            --w_ready_rotEnc0 <= '0';
 
                         when ENC_1 =>
 
                             w_ready_enc1   <= '0';
                             --w_ready_rotEnc1 <= '0';
 
-                        when ENC_2 =>
+                        when HALL_0 =>
 
-                            w_ready_enc2   <= '0';
-                            --w_ready_rotEnc2 <= '0';
-                            
+                            w_ready_hall0   <= '0';
+
                         when HALL_1 =>
 
                             w_ready_hall1   <= '0';
 
-                        when HALL_2 =>
+                        when RETX =>
 
-                            w_ready_hall2   <= '0';
+                            -- done
 
                         when others =>
+
+                            -- done
 
                     end case;
 
@@ -241,28 +261,33 @@ architecture Behavioral of CONTROLLER is
 
                             w_data_TX      <= shift;
 
-                        when PWM_1 =>
+                        when MOT_0 =>
 
                             w_data_TX      <= x"B0B0";
 
-                        when PWM_2 =>
+                        when MOT_1 =>
 
                             w_data_TX      <= x"A0A0";
+
+                        when ENC_0 =>
+
+                            -- done
 
                         when ENC_1 =>
 
                             -- done
 
-                        when ENC_2 =>
+                        when HALL_0 =>
 
                             -- done
+
                         when HALL_1 =>
-                        
+
                             -- done
 
-                        when HALL_2 =>
-                        
-                            -- done
+                        when RETX =>
+
+                            w_data_TX(15 downto 4) <= prev_data;
 
                         when others =>
 
@@ -285,6 +310,7 @@ architecture Behavioral of CONTROLLER is
 --------------------------------------------------------------------------------
     SPI: SPI_TOPMODULE
     port map(
+    
              clk        => clk,
              sck        => sck,
              ss         => ss,
@@ -293,82 +319,96 @@ architecture Behavioral of CONTROLLER is
              data_controller_i => w_data_TX,
              data_controller_o => w_data_RX,
              ctrl_reply => w_ctrl_reply,
-             spi_ready  => w_spi_ready,
-             led        => led
+             spi_ready  => w_spi_ready
+             
              );
+--------------------------------------------------------------------------------
+    MOTOR_0: MOTOR
+    port map(
+    
+            pwm_freq    => w_pwm_freq_MOT_0,
+            stop_btn    => w_stop_MOT_0,
+            ready       => w_rdy_MOT_0,
+            clk         => clk,
+            pwm_set     => w_set_pwm0(6 downto 0),
+            direction   => w_set_pwm0(7),
+            motor_o     => MOT_0_out(1 downto 0),
+            chip_enable => CE_motor_0
+            
+            );
 --------------------------------------------------------------------------------
     MOTOR_1: MOTOR
     port map(
-            stop_btn    => w_stop_motor1,
-            ready       => w_ready_motor1,
+    
+            pwm_freq    => w_pwm_freq_MOT_1,
+            stop_btn    => w_stop_MOT_1,
+            ready       => w_rdy_MOT_1,
             clk         => clk,
             pwm_set     => w_set_pwm1(6 downto 0),
             direction   => w_set_pwm1(7),
-            motor_o     => motor_o_1(1 downto 0),
+            motor_o     => MOT_1_out(1 downto 0),
             chip_enable => CE_motor_1
+            
             );
 --------------------------------------------------------------------------------
-    MOTOR_2: MOTOR
+    ENCODER_0: ENCODER
     port map(
-            stop_btn    => w_stop_motor2,
-            ready       => w_ready_motor2,
+    
             clk         => clk,
-            pwm_set     => w_set_pwm2(6 downto 0),
-            direction   => w_set_pwm2(7),
-            motor_o     => motor_o_2(1 downto 0),
-            chip_enable => CE_motor_2
+            enc_a       => w_enc_0(0),
+            enc_b       => w_enc_0(1),
+            reset       => w_ready_enc0,
+            data        => w_data_enc0
+            
             );
 --------------------------------------------------------------------------------
     ENCODER_1: ENCODER
     port map(
+    
             clk         => clk,
             enc_a       => w_enc_1(0),
             enc_b       => w_enc_1(1),
             reset       => w_ready_enc1,
             data        => w_data_enc1
-            );
---------------------------------------------------------------------------------
-    ENCODER_2: ENCODER
-    port map(
-            clk         => clk,
-            enc_a       => w_enc_2(0),
-            enc_b       => w_enc_2(1),
-            reset       => w_ready_enc2,
-            data        => w_data_enc2
+            
             );
  --------------------------------------------------------------------------------
-    RotENC_1: RotENC
-    port map(
-             clk            => clk,
-             Ain            => w_enc_1(0),
-			 Bin            => w_enc_1(1),
-             encoder_read   => w_ready_rotEnc1,
-             encoder_out    => w_data_rotEnc1
-            );
+--    RotENC_0: RotENC
+--    port map(
+--             clk            => clk,
+--             Ain            => w_enc_0(0),
+--			 Bin            => w_enc_0(1),
+--             encoder_read   => w_ready_enc0,
+--             encoder_out    => w_data_enc0
+--            );
 --------------------------------------------------------------------------------
-    RotENC_2: RotENC
+--    RotENC_1: RotENC
+--    port map(
+--             clk            => clk,
+--             Ain            => w_enc_1(0),
+--			 Bin            => w_enc_1(1),
+--             encoder_read   => w_ready_enc1,
+--             encoder_out    => w_data_enc1
+--            );
+--------------------------------------------------------------------------------
+    hallSensor_0: hallSensor
     port map(
-             clk            => clk,
-             Ain            => w_enc_2(0),
-			 Bin            => w_enc_2(1),
-             encoder_read   => w_ready_rotEnc2,
-             encoder_out    => w_data_rotEnc2
+    
+            clk         => clk,
+            hall_in     => hall_i_0,
+            hall_read   => w_ready_hall0,
+            hall_out    => w_data_hall0
+            
             );
 --------------------------------------------------------------------------------
     hallSensor_1: hallSensor
     port map(
+    
             clk         => clk,
             hall_in     => hall_i_1,
             hall_read   => w_ready_hall1,
             hall_out    => w_data_hall1
-            );
---------------------------------------------------------------------------------
-    hallSensor_2: hallSensor
-    port map(
-            clk         => clk,
-            hall_in     => hall_i_2,
-            hall_read   => w_ready_hall2,
-            hall_out    => w_data_hall2
+            
             );
 
 end Behavioral;

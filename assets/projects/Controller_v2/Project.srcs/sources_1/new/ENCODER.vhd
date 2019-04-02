@@ -44,6 +44,7 @@ architecture Behavioral of ENCODER is
 
     type DIRECTION          is (RIGHT, LEFT, STILL);
     signal direc            : DIRECTION := STILL;
+    signal w_spins          : signed (11 downto 0) := (others => '0');
 
     begin
 
@@ -52,8 +53,6 @@ architecture Behavioral of ENCODER is
     variable shift_a    : std_logic_vector(5 downto 0) := (others => '0');
 
     variable shift_b    : std_logic_vector(5 downto 0) := (others => '0');
-
-    variable spins      : std_logic_vector(11 downto 0) := x"800";
 
     begin
 
@@ -64,17 +63,21 @@ architecture Behavioral of ENCODER is
             shift_b := shift_b(4 downto 0) & enc_b;
 
             if(reset = '1') then
-                    spins := x"800";
+
+                    w_spins <= x"000";
+                    
             end if;
 
             if state /= prevstate then
 
                 case( direc ) is
                     when RIGHT =>
-                    spins := std_logic_vector(unsigned(spins) + 1);
+                    w_spins <= w_spins + 1;
+                    --spins := std_logic_vector(unsigned(spins) + 1);
 
                     when LEFT =>
-                    spins := std_logic_vector(unsigned(spins) - 1);
+                    w_spins <= w_spins - 1;
+                    --spins := std_logic_vector(unsigned(spins) - 1);
 
                     when others =>
                 end case;
@@ -83,11 +86,7 @@ architecture Behavioral of ENCODER is
 
             end if;
 
-            if (data >= x"800") then
-                    data <= '0' & spins(10 downto 0);
-                else
-                    data <= '1' & spins(10 downto 0);
-            end if;
+            data <= std_logic_vector(w_spins);
 
             prevstate <= state;
 

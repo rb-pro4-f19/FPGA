@@ -16,8 +16,7 @@ package package_spi is
         ctrl_reply                  :   in  std_logic;
         spi_ready                   :   out std_logic                        := '0';
         data_controller_i           :   in  std_logic_vector(15 downto 0);
-        data_controller_o           :   out std_logic_vector(15 downto 0)    := (others => '0');
-        led                         :   out std_logic_vector(15 downto 0)    := (others => '0')
+        data_controller_o           :   out std_logic_vector(15 downto 0)    := (others => '0')
 
         );
   end component;
