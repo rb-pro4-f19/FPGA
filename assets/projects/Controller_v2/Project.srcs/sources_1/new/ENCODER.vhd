@@ -65,21 +65,23 @@ architecture Behavioral of ENCODER is
             if(reset = '1') then
 
                     w_spins <= x"000";
-                    
+
             end if;
 
             if state /= prevstate then
 
                 case( direc ) is
+
                     when RIGHT =>
-                    w_spins <= w_spins + 1;
-                    --spins := std_logic_vector(unsigned(spins) + 1);
+
+                        w_spins <= w_spins + 1;
 
                     when LEFT =>
-                    w_spins <= w_spins - 1;
-                    --spins := std_logic_vector(unsigned(spins) - 1);
+
+                        w_spins <= w_spins - 1;
 
                     when others =>
+
                 end case;
 
                 direc <= STILL;
@@ -95,55 +97,83 @@ architecture Behavioral of ENCODER is
                 when S1 =>
                     -- a = 0 b = 0
                     if shift_a = "000000" and shift_b = "000000" then
+
                         direc <= STILL;
                         state <= S1;
+
                     elsif shift_a = "111111" and shift_b = "000000" then
+
                         direc <= RIGHT;
                         state <= S2;
+
                     elsif shift_a = "000000" and shift_b = "111111" then
+
                         direc <= LEFT;
                         state <= S4;
+
                     end if;
 
                 when S2 =>
                     -- a = 1 b = 0
                     if shift_a = "111111" and shift_b = "000000" then
+
                         direc <= STILL;
                         state <= S2;
+
                     elsif shift_a = "111111" and shift_b = "111111" then
+
                         direc <= RIGHT;
                         state <= S3;
+
                     elsif shift_a = "000000" and shift_b = "000000" then
+
                         direc <= LEFT;
                         state <= S1;
+
                     end if;
 
                 when S3 =>
                     -- a = 0 b = 1
                     if shift_a = "111111" and shift_b = "111111" then
+
                         direc <= STILL;
                         state <= S3;
+
                     elsif shift_a = "000000" and shift_b = "111111" then
+
                         direc <= RIGHT;
                         state <= S4;
+
                     elsif shift_a = "111111" and shift_b = "000000" then
+
                         direc <= LEFT;
                         state <= S2;
+
                     end if;
 
                 when S4 =>
                     -- a = 1 b = 1
                     if shift_a = "000000" and shift_b = "111111" then
+
                         direc <= STILL;
                         state <= S4;
+
                     elsif shift_a = "000000" and shift_b = "000000" then
+
                         direc <= RIGHT;
                         state <= S1;
+
                     elsif shift_a = "111111" and shift_b = "111111" then
+
                         direc <= LEFT;
                         state <= S3;
+
                     end if;
+
             end case;
+
         end if;
+
     end process;
+    
 end Behavioral;

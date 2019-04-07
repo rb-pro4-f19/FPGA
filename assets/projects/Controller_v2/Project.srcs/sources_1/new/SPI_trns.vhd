@@ -23,7 +23,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 
-entity SPI_slave_trns is
+entity SPI_slave_TX is
     port(
 
         clk                  :   in  std_logic;
@@ -33,10 +33,10 @@ entity SPI_slave_trns is
         miso                 :   out std_logic                      := '0';
         busy                 :   out std_logic                      := '0'
 
-    );
-end SPI_slave_trns;
+        );
+end SPI_slave_TX;
 
-architecture Behavioral of SPI_slave_trns is
+architecture Behavioral of SPI_slave_TX is
 
     type   enable_spi       is (ENB, DIS);
     type   transmit_spi     is (START, CHANGESIGNAL, WAITING, DONE);
@@ -55,15 +55,21 @@ architecture Behavioral of SPI_slave_trns is
         variable index      :   natural range 0 to 14               := 14;
 
     begin
+
         if rising_edge(clk) then
 
             shiftss := shiftss(2 downto 0) & ss;
+
             shiftsck := shiftsck(2 downto 0) & sck;
 
             if shiftss = "0000" then
+
                 state_spi <= ENB;
+
             elsif shiftss = "1111" then
+
                 state_spi <= DIS;
+
             end if;
 
             if state_spi = ENB then
@@ -71,36 +77,54 @@ architecture Behavioral of SPI_slave_trns is
                 case( state_trns ) is
 
                     when START =>
+
                         shift := data;
                         miso <= shift(15);
                         index := 14;
                         state_trns <= WAITING;
 
                     when CHANGESIGNAL =>
+
                         if shiftsck = "0000" then -- falling edge
+
                             if ( index >= 1 ) then
+
                                 miso <= shift(index);
                                 index := index - 1;
                                 state_trns <= WAITING;
+
                             elsif ( index = 0 ) then
+
                                 miso <= shift(index);
                                 state_trns <= DONE;
+
                             end if;
+
                         else
+
                             state_trns <= CHANGESIGNAL;
+
                         end if;
 
                     when WAITING =>
+
                         if shiftsck = "1111" then -- rising edge
+
                             state_trns <= CHANGESIGNAL;
+
                         else
+
                             state_trns <= WAITING;
+
                         end if;
 
                     when DONE =>
+
                         state_trns <= DONE;
 
-                    when others => state_trns <= START;
+                    when others =>
+
+                        state_trns <= START;
 
                 end case;
 
@@ -110,7 +134,9 @@ architecture Behavioral of SPI_slave_trns is
                     state_trns <= START; -- basically waits for next go
 
             end if;
+
         end if;
+
     end process;
 
     end Behavioral;

@@ -19,18 +19,17 @@ package package_controller is
     constant TURNOFF             : std_logic_vector(7 downto 0) := x"0B";
 
     component MOTOR is
-        generic(
-             pwm_max_val         : integer := 128
-            );
         port(
-             pwm_freq            : in std_logic_vector(6 downto 0) := "0001010";
-             stop_btn            : in std_logic;
+
+             freq                : in std_logic_vector(6 downto 0) := "0001010";
+             stop                : in std_logic;
              ready               : in std_logic;
              clk                 : in std_logic;
-             pwm_set             : in std_logic_vector(6 downto 0);
-             direction           : in std_logic;
-             motor_o             : out std_logic_vector(1 downto 0);
-             chip_enable         : out std_logic := '0'
+             pwm                 : in std_logic_vector(6 downto 0);
+             dir                 : in std_logic;
+             mot_out             : out std_logic_vector(1 downto 0);
+             CE                  : out std_logic := '0'
+
             );
     end component;
 
@@ -43,27 +42,31 @@ package package_controller is
             reset                : in std_logic;
             data                 : out std_logic_vector(11 downto 0)
 
-        );
+            );
     end component;
 
 
-    component hallSensor is
+    component HALLSENSOR is
         port(
+
             clk                 : in  STD_LOGIC;
             hall_in             : in STD_LOGIC;
             hall_out            : out STD_LOGIC;
             hall_read           : in STD_LOGIC
-        );
+
+            );
     end component;
 
     component RotENC is
         port(
-             clk                : in STD_LOGIC;
-             Ain                : in STD_LOGIC;
-			 Bin                : in STD_LOGIC;
-             encoder_read       : in STD_LOGIC;
-             encoder_out        : out STD_LOGIC_VECTOR(11 downto 0)
-        );
+
+            clk                : in STD_LOGIC;
+            Ain                : in STD_LOGIC;
+			Bin                : in STD_LOGIC;
+            encoder_read       : in STD_LOGIC;
+            encoder_out        : out STD_LOGIC_VECTOR(11 downto 0)
+
+            );
     end component;
 
 end package package_controller;

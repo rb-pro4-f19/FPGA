@@ -15,13 +15,13 @@ package package_spi is
         miso                        :   out std_logic                        := '0';
         ctrl_reply                  :   in  std_logic;
         spi_ready                   :   out std_logic                        := '0';
-        data_controller_i           :   in  std_logic_vector(15 downto 0);
-        data_controller_o           :   out std_logic_vector(15 downto 0)    := (others => '0')
+        data_ctrl_i                 :   in  std_logic_vector(15 downto 0);
+        data_ctrl_o                 :   out std_logic_vector(15 downto 0)    := (others => '0')
 
         );
   end component;
 
-  component SPI_slave_reci is
+  component SPI_slave_RX is
     port(
 
         clk                         :   in  std_logic;
@@ -34,7 +34,7 @@ package package_spi is
         );
   end component;
 
-  component SPI_slave_trns is
+  component SPI_slave_TX is
      port(
 
         clk                         :   in  std_logic;
@@ -47,26 +47,12 @@ package package_spi is
         );
   end component;
 
-  component clkdivision is
-    generic (
-
-        clk_freq                    : integer                               := 10000
-
-    );
-    port (
-
-        clk_in                      : in  std_logic;
-        clk_out                     : out std_logic
-
-        );
-    end component;
-
   function f_CS (
-                       data_cs    :   std_logic_vector(3 downto 0);
-                       current_cs :   std_logic_vector(3 downto 0)
+
+                   data_cs    :   std_logic_vector(3 downto 0);
+                   current_cs :   std_logic_vector(3 downto 0)
 
                 )
-
   return std_logic_vector;
 
 end package package_spi;
@@ -74,17 +60,15 @@ end package package_spi;
 -- Package Body Section
 package body package_spi is
 
-    function f_CS(
+    function f_CS (
                        data_cs    :   std_logic_vector(3 downto 0);
                        current_cs :   std_logic_vector(3 downto 0)
-                       )
-
+                  )
     return std_logic_vector       is variable checksum_var : std_logic_vector(3 downto 0);
 
     begin
 
         checksum_var := (current_cs(0) & current_cs(3 downto 1));
-
         return std_logic_vector(unsigned(checksum_var) + unsigned(data_cs));
 
     end function;

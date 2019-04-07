@@ -34,39 +34,36 @@ entity SPI_topmodule is
         miso                        :   out std_logic                        := '0';
         ctrl_reply                  :   in  std_logic;
         spi_ready                   :   out std_logic                        := '0';
-        data_controller_i           :   in  std_logic_vector(15 downto 0);
-        data_controller_o           :   out std_logic_vector(15 downto 0)    := (others => '0')
+        data_ctrl_i                 :   in  std_logic_vector(15 downto 0);
+        data_ctrl_o                 :   out std_logic_vector(15 downto 0)    := (others => '0')
 
         );
 end SPI_topmodule;
-    -- / / --
-architecture Behavioral of SPI_topmodule is
-    -- / / --
 
-    type states                     is (IDLE, RECI, WAIT_CTRL, TRNS, WAITING);
+architecture Behavioral of SPI_topmodule is
+
+    type states                     is (IDLE, RX, WAIT_CTRL, TX, DONE);
     signal state                    : states := IDLE;
 
-    -- busy from reci and trns
-
     signal w_busy,
-           w_busy_trns,
-           w_busy_reci              : std_logic                             := '0';
+           w_busy_tx,
+           w_busy_rx              : std_logic                               := '0';
 
 
-    signal w_trns_data,
-           w_reci_data              : std_logic_vector(15 downto 0)         := (others => '0');
+    signal w_tx_data,
+           w_rx_data              : std_logic_vector(15 downto 0)           := (others => '0');
 
 
     begin
 
-    w_busy <= w_busy_reci or w_busy_trns;
+    w_busy <= w_busy_rx or w_busy_tx;
 
     process(clk)
 
         variable cs_index          : natural range 0 to 3                  := 0;
         variable cs_data           : std_logic_vector(3 downto 0)          := (others => '0');
         variable shift             : std_logic_vector(15 downto 0)         := (others => '0');
-        variable transmission_fail : std_logic                             := '0';
+        variable rx_fail           : std_logic                             := '0';
 
     begin
 
@@ -78,37 +75,47 @@ architecture Behavioral of SPI_topmodule is
 
                     spi_ready <= '0';
                     cs_index := 0;
-                    shift := w_reci_data;
+                    shift := w_rx_data;
 
-                    if w_busy = '0' then
-                        state <= RECI;
+                    if ( w_busy = '0' ) then    -- if modules are busy then do nothing
+
+                        state <= RX;
+
                     else
+
                         state <= IDLE;
+
                     end if;
 
-                when RECI =>
+                when RX =>      -- calculate checksum from recieve
 
                     case( cs_index ) is
 
                         when 0 =>
+
                             cs_data := f_CS( data_cs => shift(15 downto 12), current_cs => (others => '0') );
 
                         when 1 =>
+
                             cs_data := f_CS( data_cs => shift(11 downto 8), current_cs => cs_data );
 
                         when 2 =>
+
                             cs_data := f_CS( data_cs => shift(7 downto 4), current_cs => cs_data );
 
                         when 3 =>
 
-                            if cs_data = shift(3 downto 0) then
-                                transmission_fail := '0';
+                            if ( cs_data = shift(3 downto 0) ) then
+
                                 spi_ready <= '1';
-                                data_controller_o <= shift;
+                                data_ctrl_o <= shift;
                                 state <= WAIT_CTRL;
+
                             else
-                                transmission_fail := '1';
-                                state <= TRNS;
+
+                                rx_fail := '1';
+                                state <= TX;
+
                             end if;
 
                     end case;
@@ -120,67 +127,88 @@ architecture Behavioral of SPI_topmodule is
                     cs_index := 0;
                     spi_ready <= '0';
 
-                    if ctrl_reply = '1' then
-                        shift := data_controller_i;
-                        state <= TRNS;
+                    if ( ctrl_reply = '1' ) then
+
+                        shift := data_ctrl_i;
+                        state <= TX;
+
                     else
+
                         state <= WAIT_CTRL;
+
                     end if;
 
-                when TRNS =>
+                when TX =>
 
-                    if transmission_fail = '1' then
+                    if ( rx_fail = '1' ) then
 
-                        w_trns_data(15 downto 0) <= x"000F";
-                        transmission_fail := '0';
-                        state <= WAITING;
+
+                        rx_fail := '0';
+                        w_tx_data(15 downto 0) <= x"000F";
+                        state <= DONE;
 
                     else
 
                         case( cs_index ) is
 
                             when 0 =>
+
                                 cs_data := f_CS( data_cs => shift(15 downto 12), current_cs => (others => '0') );
 
                             when 1 =>
+
                                 cs_data := f_CS( data_cs => shift(11 downto 8), current_cs => cs_data );
 
                             when 2 =>
+
                                 cs_data := f_CS( data_cs => shift(7 downto 4), current_cs => cs_data );
 
                             when 3 =>
-                                w_trns_data(15 downto 0) <= shift(15 downto 4) & cs_data;
+
+                                w_tx_data(15 downto 0) <= shift(15 downto 4) & cs_data;
 
                         end case;
 
                         if cs_index = 3 then
-                            state <= WAITING;
+
+                            state <= DONE;
+
                         else
-                            state <= TRNS;
+
+                            state <= TX;
+
                         end if;
 
                         cs_index := cs_index + 1;
 
                     end if;
 
-                when WAITING =>
+                when DONE =>
 
                     if(w_busy = '1') then
+
                         state <= IDLE;
+
                     else
-                        state <= WAITING;
+
+                        state <= DONE;
+
                     end if;
 
-                when others => state <= IDLE;
+                when others =>
+
+                    state <= IDLE;
 
             end case;
+
         end if;
+
     end process;
 
-    URECI: SPI_slave_reci
-        port map(clk => clk, sck => sck, ss => ss, mosi => mosi, data => w_reci_data, busy => w_busy_reci);
+    URECI: SPI_slave_RX
+        port map(clk => clk, sck => sck, ss => ss, mosi => mosi, data => w_rx_data, busy => w_busy_rx);
 
-    UTRNS: SPI_slave_trns
-        port map(clk => clk, sck => sck, ss => ss, miso => miso, data => w_trns_data, busy => w_busy_trns);
+    UTRNS: SPI_slave_TX
+        port map(clk => clk, sck => sck, ss => ss, miso => miso, data => w_tx_data, busy => w_busy_tx);
 
 end Behavioral;

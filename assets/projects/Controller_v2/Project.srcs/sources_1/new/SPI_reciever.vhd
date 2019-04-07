@@ -21,7 +21,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity SPI_slave_reci is
+entity SPI_slave_RX is
     port(
 
         clk                 :   in  std_logic;
@@ -31,10 +31,10 @@ entity SPI_slave_reci is
         data                :   out std_logic_vector(15 downto 0)   := (others => '0');
         busy                :   out std_logic                       := '0'
 
-    );
-end SPI_slave_reci;
+        );
+end SPI_slave_RX;
 
-architecture Behavioral of SPI_slave_reci is
+architecture Behavioral of SPI_slave_RX is
 
     type   enable_spi       is (ENB, DIS);
     type   recieve_spi      is (START, CHANGESIGNAL, WAITING, DONE);
@@ -48,10 +48,10 @@ architecture Behavioral of SPI_slave_reci is
     -- lower FSM --
     process( clk )
 
-        variable shift      :   std_logic_vector(15 downto 0)       := (others => '0');
-        variable shiftsck   :   std_logic_vector(3 downto 0)        := "0000";
-        variable shiftss    :   std_logic_vector(3 downto 0)        := "1111";
-        variable index      :   natural range 0 to 15               := 15;
+    variable shift      :   std_logic_vector(15 downto 0)       := (others => '0');
+    variable shiftsck   :   std_logic_vector(3 downto 0)        := "0000";
+    variable shiftss    :   std_logic_vector(3 downto 0)        := "1111";
+    variable index      :   natural range 0 to 15               := 15;
 
     begin
 
@@ -60,53 +60,78 @@ architecture Behavioral of SPI_slave_reci is
             shiftss := shiftss(2 downto 0) & ss;
             shiftsck := shiftsck(2 downto 0) & sck;
 
-            if shiftss = "0000" then
+            if shiftss = "0000" then -- slave select is low
+
                 state_spi <= ENB;
-            elsif shiftss = "1111" then
+
+            elsif shiftss = "1111" then -- slave select is high
+
                 state_spi <= DIS;
+
             end if;
 
             if state_spi = ENB then
+
                 case( state_reci ) is
+
                     when START =>
 
                     index := 15;
                     state_reci <= WAITING;
 
                     when CHANGESIGNAL =>
-                        if shiftsck = "1111" then -- rising_edge
+
+                        if shiftsck = "1111" then -- wait for signal to go high
+
                             if ( index >= 1 ) then
+
                                 shift(index) := mosi;
                                 index := index - 1;
                                 state_reci <= WAITING;
+
                             elsif ( index = 0 ) then
+
                                 data <= shift(15 downto 1) & mosi;
                                 state_reci <= DONE;
+
                             end if;
+
                         else
+
                             state_reci <= CHANGESIGNAL;
+
                         end if;
 
                     when WAITING =>
-                        if shiftsck = "0000" then
+
+                        if shiftsck = "0000" then -- wait for signal to go low
+
                             state_reci <= CHANGESIGNAL;
+
                         else
+
                             state_reci <= WAITING;
+
                         end if;
 
                     when DONE =>
+
                         state_reci <= DONE;
 
-                    when others => state_reci <= START;
+                    when others =>
+
+                        state_reci <= START;
 
                 end case;
 
             elsif state_spi = DIS then
 
-                    state_reci <= START; -- basically waits;
+                    state_reci <= START; -- ready for next run
 
             end if;
+
         end if;
+
     end process;
 
 end Behavioral;
