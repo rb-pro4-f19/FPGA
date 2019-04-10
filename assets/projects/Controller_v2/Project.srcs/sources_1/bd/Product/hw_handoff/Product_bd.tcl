@@ -166,14 +166,17 @@ proc create_root_design { parentCell } {
   # Create ports
   set CE_MOT0 [ create_bd_port -dir O CE_MOT0 ]
   set CE_MOT1 [ create_bd_port -dir O CE_MOT1 ]
+  set CLK_100MHZ [ create_bd_port -dir I -type clk CLK_100MHZ ]
   set ENC0 [ create_bd_port -dir I -from 1 -to 0 ENC0 ]
+  set ENC1 [ create_bd_port -dir I -from 1 -to 0 ENC1 ]
+  set HALL0 [ create_bd_port -dir I HALL0 ]
+  set HALL1 [ create_bd_port -dir I HALL1 ]
+  set MISO [ create_bd_port -dir O MISO ]
+  set MOSI [ create_bd_port -dir I MOSI ]
   set MOT0 [ create_bd_port -dir O -from 1 -to 0 MOT0 ]
   set MOT1 [ create_bd_port -dir O -from 1 -to 0 MOT1 ]
-  set clk [ create_bd_port -dir I -type clk clk ]
-  set miso [ create_bd_port -dir O miso ]
-  set mosi [ create_bd_port -dir I mosi ]
-  set sck [ create_bd_port -dir I sck ]
-  set ss [ create_bd_port -dir I ss ]
+  set SCK [ create_bd_port -dir I SCK ]
+  set SS [ create_bd_port -dir I SS ]
 
   # Create instance: CONTROLLER_0, and set properties
   set block_name CONTROLLER
@@ -186,28 +189,20 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  # Create instance: xlconstant_0, and set properties
-  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
-
-  # Create instance: xlconstant_1, and set properties
-  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
-  set_property -dict [ list \
-   CONFIG.CONST_WIDTH {2} \
- ] $xlconstant_1
-
   # Create port connections
   connect_bd_net -net CONTROLLER_0_CE_M0T0 [get_bd_ports CE_MOT0] [get_bd_pins CONTROLLER_0/CE_MOT0]
   connect_bd_net -net CONTROLLER_0_CE_M0T1 [get_bd_ports CE_MOT1] [get_bd_pins CONTROLLER_0/CE_MOT1]
   connect_bd_net -net CONTROLLER_0_MOT0_out [get_bd_ports MOT0] [get_bd_pins CONTROLLER_0/MOT0_out]
   connect_bd_net -net CONTROLLER_0_MOT1_out [get_bd_ports MOT1] [get_bd_pins CONTROLLER_0/MOT1_out]
-  connect_bd_net -net CONTROLLER_0_miso [get_bd_ports miso] [get_bd_pins CONTROLLER_0/miso]
+  connect_bd_net -net CONTROLLER_0_miso [get_bd_ports MISO] [get_bd_pins CONTROLLER_0/miso]
   connect_bd_net -net ENC0_0_1 [get_bd_ports ENC0] [get_bd_pins CONTROLLER_0/ENC0]
-  connect_bd_net -net clk_0_1 [get_bd_ports clk] [get_bd_pins CONTROLLER_0/clk]
-  connect_bd_net -net mosi_0_1 [get_bd_ports mosi] [get_bd_pins CONTROLLER_0/mosi]
-  connect_bd_net -net sck_0_1 [get_bd_ports sck] [get_bd_pins CONTROLLER_0/sck]
-  connect_bd_net -net ss_0_1 [get_bd_ports ss] [get_bd_pins CONTROLLER_0/ss]
-  connect_bd_net -net xlconstant_0_dout [get_bd_pins CONTROLLER_0/hall_i_0] [get_bd_pins CONTROLLER_0/hall_i_1] [get_bd_pins xlconstant_0/dout]
-  connect_bd_net -net xlconstant_1_dout [get_bd_pins CONTROLLER_0/ENC1] [get_bd_pins xlconstant_1/dout]
+  connect_bd_net -net ENC1_0_1 [get_bd_ports ENC1] [get_bd_pins CONTROLLER_0/ENC1]
+  connect_bd_net -net clk_0_1 [get_bd_ports CLK_100MHZ] [get_bd_pins CONTROLLER_0/clk]
+  connect_bd_net -net hall_i_0_0_1 [get_bd_ports HALL0] [get_bd_pins CONTROLLER_0/hall_i_0]
+  connect_bd_net -net hall_i_1_0_1 [get_bd_ports HALL1] [get_bd_pins CONTROLLER_0/hall_i_1]
+  connect_bd_net -net mosi_0_1 [get_bd_ports MOSI] [get_bd_pins CONTROLLER_0/mosi]
+  connect_bd_net -net sck_0_1 [get_bd_ports SCK] [get_bd_pins CONTROLLER_0/sck]
+  connect_bd_net -net ss_0_1 [get_bd_ports SS] [get_bd_pins CONTROLLER_0/ss]
 
   # Create address segments
 
