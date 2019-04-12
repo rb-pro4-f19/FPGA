@@ -43,7 +43,8 @@ entity CONTROLLER is
         ENC0                        :   in  std_logic_vector(1 downto 0);
         ENC1                        :   in  std_logic_vector(1 downto 0);
         hall_i_0                    :   in  std_logic;
-        hall_i_1                    :   in  std_logic
+        hall_i_1                    :   in  std_logic;
+        led                         :   out std_logic_vector(7 downto 0)
 
         );
 end CONTROLLER;
@@ -102,6 +103,7 @@ architecture Behavioral of CONTROLLER is
                     if ( w_spi_ready = '1' ) then
 
                         shift := w_data_RX;
+                        led <= shift(11 downto 4);
                         state <= PARSE;
 
                     else
@@ -155,15 +157,11 @@ architecture Behavioral of CONTROLLER is
 
                         when HALL_0 =>
 
-                            w_ready_hall0   <= '1';
-                            w_data_TX(4) <= w_data_hall0;
-                            w_data_TX(15 downto 12) <= HALL_0;
+                            w_ready_hall0 <= '1';
 
                         when HALL_1 =>
 
-                            w_ready_hall1   <= '1';
-                            w_data_TX(4) <= w_data_hall1;
-                            w_data_TX(15 downto 12) <= HALL_1;
+                            w_ready_hall1 <= '1';
 
                         when FREQ =>
 
@@ -221,20 +219,22 @@ architecture Behavioral of CONTROLLER is
                         when ENC_0 =>
 
                             w_reset_enc0   <= '0';
-                            --w_ready_rotEnc0 <= '0';
 
                         when ENC_1 =>
 
                             w_reset_enc1   <= '0';
-                            --w_ready_rotEnc1 <= '0';
 
                         when HALL_0 =>
 
                             w_ready_hall0   <= '0';
+                            w_data_TX(4)  <= w_data_hall0;
+                            w_data_TX(15 downto 12) <= HALL_0;
 
                         when HALL_1 =>
 
                             w_ready_hall1   <= '0';
+                            w_data_TX(4)  <= w_data_hall1;
+                            w_data_TX(15 downto 12) <= HALL_1;
 
                         when RETX =>
 

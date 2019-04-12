@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x5EBDEE5E4E217318",
+      "boundary_crc": "0x690AD522DE853ADC",
       "device": "xc7a35tcpg236-1",
       "name": "Product",
       "synth_flow_mode": "None",
@@ -77,6 +77,11 @@
             "value_src": "default"
           }
         }
+      },
+      "led": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
       }
     },
     "components": {
@@ -142,6 +147,11 @@
           },
           "hall_i_1": {
             "direction": "I"
+          },
+          "led": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
           }
         }
       }
@@ -223,6 +233,12 @@
         "ports": [
           "CLK_100MHZ",
           "CONTROLLER_0/clk"
+        ]
+      },
+      "CONTROLLER_0_led": {
+        "ports": [
+          "CONTROLLER_0/led",
+          "led"
         ]
       }
     }

@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
---Date        : Wed Apr 10 17:18:46 2019
+--Date        : Fri Apr 12 16:42:10 2019
 --Host        : daniel-XPS-15-9570 running 64-bit Ubuntu 18.04.2 LTS
 --Command     : generate_target Product.bd
 --Design      : Product
@@ -25,7 +25,8 @@ entity Product is
     MOT0 : out STD_LOGIC_VECTOR ( 1 downto 0 );
     MOT1 : out STD_LOGIC_VECTOR ( 1 downto 0 );
     SCK : in STD_LOGIC;
-    SS : in STD_LOGIC
+    SS : in STD_LOGIC;
+    led : out STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   attribute CORE_GENERATION_INFO : string;
   attribute CORE_GENERATION_INFO of Product : entity is "Product,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=Product,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=1,numReposBlks=1,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,synth_mode=Global}";
@@ -48,13 +49,15 @@ architecture STRUCTURE of Product is
     ENC0 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     ENC1 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     hall_i_0 : in STD_LOGIC;
-    hall_i_1 : in STD_LOGIC
+    hall_i_1 : in STD_LOGIC;
+    led : out STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   end component Product_CONTROLLER_0_0;
   signal CONTROLLER_0_CE_M0T0 : STD_LOGIC;
   signal CONTROLLER_0_CE_M0T1 : STD_LOGIC;
   signal CONTROLLER_0_MOT0_out : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal CONTROLLER_0_MOT1_out : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal CONTROLLER_0_led : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal CONTROLLER_0_miso : STD_LOGIC;
   signal ENC0_0_1 : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal ENC1_0_1 : STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -79,6 +82,7 @@ begin
   clk_0_1 <= CLK_100MHZ;
   hall_i_0_0_1 <= HALL0;
   hall_i_1_0_1 <= HALL1;
+  led(7 downto 0) <= CONTROLLER_0_led(7 downto 0);
   mosi_0_1 <= MOSI;
   sck_0_1 <= SCK;
   ss_0_1 <= SS;
@@ -93,6 +97,7 @@ CONTROLLER_0: component Product_CONTROLLER_0_0
       clk => clk_0_1,
       hall_i_0 => hall_i_0_0_1,
       hall_i_1 => hall_i_1_0_1,
+      led(7 downto 0) => CONTROLLER_0_led(7 downto 0),
       miso => CONTROLLER_0_miso,
       mosi => mosi_0_1,
       sck => sck_0_1,

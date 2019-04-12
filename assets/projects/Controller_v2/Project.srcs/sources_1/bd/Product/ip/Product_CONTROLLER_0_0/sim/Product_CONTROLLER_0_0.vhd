@@ -67,7 +67,8 @@ ENTITY Product_CONTROLLER_0_0 IS
     ENC0 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
     ENC1 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
     hall_i_0 : IN STD_LOGIC;
-    hall_i_1 : IN STD_LOGIC
+    hall_i_1 : IN STD_LOGIC;
+    led : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
   );
 END Product_CONTROLLER_0_0;
 
@@ -88,7 +89,8 @@ ARCHITECTURE Product_CONTROLLER_0_0_arch OF Product_CONTROLLER_0_0 IS
       ENC0 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
       ENC1 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
       hall_i_0 : IN STD_LOGIC;
-      hall_i_1 : IN STD_LOGIC
+      hall_i_1 : IN STD_LOGIC;
+      led : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
     );
   END COMPONENT CONTROLLER;
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
@@ -112,6 +114,7 @@ BEGIN
       ENC0 => ENC0,
       ENC1 => ENC1,
       hall_i_0 => hall_i_0,
-      hall_i_1 => hall_i_1
+      hall_i_1 => hall_i_1,
+      led => led
     );
 END Product_CONTROLLER_0_0_arch;

@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
---Date        : Wed Apr 10 17:18:46 2019
+--Date        : Fri Apr 12 16:42:10 2019
 --Host        : daniel-XPS-15-9570 running 64-bit Ubuntu 18.04.2 LTS
 --Command     : generate_target Product_wrapper.bd
 --Design      : Product_wrapper
@@ -25,7 +25,8 @@ entity Product_wrapper is
     MOT0 : out STD_LOGIC_VECTOR ( 1 downto 0 );
     MOT1 : out STD_LOGIC_VECTOR ( 1 downto 0 );
     SCK : in STD_LOGIC;
-    SS : in STD_LOGIC
+    SS : in STD_LOGIC;
+    led : out STD_LOGIC_VECTOR ( 7 downto 0 )
   );
 end Product_wrapper;
 
@@ -44,7 +45,8 @@ architecture STRUCTURE of Product_wrapper is
     MISO : out STD_LOGIC;
     SS : in STD_LOGIC;
     MOSI : in STD_LOGIC;
-    CLK_100MHZ : in STD_LOGIC
+    CLK_100MHZ : in STD_LOGIC;
+    led : out STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   end component Product;
 begin
@@ -62,6 +64,7 @@ Product_i: component Product
       MOT0(1 downto 0) => MOT0(1 downto 0),
       MOT1(1 downto 0) => MOT1(1 downto 0),
       SCK => SCK,
-      SS => SS
+      SS => SS,
+      led(7 downto 0) => led(7 downto 0)
     );
 end STRUCTURE;

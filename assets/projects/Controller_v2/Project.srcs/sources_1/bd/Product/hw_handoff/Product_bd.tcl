@@ -177,6 +177,7 @@ proc create_root_design { parentCell } {
   set MOT1 [ create_bd_port -dir O -from 1 -to 0 MOT1 ]
   set SCK [ create_bd_port -dir I SCK ]
   set SS [ create_bd_port -dir I SS ]
+  set led [ create_bd_port -dir O -from 7 -to 0 led ]
 
   # Create instance: CONTROLLER_0, and set properties
   set block_name CONTROLLER
@@ -194,6 +195,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net CONTROLLER_0_CE_M0T1 [get_bd_ports CE_MOT1] [get_bd_pins CONTROLLER_0/CE_MOT1]
   connect_bd_net -net CONTROLLER_0_MOT0_out [get_bd_ports MOT0] [get_bd_pins CONTROLLER_0/MOT0_out]
   connect_bd_net -net CONTROLLER_0_MOT1_out [get_bd_ports MOT1] [get_bd_pins CONTROLLER_0/MOT1_out]
+  connect_bd_net -net CONTROLLER_0_led [get_bd_ports led] [get_bd_pins CONTROLLER_0/led]
   connect_bd_net -net CONTROLLER_0_miso [get_bd_ports MISO] [get_bd_pins CONTROLLER_0/miso]
   connect_bd_net -net ENC0_0_1 [get_bd_ports ENC0] [get_bd_pins CONTROLLER_0/ENC0]
   connect_bd_net -net ENC1_0_1 [get_bd_ports ENC1] [get_bd_pins CONTROLLER_0/ENC1]
