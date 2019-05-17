@@ -1,0 +1,9 @@
+This project is about making a sensor interface.
+
+There is made a sensor interface for the following sensors:
+    2x Encoders
+    2x Motors
+    2x Hall Sensors
+
+This is primarily made for the pan/tilt system for the 4th semester project.
+Besides this there is SPI communication.

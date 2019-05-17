@@ -1,0 +1,246 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x690AD522DE853ADC",
+      "device": "xc7a35tcpg236-1",
+      "name": "Product",
+      "synth_flow_mode": "None",
+      "tool_version": "2018.3",
+      "validated": "true"
+    },
+    "design_tree": {
+      "CONTROLLER_0": ""
+    },
+    "ports": {
+      "CE_MOT0": {
+        "direction": "O"
+      },
+      "CE_MOT1": {
+        "direction": "O"
+      },
+      "MOT0": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
+      },
+      "MOT1": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
+      },
+      "ENC0": {
+        "direction": "I",
+        "left": "1",
+        "right": "0"
+      },
+      "HALL0": {
+        "direction": "I"
+      },
+      "ENC1": {
+        "direction": "I",
+        "left": "1",
+        "right": "0"
+      },
+      "HALL1": {
+        "direction": "I"
+      },
+      "SCK": {
+        "direction": "I"
+      },
+      "MISO": {
+        "direction": "O"
+      },
+      "SS": {
+        "direction": "I"
+      },
+      "MOSI": {
+        "direction": "I"
+      },
+      "CLK_100MHZ": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "Product_CLK_100MHZ",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "led": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      }
+    },
+    "components": {
+      "CONTROLLER_0": {
+        "vlnv": "xilinx.com:module_ref:CONTROLLER:1.0",
+        "xci_name": "Product_CONTROLLER_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "CONTROLLER",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "Product_CLK_100MHZ",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "sck": {
+            "direction": "I"
+          },
+          "ss": {
+            "direction": "I"
+          },
+          "mosi": {
+            "direction": "I"
+          },
+          "miso": {
+            "direction": "O"
+          },
+          "CE_MOT0": {
+            "direction": "O"
+          },
+          "CE_MOT1": {
+            "direction": "O"
+          },
+          "MOT0_out": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "MOT1_out": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "ENC0": {
+            "direction": "I",
+            "left": "1",
+            "right": "0"
+          },
+          "ENC1": {
+            "direction": "I",
+            "left": "1",
+            "right": "0"
+          },
+          "hall_i_0": {
+            "direction": "I"
+          },
+          "hall_i_1": {
+            "direction": "I"
+          },
+          "led": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "CONTROLLER_0_CE_M0T0": {
+        "ports": [
+          "CONTROLLER_0/CE_MOT0",
+          "CE_MOT0"
+        ]
+      },
+      "CONTROLLER_0_CE_M0T1": {
+        "ports": [
+          "CONTROLLER_0/CE_MOT1",
+          "CE_MOT1"
+        ]
+      },
+      "CONTROLLER_0_MOT0_out": {
+        "ports": [
+          "CONTROLLER_0/MOT0_out",
+          "MOT0"
+        ]
+      },
+      "CONTROLLER_0_MOT1_out": {
+        "ports": [
+          "CONTROLLER_0/MOT1_out",
+          "MOT1"
+        ]
+      },
+      "ENC0_0_1": {
+        "ports": [
+          "ENC0",
+          "CONTROLLER_0/ENC0"
+        ]
+      },
+      "hall_i_0_0_1": {
+        "ports": [
+          "HALL0",
+          "CONTROLLER_0/hall_i_0"
+        ]
+      },
+      "ENC1_0_1": {
+        "ports": [
+          "ENC1",
+          "CONTROLLER_0/ENC1"
+        ]
+      },
+      "hall_i_1_0_1": {
+        "ports": [
+          "HALL1",
+          "CONTROLLER_0/hall_i_1"
+        ]
+      },
+      "sck_0_1": {
+        "ports": [
+          "SCK",
+          "CONTROLLER_0/sck"
+        ]
+      },
+      "CONTROLLER_0_miso": {
+        "ports": [
+          "CONTROLLER_0/miso",
+          "MISO"
+        ]
+      },
+      "ss_0_1": {
+        "ports": [
+          "SS",
+          "CONTROLLER_0/ss"
+        ]
+      },
+      "mosi_0_1": {
+        "ports": [
+          "MOSI",
+          "CONTROLLER_0/mosi"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "CLK_100MHZ",
+          "CONTROLLER_0/clk"
+        ]
+      },
+      "CONTROLLER_0_led": {
+        "ports": [
+          "CONTROLLER_0/led",
+          "led"
+        ]
+      }
+    }
+  }
+}

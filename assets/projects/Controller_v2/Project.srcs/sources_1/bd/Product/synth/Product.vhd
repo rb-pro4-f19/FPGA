@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
---Date        : Fri Apr 12 16:42:10 2019
+--Date        : Mon May 13 16:35:06 2019
 --Host        : daniel-XPS-15-9570 running 64-bit Ubuntu 18.04.2 LTS
 --Command     : generate_target Product.bd
 --Design      : Product
@@ -70,7 +70,7 @@ architecture STRUCTURE of Product is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of CLK_100MHZ : signal is "xilinx.com:signal:clock:1.0 CLK.CLK_100MHZ CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of CLK_100MHZ : signal is "XIL_INTERFACENAME CLK.CLK_100MHZ, CLK_DOMAIN Product_clk_0, FREQ_HZ 100000000, INSERT_VIP 0, PHASE 0.000";
+  attribute X_INTERFACE_PARAMETER of CLK_100MHZ : signal is "XIL_INTERFACENAME CLK.CLK_100MHZ, CLK_DOMAIN Product_CLK_100MHZ, FREQ_HZ 100000000, INSERT_VIP 0, PHASE 0.000";
 begin
   CE_MOT0 <= CONTROLLER_0_CE_M0T0;
   CE_MOT1 <= CONTROLLER_0_CE_M0T1;

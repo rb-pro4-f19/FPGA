@@ -39,9 +39,9 @@ end SPI_slave_TX;
 architecture Behavioral of SPI_slave_TX is
 
     type   enable_spi       is (ENB, DIS);
-    type   transmit_spi     is (START, CHANGESIGNAL, WAITING, DONE);
+    type   transmit_spi     is (TRANSMIT, WAITING, DONE);
     signal state_spi        :   enable_spi                          := DIS;
-    signal state_trns       :   transmit_spi                        := START;
+    signal state_trns       :   transmit_spi                        := TRANSMIT;
 
     begin
 
@@ -52,7 +52,7 @@ architecture Behavioral of SPI_slave_TX is
         variable shift      :   std_logic_vector(15 downto 0)       := (others => '0');
         variable shiftsck   :   std_logic_vector(3 downto 0)        := "0000";
         variable shiftss    :   std_logic_vector(3 downto 0)        := "1111";
-        variable index      :   natural range 0 to 14               := 14;
+        variable index      :   natural range 0 to 15               := 15;
 
     begin
 
@@ -76,14 +76,7 @@ architecture Behavioral of SPI_slave_TX is
 
                 case( state_trns ) is
 
-                    when START =>
-
-                        shift := data;
-                        miso <= shift(15);
-                        index := 14;
-                        state_trns <= WAITING;
-
-                    when CHANGESIGNAL =>
+                    when TRANSMIT =>
 
                         if shiftsck = "0000" then -- falling edge
 
@@ -100,17 +93,17 @@ architecture Behavioral of SPI_slave_TX is
 
                             end if;
 
-                        else
+                         else
 
-                            state_trns <= CHANGESIGNAL;
+                            state_trns <= TRANSMIT;
 
-                        end if;
+                         end if;
 
                     when WAITING =>
 
                         if shiftsck = "1111" then -- rising edge
 
-                            state_trns <= CHANGESIGNAL;
+                            state_trns <= TRANSMIT;
 
                         else
 
@@ -122,16 +115,14 @@ architecture Behavioral of SPI_slave_TX is
 
                         state_trns <= DONE;
 
-                    when others =>
-
-                        state_trns <= START;
-
                 end case;
 
             elsif state_spi = DIS then
 
-                    miso <= '0';
-                    state_trns <= START; -- basically waits for next go
+                miso <= '0';
+				shift := data;
+				index := 15;
+				state_trns <= TRANSMIT;
 
             end if;
 

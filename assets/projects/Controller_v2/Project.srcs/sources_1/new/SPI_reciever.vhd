@@ -37,9 +37,9 @@ end SPI_slave_RX;
 architecture Behavioral of SPI_slave_RX is
 
     type   enable_spi       is (ENB, DIS);
-    type   recieve_spi      is (START, CHANGESIGNAL, WAITING, DONE);
+    type   recieve_spi      is (READ, WAITING, DONE);
     signal state_spi        :   enable_spi                          := DIS;
-    signal state_reci       :   recieve_spi                         := START;
+    signal state_reci       :   recieve_spi                         := WAITING;
 
     begin
 
@@ -74,12 +74,7 @@ architecture Behavioral of SPI_slave_RX is
 
                 case( state_reci ) is
 
-                    when START =>
-
-                    index := 15;
-                    state_reci <= WAITING;
-
-                    when CHANGESIGNAL =>
+                    when READ =>
 
                         if shiftsck = "1111" then -- wait for signal to go high
 
@@ -98,7 +93,7 @@ architecture Behavioral of SPI_slave_RX is
 
                         else
 
-                            state_reci <= CHANGESIGNAL;
+                            state_reci <= READ;
 
                         end if;
 
@@ -106,7 +101,7 @@ architecture Behavioral of SPI_slave_RX is
 
                         if shiftsck = "0000" then -- wait for signal to go low
 
-                            state_reci <= CHANGESIGNAL;
+                            state_reci <= READ;
 
                         else
 
@@ -120,13 +115,14 @@ architecture Behavioral of SPI_slave_RX is
 
                     when others =>
 
-                        state_reci <= START;
+                        state_reci <= WAITING;
 
                 end case;
 
             elsif state_spi = DIS then
 
-                    state_reci <= START; -- ready for next run
+					index := 15;
+                    state_reci <= WAITING; -- ready for next run
 
             end if;
 

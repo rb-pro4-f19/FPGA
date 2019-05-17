@@ -80,11 +80,11 @@ architecture Behavioral of SPI_topmodule is
                     if ( w_busy = '0' ) then    -- if modules are busy then do nothing
 
                         state <= RX;
-
+                        
                     else
-
+                    
                         state <= IDLE;
-
+                        
                     end if;
 
                 when RX =>      -- calculate checksum from recieve
@@ -188,11 +188,11 @@ architecture Behavioral of SPI_topmodule is
                     if(w_busy = '1') then
 
                         state <= IDLE;
-
+                        
                     else
-
+                    
                         state <= DONE;
-
+                        
                     end if;
 
                 when others =>

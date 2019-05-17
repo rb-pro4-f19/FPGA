@@ -50,17 +50,17 @@ architecture Behavioral of ENCODER is
 
     process(clk)
 
-    variable shift_a    : std_logic_vector(5 downto 0) := (others => '0');
+    variable shift_a    : std_logic_vector(15 downto 0) := (others => '0');
 
-    variable shift_b    : std_logic_vector(5 downto 0) := (others => '0');
+    variable shift_b    : std_logic_vector(15 downto 0) := (others => '0');
 
     begin
 
         if(rising_edge(clk)) then
 
-            shift_a := shift_a(4 downto 0) & enc_a;
+            shift_a := shift_a(14 downto 0) & enc_a;
 
-            shift_b := shift_b(4 downto 0) & enc_b;
+            shift_b := shift_b(14 downto 0) & enc_b;
 
             if(reset = '1') then
 
@@ -96,17 +96,17 @@ architecture Behavioral of ENCODER is
 
                 when S1 =>
                     -- a = 0 b = 0
-                    if shift_a = "000000" and shift_b = "000000" then
+                    if shift_a = x"0000" and shift_b = x"0000" then
 
                         direc <= STILL;
                         state <= S1;
 
-                    elsif shift_a = "111111" and shift_b = "000000" then
+                    elsif shift_a = x"FFFF" and shift_b = x"0000" then
 
                         direc <= RIGHT;
                         state <= S2;
 
-                    elsif shift_a = "000000" and shift_b = "111111" then
+                    elsif shift_a = x"0000" and shift_b = x"FFFF" then
 
                         direc <= LEFT;
                         state <= S4;
@@ -115,17 +115,17 @@ architecture Behavioral of ENCODER is
 
                 when S2 =>
                     -- a = 1 b = 0
-                    if shift_a = "111111" and shift_b = "000000" then
+                    if shift_a = x"FFFF" and shift_b = x"0000" then
 
                         direc <= STILL;
                         state <= S2;
 
-                    elsif shift_a = "111111" and shift_b = "111111" then
+                    elsif shift_a = x"FFFF" and shift_b = x"FFFF" then
 
                         direc <= RIGHT;
                         state <= S3;
 
-                    elsif shift_a = "000000" and shift_b = "000000" then
+                    elsif shift_a = x"0000" and shift_b = x"0000" then
 
                         direc <= LEFT;
                         state <= S1;
@@ -134,17 +134,17 @@ architecture Behavioral of ENCODER is
 
                 when S3 =>
                     -- a = 0 b = 1
-                    if shift_a = "111111" and shift_b = "111111" then
+                    if shift_a = x"FFFF" and shift_b = x"FFFF" then
 
                         direc <= STILL;
                         state <= S3;
 
-                    elsif shift_a = "000000" and shift_b = "111111" then
+                    elsif shift_a = x"0000" and shift_b = x"FFFF" then
 
                         direc <= RIGHT;
                         state <= S4;
 
-                    elsif shift_a = "111111" and shift_b = "000000" then
+                    elsif shift_a = x"FFFF" and shift_b = x"0000" then
 
                         direc <= LEFT;
                         state <= S2;
@@ -153,17 +153,17 @@ architecture Behavioral of ENCODER is
 
                 when S4 =>
                     -- a = 1 b = 1
-                    if shift_a = "000000" and shift_b = "111111" then
+                    if shift_a = x"0000" and shift_b = x"FFFF" then
 
                         direc <= STILL;
                         state <= S4;
 
-                    elsif shift_a = "000000" and shift_b = "000000" then
+                    elsif shift_a = x"0000" and shift_b = x"0000" then
 
                         direc <= RIGHT;
                         state <= S1;
 
-                    elsif shift_a = "111111" and shift_b = "111111" then
+                    elsif shift_a = x"FFFF" and shift_b = x"FFFF" then
 
                         direc <= LEFT;
                         state <= S3;
@@ -175,5 +175,5 @@ architecture Behavioral of ENCODER is
         end if;
 
     end process;
-    
+
 end Behavioral;

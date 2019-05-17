@@ -51,7 +51,7 @@ end CONTROLLER;
 
 architecture Behavioral of CONTROLLER is
 
-    type MODE                       is (IDLE, PARSE, WAITING, REPLY);
+    type MODE                       is (IDLE, PARSE, ACKNOWLEDGE, USELESS);
     signal state                    :   MODE                              := IDLE;
 
     signal w_data_TX                :   std_logic_vector(15 downto 0);
@@ -185,10 +185,10 @@ architecture Behavioral of CONTROLLER is
 
                     end case;
 
-                    state <= WAITING;
+                    state <= ACKNOWLEDGE;
 
 --------------------------------------------------------------------------------
-                when WAITING =>
+                when ACKNOWLEDGE =>
 --------------------------------------------------------------------------------
                     case ( shift(15 downto 12) ) is
 
@@ -207,14 +207,18 @@ architecture Behavioral of CONTROLLER is
                                 when others =>
 
                             end case;
+                            
+                            w_data_TX      <= shift;
 
                         when MOT_0 =>
 
                             w_rdy_MOT0 <= '0';
+                            w_data_TX      <= x"B0B0";
 
                         when MOT_1 =>
 
                             w_rdy_MOT1 <= '0';
+                            w_data_TX      <= x"A0A0";
 
                         when ENC_0 =>
 
@@ -237,67 +241,26 @@ architecture Behavioral of CONTROLLER is
                             w_data_TX(15 downto 12) <= HALL_1;
 
                         when RETX =>
-
-                            -- done
-
-                        when others =>
-
-                            -- done
-
-                    end case;
-
-                    state <= REPLY;
-
---------------------------------------------------------------------------------
-                when REPLY =>
---------------------------------------------------------------------------------
-                    case ( shift(15 downto 12) ) is
-
-                        when CTRL =>
-
-                            w_data_TX      <= shift;
-
-                        when MOT_0 =>
-
-                            w_data_TX      <= x"B0B0";
-
-                        when MOT_1 =>
-
-                            w_data_TX      <= x"A0A0";
-
-                        when ENC_0 =>
-
-                            -- done
-
-                        when ENC_1 =>
-
-                            -- done
-
-                        when HALL_0 =>
-
-                            -- done
-
-                        when HALL_1 =>
-
-                            -- done
-
-                        when RETX =>
-
+                            
                             w_data_TX(15 downto 4) <= prev_data;
 
-                        when others =>
+                            -- done
 
+                        when others =>
+                        
                             w_data_TX      <= x"F0F0";
 
+                            -- done
+
                     end case;
-
+                    
                     w_ctrl_reply <= '1';
-                    state <= IDLE;
---------------------------------------------------------------------------------
-                when others =>
---------------------------------------------------------------------------------
-                    state <= IDLE;
-
+                    state <= USELESS;
+                    
+                    when USELESS =>
+                    
+                        state <= IDLE;
+                                    
             end case;
 
         end if;

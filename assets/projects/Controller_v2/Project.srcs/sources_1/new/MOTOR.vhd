@@ -50,7 +50,7 @@ component MOTOR_FREQ is
         );
 end component;
 
-constant ten_ms              : integer                          := (100000000 / 100) - 1;
+constant ten_ms              : integer                          := (100000000 / 10) - 1;
 
 type MOTOR_PAT               is (FORW, BACKW);
 signal motor_state           : MOTOR_PAT := FORW;
@@ -98,6 +98,7 @@ begin
             if ( 0 >= watchdog_counter ) then
 
                 watchdog <= '0';
+                
 
             else
 
@@ -230,7 +231,7 @@ architecture Behavioral of MOTOR_FREQ is
 
         if rising_edge(clk_in) then
 
-            if ( counter >= (RAM_M(to_integer(unsigned(freq(6 downto 0))))) ) then
+            if ( counter >= ( RAM_M( to_integer ( unsigned( freq(6 downto 0) ) ) ) ) ) then
 
                 temp <= NOT( temp );
                 counter <= 0;

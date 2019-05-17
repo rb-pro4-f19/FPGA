@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon May 13 16:35:06 2019" VIVADOVERSION="2018.3">
+
+  <SYSTEMINFO ARCH="artix7" DEVICE="7a35t" NAME="Product" PACKAGE="cpg236" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="O" NAME="CE_MOT0" SIGIS="undef" SIGNAME="CONTROLLER_0_CE_MOT0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="CE_MOT0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="CE_MOT1" SIGIS="undef" SIGNAME="CONTROLLER_0_CE_MOT1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="CE_MOT1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="1" NAME="MOT0" RIGHT="0" SIGIS="undef" SIGNAME="CONTROLLER_0_MOT0_out">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="MOT0_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="1" NAME="MOT1" RIGHT="0" SIGIS="undef" SIGNAME="CONTROLLER_0_MOT1_out">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="MOT1_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="1" NAME="ENC0" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_ENC0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="ENC0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="HALL0" SIGIS="undef" SIGNAME="External_Ports_HALL0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="hall_i_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="1" NAME="ENC1" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_ENC1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="ENC1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="HALL1" SIGIS="undef" SIGNAME="External_Ports_HALL1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="hall_i_1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="SCK" SIGIS="undef" SIGNAME="External_Ports_SCK">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="sck"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="MISO" SIGIS="undef" SIGNAME="CONTROLLER_0_miso">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="miso"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="SS" SIGIS="undef" SIGNAME="External_Ports_SS">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="ss"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="MOSI" SIGIS="undef" SIGNAME="External_Ports_MOSI">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="mosi"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="CLK_100MHZ" SIGIS="clk" SIGNAME="External_Ports_CLK_100MHZ">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="clk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="7" NAME="led" RIGHT="0" SIGIS="undef" SIGNAME="CONTROLLER_0_led">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="CONTROLLER_0" PORT="led"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/CONTROLLER_0" HWVERSION="1.0" INSTANCE="CONTROLLER_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="CONTROLLER" VLNV="xilinx.com:module_ref:CONTROLLER:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="Product_CONTROLLER_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_CLK_100MHZ">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CLK_100MHZ"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sck" SIGIS="undef" SIGNAME="External_Ports_SCK">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SCK"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="ss" SIGIS="undef" SIGNAME="External_Ports_SS">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SS"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="mosi" SIGIS="undef" SIGNAME="External_Ports_MOSI">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="MOSI"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="miso" SIGIS="undef" SIGNAME="CONTROLLER_0_miso">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="MISO"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="CE_MOT0" SIGIS="undef" SIGNAME="CONTROLLER_0_CE_MOT0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CE_MOT0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="CE_MOT1" SIGIS="undef" SIGNAME="CONTROLLER_0_CE_MOT1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="CE_MOT1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="MOT0_out" RIGHT="0" SIGIS="undef" SIGNAME="CONTROLLER_0_MOT0_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="MOT0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="MOT1_out" RIGHT="0" SIGIS="undef" SIGNAME="CONTROLLER_0_MOT1_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="MOT1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="ENC0" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_ENC0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ENC0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="ENC1" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_ENC1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ENC1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="hall_i_0" SIGIS="undef" SIGNAME="External_Ports_HALL0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="HALL0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="hall_i_1" SIGIS="undef" SIGNAME="External_Ports_HALL1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="HALL1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="led" RIGHT="0" SIGIS="undef" SIGNAME="CONTROLLER_0_led">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="led"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

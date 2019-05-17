@@ -1,0 +1,37 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port CE_MOT0 -pg 1 -y 100 -defaultsOSRD
+preplace port CE_MOT1 -pg 1 -y 120 -defaultsOSRD
+preplace port CLK_100MHZ -pg 1 -y 60 -defaultsOSRD
+preplace port SS -pg 1 -y 100 -defaultsOSRD
+preplace port MISO -pg 1 -y 80 -defaultsOSRD
+preplace port MOSI -pg 1 -y 120 -defaultsOSRD
+preplace port SCK -pg 1 -y 80 -defaultsOSRD
+preplace port HALL0 -pg 1 -y 180 -defaultsOSRD
+preplace port HALL1 -pg 1 -y 200 -defaultsOSRD
+preplace portBus MOT1 -pg 1 -y 160 -defaultsOSRD
+preplace portBus led -pg 1 -y 180 -defaultsOSRD
+preplace portBus ENC0 -pg 1 -y 140 -defaultsOSRD
+preplace portBus ENC1 -pg 1 -y 160 -defaultsOSRD
+preplace portBus MOT0 -pg 1 -y 140 -defaultsOSRD
+preplace inst CONTROLLER_0 -pg 1 -lvl 1 -y 130 -defaultsOSRD
+preplace netloc CONTROLLER_0_MOT0_out 1 1 1 NJ
+preplace netloc mosi_0_1 1 0 1 NJ
+preplace netloc clk_0_1 1 0 1 NJ
+preplace netloc sck_0_1 1 0 1 NJ
+preplace netloc ENC0_0_1 1 0 1 NJ
+preplace netloc hall_i_1_0_1 1 0 1 NJ
+preplace netloc ENC1_0_1 1 0 1 NJ
+preplace netloc hall_i_0_0_1 1 0 1 NJ
+preplace netloc CONTROLLER_0_CE_M0T0 1 1 1 NJ
+preplace netloc CONTROLLER_0_CE_M0T1 1 1 1 NJ
+preplace netloc CONTROLLER_0_led 1 1 1 NJ
+preplace netloc ss_0_1 1 0 1 NJ
+preplace netloc CONTROLLER_0_miso 1 1 1 NJ
+preplace netloc CONTROLLER_0_MOT1_out 1 1 1 NJ
+levelinfo -pg 1 0 160 320 -top 0 -bot 260
+"
+}
+0

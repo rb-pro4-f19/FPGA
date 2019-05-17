@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="MotorTB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="MotorTB" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="13421fs"></ZoomEndTime>
+      <Cursor1Time time="19999995000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="66"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject type="logic" fp_name="/MotorTB/stop_btn">
+      <obj_property name="ElementShortName">stop_btn</obj_property>
+      <obj_property name="ObjectShortName">stop_btn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/ready">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/MotorTB/pwm_set">
+      <obj_property name="ElementShortName">pwm_set[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_set[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/direction">
+      <obj_property name="ElementShortName">direction</obj_property>
+      <obj_property name="ObjectShortName">direction</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/MotorTB/ja">
+      <obj_property name="ElementShortName">ja[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ja[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/chip_enable">
+      <obj_property name="ElementShortName">chip_enable</obj_property>
+      <obj_property name="ObjectShortName">chip_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/stop_btn">
+      <obj_property name="ElementShortName">stop_btn</obj_property>
+      <obj_property name="ObjectShortName">stop_btn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/ready">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/MotorTB/DUT/pwm_set">
+      <obj_property name="ElementShortName">pwm_set[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_set[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/direction">
+      <obj_property name="ElementShortName">direction</obj_property>
+      <obj_property name="ObjectShortName">direction</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/MotorTB/DUT/ja">
+      <obj_property name="ElementShortName">ja[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ja[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/chip_enable">
+      <obj_property name="ElementShortName">chip_enable</obj_property>
+      <obj_property name="ObjectShortName">chip_enable</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/MotorTB/DUT/motor_state">
+      <obj_property name="ElementShortName">motor_state</obj_property>
+      <obj_property name="ObjectShortName">motor_state</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/MotorTB/DUT/dir_state">
+      <obj_property name="ElementShortName">dir_state</obj_property>
+      <obj_property name="ObjectShortName">dir_state</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/MotorTB/DUT/i_counter">
+      <obj_property name="ElementShortName">i_counter</obj_property>
+      <obj_property name="ObjectShortName">i_counter</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/MotorTB/DUT/i_shift">
+      <obj_property name="ElementShortName">i_shift</obj_property>
+      <obj_property name="ObjectShortName">i_shift</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/w_motor_clk">
+      <obj_property name="ElementShortName">w_motor_clk</obj_property>
+      <obj_property name="ObjectShortName">w_motor_clk</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/MotorTB/DUT/pwm_max_val">
+      <obj_property name="ElementShortName">pwm_max_val</obj_property>
+      <obj_property name="ObjectShortName">pwm_max_val</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/MotorTB/DUT/pwm_freq">
+      <obj_property name="ElementShortName">pwm_freq</obj_property>
+      <obj_property name="ObjectShortName">pwm_freq</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/activate">
+      <obj_property name="ElementShortName">activate</obj_property>
+      <obj_property name="ObjectShortName">activate</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/deactivate">
+      <obj_property name="ElementShortName">deactivate</obj_property>
+      <obj_property name="ObjectShortName">deactivate</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/forward">
+      <obj_property name="ElementShortName">forward</obj_property>
+      <obj_property name="ObjectShortName">forward</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/MotorTB/DUT/backward">
+      <obj_property name="ElementShortName">backward</obj_property>
+      <obj_property name="ObjectShortName">backward</obj_property>
+   </wvobject>
+</wave_config>
